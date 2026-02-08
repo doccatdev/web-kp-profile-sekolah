@@ -30,21 +30,21 @@ class CategoryResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name_category')
-                ->required()
-                ->label('Kategori')
-                ->placeholder('Masukkan Nama Kategori')
-                ->maxLength(255)
-                ->live(onBlur: true)
-    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
-        if (($get('slug') ?? '') !== Str::slug($old)) {
-            return;
-        }
+                    ->required()
+                    ->label('Kategori')
+                    ->placeholder('Masukkan Nama Kategori')
+                    ->maxLength(255)
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                        if (($get('slug') ?? '') !== Str::slug($old)) {
+                            return;
+                        }
 
-        $set('slug', Str::slug($state));
-    }),
+                        $set('slug', Str::slug($state));
+                    }),
                 TextInput::make('slug')->required()->placeholder('Masukkan Slug / Kategori Berita atau Tulisan')
-                ->maxLength(255)
-                ->label('Slug'),
+                    ->maxLength(255)
+                    ->label('Slug'),
             ]);
     }
 

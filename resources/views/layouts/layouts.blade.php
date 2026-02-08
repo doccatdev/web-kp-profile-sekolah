@@ -5,89 +5,89 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href={{ asset('assets/icons/edited-photo.ico') }}>
+    <link rel="shortcut icon" href="{{ asset('assets/icons/edited-photo.ico') }}">
     <title>SMP Al Husainiyah</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- AOS Animation CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <!-- CSS Styling Berita -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <!-- Library Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 <body>
 
-    <!-- Navbar -->
     @include('layouts.navbar')
 
-    <!-- Content -->
-    @yield('content')
+    <main>
+        @yield('content')
+    </main>
 
-    <!-- Footer -->
-    <section id="footer" class="bg-white">
-        <div class="container py-4">
+    <section id="footer" class="bg-white border-top">
+        <div class="container py-5">
             <footer>
                 <div class="row align-items-start g-4" data-aos="fade-up">
-                    <!-- Navigasi -->
-                    <div class="col-12 col-md-3 mb-3 mb-md-0">
+                    {{-- Navigasi --}}
+                    <div class="col-12 col-md-3">
                         <h5 class="fw-bold mb-3">Navigasi</h5>
-                        <ul class="nav flex-column gap-1 list-unstyled">
-                            <li class="nav-item"><a href="{{ url('/profil/sambutan') }}" class="nav-link py-1 px-0 text-muted">Profil</a>
-                            </li>
-                            <li class="nav-item"><a href="{{ url('/berita') }}" class="nav-link py-1 px-0 text-muted">Berita</a>
-                            </li>
-                            <li class="nav-item"><a href="{{ url('/galeri') }}" class="nav-link py-1 px-0 text-muted">Galeri</a>
-                            </li>
-                            <li class="nav-item"><a href="{{ url('/video') }}" class="nav-link py-1 px-0 text-muted">Video</a>
-                            </li>
-                            <li class="nav-item"><a href="{{ url('/kontak') }}" class="nav-link py-1 px-0 text-muted">Kontak</a>
-                            </li>
+                        <ul class="nav flex-column gap-1 list-unstyled text-muted">
+                            <li><a href="{{ url('/profil/sambutan') }}"
+                                    class="text-decoration-none text-muted">Profil</a></li>
+                            <li><a href="{{ url('/berita') }}" class="text-decoration-none text-muted">Berita</a></li>
+                            <li><a href="{{ url('/galeri') }}" class="text-decoration-none text-muted">Galeri</a></li>
+                            <li><a href="{{ url('/video') }}" class="text-decoration-none text-muted">Video</a></li>
+                            <li><a href="{{ url('/kontak') }}" class="text-decoration-none text-muted">Kontak</a></li>
                         </ul>
                     </div>
-                    <!-- Media Sosial -->
-                    <div class="col-12 col-md-3 mb-3 mb-md-0">
-                        <h5 class="fw-inter fw-bold mb-3">Media Sosial Kami</h5>
-                        <div class="d-flex gap-3 flex-wrap">
-                            <a href="" target="_blank" class="text-decoration-none text-dark"
-                                aria-label="Facebook"><i class="bi bi-facebook fs-5"></i></a>
-                            <a href="" target="_blank" class="text-decoration-none text-dark"
-                                aria-label="Instagram"><i class="bi bi-instagram fs-5"></i></a>
-                            <a href="" target="_blank" class="text-decoration-none text-dark"
-                                aria-label="YouTube"><i class="bi bi-youtube fs-5"></i></a>
-                            <a href="" target="_blank" class="text-decoration-none text-dark"
-                                aria-label="TikTok"><i class="bi bi-tiktok fs-5"></i></a>
+
+                    {{-- Media Sosial --}}
+                    <div class="col-12 col-md-3">
+                        <h5 class="fw-bold mb-3">Media Sosial Kami</h5>
+                        <div class="d-flex gap-3">
+                            <a href="#" target="_blank" class="text-dark"><i class="bi bi-facebook fs-5"></i></a>
+                            <a href="#" target="_blank" class="text-dark"><i class="bi bi-instagram fs-5"></i></a>
+                            <a href="#" target="_blank" class="text-dark"><i class="bi bi-youtube fs-5"></i></a>
+                            <a href="#" target="_blank" class="text-dark"><i class="bi bi-tiktok fs-5"></i></a>
                         </div>
                     </div>
-                    <!-- Kontak Kami -->
-                    <div class="col-12 col-md-3 mb-3 mb-md-0">
+
+                    {{-- Kontak Kami --}}
+                    <div class="col-12 col-md-3">
                         <h5 class="fw-bold mb-3">Kontak Kami</h5>
                         <ul class="list-unstyled text-muted small">
-                            <li class="mb-2"><i class="bi bi-telephone-fill me-2"></i>(022) 2041235</li>
-                            <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i>smp.alhusainiyyah@gmail.com
-                            </li>
+                            @if ($kontak)
+                                <li class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-telephone-fill me-2 text-success fs-5"></i>
+                                    <span class="text-break">{{ $kontak->phone }}</span>
+                                </li>
+                                <li class="d-flex align-items-center mb-3">
+                                    {{-- Ikon disamakan dengan gambar: bi-envelope-at-fill --}}
+                                    <i class="bi bi-envelope-at-fill me-2 text-success fs-5"></i>
+                                    <span class="text-break">{{ $kontak->email }}</span>
+                                </li>
+                            @else
+                                <li class="mb-2 text-muted small">Data kontak belum tersedia</li>
+                            @endif
                         </ul>
                     </div>
-                    <!-- Alamat Sekolah -->
-                    <div class="col-12 col-md-3 mb-3">
+
+                    {{-- Alamat Sekolah --}}
+                    <div class="col-12 col-md-3">
                         <h5 class="fw-bold mb-3">Alamat Sekolah</h5>
-                        <p>
-                            Jl. Bukit Jarian Dalam No. 29/165 D Ciumbuleuit
-                        </p>
+                        <div class="d-flex">
+                            <i class="bi bi-geo-alt-fill me-2 text-success fs-5"></i>
+                            <p class="text-muted small mb-0 text-break">
+                                {{ $kontak->address ?? 'Alamat belum diatur di admin panel' }}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </footer>
         </div>
     </section>
-    <!-- Script JS  -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- AOS Animation JS -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -97,17 +97,16 @@
         });
     </script>
 
-    <!-- Script JS Scroll Navbar -->
     <script>
         const navbar = document.querySelector(".fixed-top");
         let lastScrollY = window.scrollY;
 
         window.addEventListener("scroll", () => {
-            const scrollY = window.scrollY;
+            if (!navbar) return; // Guard clause jika navbar tidak ada class fixed-top
 
+            const scrollY = window.scrollY;
             if (scrollY > 100) {
-                navbar.classList.add("scroll-nav-activate");
-                navbar.classList.add("text-nav-activate");
+                navbar.classList.add("scroll-nav-activate", "text-nav-activate");
                 navbar.classList.remove("navbar-dark");
                 if (scrollY > lastScrollY) {
                     navbar.classList.add("navbar-hidden");
@@ -115,17 +114,12 @@
                     navbar.classList.remove("navbar-hidden");
                 }
             } else {
-                navbar.classList.remove("scroll-nav-activate");
-                navbar.classList.remove("text-nav-activate");
+                navbar.classList.remove("scroll-nav-activate", "text-nav-activate", "navbar-hidden");
                 navbar.classList.add("navbar-dark");
-                navbar.classList.remove("navbar-hidden");
             }
-
             lastScrollY = scrollY;
         });
     </script>
-    <!-- End Script JS -->
-
 </body>
 
 </html>

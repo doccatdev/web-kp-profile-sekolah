@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\NewsResource\Pages;
+namespace App\Filament\Resources\ContactResource\Pages;
 
-use App\Filament\Resources\NewsResource;
+use App\Filament\Resources\ContactResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Notifications\Notification;
 
-class EditNews extends EditRecord
+class EditContact extends EditRecord
 {
-    protected static string $resource = NewsResource::class;
+    protected static string $resource = ContactResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -18,18 +18,18 @@ class EditNews extends EditRecord
         ];
     }
 
-    // redirect to index category pages after CRUD (Create, Read, Update, Delete)
+    // redirect to index contact pages after CRUD (Create, Read, Update, Delete)
     public function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
     }
 
-    // notify the user that the category has been updated successfully
+    // notify the user that the contact has been updated successfully
     public function getSavedNotification(): ?Notification
     {
         return Notification::make()
-            ->title('Berita Diupdate')
-            ->body('Berita berhasil diupdate')
+            ->title('Kontak Diupdate')
+            ->body('Kontak berhasil diupdate')
             ->success()
             ->send();
     }

@@ -40,42 +40,42 @@ class NewsResource extends Resource
             ->schema([
                 //Form input Judul Berita
                 TextInput::make('news_title')
-                ->label('Judul Berita')
-                ->required()
-                ->live(onBlur: true)
-                ->placeholder('Judul Berita')
-                ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                    ->label('Judul Berita')
+                    ->required()
+                    ->live(onBlur: true)
+                    ->placeholder('Judul Berita')
+                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
 
 
                 // Slug
                 TextInput::make('slug')
-                ->required()
-                ->unique(ignoreRecord: true) // Pastikan slug tidak kembar di DB
-                ->readOnly(), // Admin bisa melihat tapi tidak perlu mengetik manual
+                    ->required()
+                    ->unique(ignoreRecord: true) // Pastikan slug tidak kembar di DB
+                    ->readOnly(), // Admin bisa melihat tapi tidak perlu mengetik manual
 
                 // Category
                 Select::make('category_id')
-                ->label('Kategori Berita')
-                ->placeholder('Pilih Kategori')
-                ->options(Category::all()->pluck('name_category', 'id'))
-                ->required(),
+                    ->label('Kategori Berita')
+                    ->placeholder('Pilih Kategori')
+                    ->options(Category::all()->pluck('name_category', 'id'))
+                    ->required(),
 
                 // Date / Tanggal
                 DatePicker::make('posted_at')
-                ->label('Tanggal Posting')
-                ->required()
-                ->displayFormat('d/m/y')
-                ->native(false),
+                    ->label('Tanggal Posting')
+                    ->required()
+                    ->displayFormat('d/m/y')
+                    ->native(false),
 
                 // Image/Gambar/Tumbnail berita
                 FileUpload::make('image')
-                ->label('File Berita'),
+                    ->label('File Berita'),
 
                 // Konten Berita
                 RichEditor::make('news_content')
-                ->label('Berita')
-                ->required()
-                ->columnSpanFull(),
+                    ->label('Berita')
+                    ->required()
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -85,11 +85,11 @@ class NewsResource extends Resource
             ->columns([
                 //
                 TextColumn::make('news_title')
-                ->label('Judul Berita'),
+                    ->label('Judul Berita'),
                 TextColumn::make('posted_at')
-                ->label('Tanggal Posting'),
+                    ->label('Tanggal Posting'),
                 ImageColumn::make('image')
-                ->label('File Berita'),
+                    ->label('File Berita'),
 
             ])
             ->filters([
@@ -113,7 +113,7 @@ class NewsResource extends Resource
                                 ->success()
                                 ->title('Kumpulan Berita Dihapus')
                                 ->body('Kumpulan berita yang dipilih berhasil dihapus')
-                    ),
+                        ),
                 ]),
             ]);
     }

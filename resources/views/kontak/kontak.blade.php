@@ -1,129 +1,110 @@
 @extends('layouts.layouts')
 
 @section('content')
+    {{-- Leaflet CSS --}}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
     <section id="kontak" class="pt-5">
         <div class="container py-5">
-            <div class="header-section text-center mb-5">
+            <div class="header-section text-center mb-5" data-aos="fade-up">
                 <h1 class="fw-bold">Hubungi Kami</h1>
+                <p class="text-muted">Silakan hubungi kami melalui informasi di bawah ini atau kunjungi lokasi kami.</p>
             </div>
 
-            <div class="row g-4" data-aos="fade-up">
-                {{-- Info Kontak (dari CRUD) --}}
-                <div class="col-lg-5">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-body p-5">
-                            <h5 class="fw-bold mb-4">Kontak Kami</h5>
-                            @if (isset($kontak) && $kontak)
-                                <ul class="list-unstyled mb-0">
-                                    @if ($kontak->telepon ?? null)
-                                        <li class="mb-3">
-                                            <i class="bi bi-telephone-fill me-2 text-success"></i>
-                                            <a href="tel:{{ preg_replace('/\s+/', '', $kontak->telepon) }}"
-                                                class="text-decoration-none text-dark">{{ $kontak->telepon }}</a>
-                                        </li>
-                                    @endif
-                                    @if ($kontak->email ?? null)
-                                        <li class="mb-3">
-                                            <i class="bi bi-envelope-fill me-2 text-success"></i>
-                                            <a href="mailto:{{ $kontak->email }}"
-                                                class="text-decoration-none text-dark">{{ $kontak->email }}</a>
-                                        </li>
-                                    @endif
-                                    @if ($kontak->alamat ?? null)
-                                        <li class="mb-3">
-                                            <i class="bi bi-geo-alt-fill me-2 text-success"></i>
-                                            <span>{{ $kontak->alamat }}</span>
-                                        </li>
-                                    @endif
-                                    @if (
-                                        ($kontak->facebook ?? null) ||
-                                            ($kontak->instagram ?? null) ||
-                                            ($kontak->youtube ?? null) ||
-                                            ($kontak->tiktok ?? null))
-                                        <li class="mt-4 pt-3 border-top">
-                                            <span class="d-block mb-2 small text-muted">Media Sosial</span>
-                                            <div class="d-flex gap-3 flex-wrap">
-                                                @if ($kontak->facebook ?? null)
-                                                    <a href="{{ $kontak->facebook }}" target="_blank" rel="noopener"
-                                                        class="text-decoration-none text-dark" aria-label="Facebook"><i
-                                                            class="bi bi-facebook fs-5"></i></a>
-                                                @endif
-                                                @if ($kontak->instagram ?? null)
-                                                    <a href="{{ $kontak->instagram }}" target="_blank" rel="noopener"
-                                                        class="text-decoration-none text-dark" aria-label="Instagram"><i
-                                                            class="bi bi-instagram fs-5"></i></a>
-                                                @endif
-                                                @if ($kontak->youtube ?? null)
-                                                    <a href="{{ $kontak->youtube }}" target="_blank" rel="noopener"
-                                                        class="text-decoration-none text-dark" aria-label="YouTube"><i
-                                                            class="bi bi-youtube fs-5"></i></a>
-                                                @endif
-                                                @if ($kontak->tiktok ?? null)
-                                                    <a href="{{ $kontak->tiktok }}" target="_blank" rel="noopener"
-                                                        class="text-decoration-none text-dark" aria-label="TikTok"><i
-                                                            class="bi bi-tiktok fs-5"></i></a>
-                                                @endif
-                                            </div>
-                                        </li>
-                                    @endif
-                                </ul>
-                            @else
-                                {{-- Fallback sampai data dari Filament CRUD tersedia --}}
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-3">
-                                        <i class="bi bi-telephone-fill me-2 text-success"></i>
-                                        <span>(022) 2041235</span>
-                                    </li>
-                                    <li class="mb-3">
-                                        <i class="bi bi-envelope-fill me-2 text-success"></i>
-                                        <a href="mailto:smp.alhusainiyyah@gmail.com"
-                                            class="text-decoration-none text-dark">smp.alhusainiyyah@gmail.com</a>
-                                    </li>
-                                    <li class="mb-0">
-                                        <i class="bi bi-geo-alt-fill me-2 text-success"></i>
-                                        <span>Jl. Bukit Jarian Dalam No. 29/165 D Ciumbuleuit</span>
-                                    </li>
-                                </ul>
-                            @endif
+            {{-- DETAIL KONTAK HORIZONTAL --}}
+            <div class="row g-4 mb-5" data-aos="fade-up">
+                @if ($kontak)
+                    {{-- Alamat --}}
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100 p-3 contact-card">
+                            <div class="d-flex align-items-start">
+                                <div class="icon-box">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                </div>
+                                <div class="ms-3 flex-grow-1" style="min-width: 0;">
+                                    <small class="text-muted d-block small">Alamat</small>
+                                    <span class="text-dark fw-medium">{{ $kontak->address }}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {{-- Peta Google Maps (dari CRUD: embed_url atau latitude + longitude) --}}
-                <div class="col-lg-7">
-                    <div class="card border-0 shadow-sm h-100 overflow-hidden">
-                        @if (isset($kontak) && $kontak)
-                            @if ($kontak->embed_url ?? null)
-                                {{-- Admin menyimpan iframe embed dari Google Maps (Share > Embed a map) --}}
-                                <div class="ratio ratio-16x9">
-                                    {!! $kontak->embed_url !!}
+                    {{-- Email --}}
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100 p-3 contact-card">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-box">
+                                    <i class="bi bi-envelope-at-fill"></i>
                                 </div>
-                            @elseif(($kontak->latitude ?? null) && ($kontak->longitude ?? null))
-                                {{-- Admin menyimpan lat/lng, tampilkan via iframe Google Maps embed --}}
-                                <div class="ratio ratio-16x9">
-                                    <iframe
-                                        src="https://www.google.com/maps?q={{ $kontak->latitude }},{{ $kontak->longitude }}&output=embed"
-                                        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                                        class="w-100 h-100" title="Lokasi SMP Al Husainiyah"></iframe>
+                                <div class="ms-3 flex-grow-1" style="min-width: 0;">
+                                    <small class="text-muted d-block small">Email</small>
+                                    <a href="mailto:{{ $kontak->email }}"
+                                        class="fw-medium text-dark text-decoration-none d-block">
+                                        {{ $kontak->email }}
+                                    </a>
                                 </div>
-                            @else
-                                <div
-                                    class="card-body d-flex align-items-center justify-content-center min-vh-25 text-muted py-5">
-                                    <p class="mb-0 text-center small">Pinpoint lokasi akan tampil di sini setelah diatur di
-                                        admin (Google Maps).</p>
-                                </div>
-                            @endif
-                        @else
-                            {{-- Placeholder: belum ada data kontak dari CRUD --}}
-                            <div
-                                class="card-body d-flex align-items-center justify-content-center min-vh-25 text-muted py-5">
-                                <p class="mb-0 text-center small">Peta lokasi (Google Maps) akan ditampilkan di sini setelah
-                                    diisi melalui panel admin (Filament) dengan pinpoint.</p>
                             </div>
-                        @endif
+                        </div>
+                    </div>
+
+                    {{-- Telepon --}}
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100 p-3 contact-card">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-box">
+                                    <i class="bi bi-telephone-fill"></i>
+                                </div>
+                                <div class="ms-3 flex-grow-1" style="min-width: 0;">
+                                    <small class="text-muted d-block small">Telepon</small>
+                                    <a href="tel:{{ preg_replace('/\s+/', '', $kontak->phone) }}"
+                                        class="fw-medium text-dark text-decoration-none d-block">
+                                        {{ $kontak->phone }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="col-12 text-center text-muted">
+                        <p>Data kontak belum tersedia di database.</p>
+                    </div>
+                @endif
+            </div>
+
+            {{-- PETA FULL WIDTH --}}
+            <div class="row" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm overflow-hidden" style="border-radius: 20px;">
+                        <div id="map"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    {{-- Leaflet JS --}}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if ($kontak && $kontak->location)
+                const lat = {{ $kontak->location['lat'] ?? -6.880105400263303,  }};
+                const lng = {{ $kontak->location['lng'] ?? 107.60658322895878 }};
+
+                const map = L.map('map').setView([lat, lng], 17);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+
+                const marker = L.marker([lat, lng]).addTo(map);
+
+                marker.bindPopup(`
+                    <div style="text-align: center; padding: 5px;">
+                        <strong style="color: #198754; font-size: 14px;">SMP Al Husainiyah</strong><br>
+                        <span style="font-size: 12px; color: #666;">{{ $kontak->address }}</span>
+                    </div>
+                `).openPopup();
+            @endif
+        });
+    </script>
 @endsection

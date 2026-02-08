@@ -30,14 +30,14 @@ class News extends Model
     }
 
     protected static function boot()
-{
-    parent::boot();
+    {
+        parent::boot();
 
-    static::saving(function ($news) {
-        // Jika kolom excerpt kosong, isi otomatis dari news_content
-        if (empty($news->excerpt)) {
-            $news->excerpt = str(strip_tags($news->news_content))->limit(50);
-        }
-    });
-}
+        static::saving(function ($news) {
+            // Jika kolom excerpt kosong, isi otomatis dari news_content
+            if (empty($news->excerpt)) {
+                $news->excerpt = str(strip_tags($news->news_content))->limit(50);
+            }
+        });
+    }
 }

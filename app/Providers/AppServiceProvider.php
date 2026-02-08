@@ -3,24 +3,28 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Pagination\Paginator; // Pastikan ini ada
+use Illuminate\Pagination\Paginator;
+use App\Models\Contact;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
-        // Tetap kosongkan jika tidak ada service yang didaftarkan
+        //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        // Mengatur Laravel agar menggunakan tampilan Bootstrap 5 untuk pagination
+        // 1. Pagination Bootstrap 5
         Paginator::useBootstrapFive();
+
+        // 2. View Composer untuk Contact
+        // Gunakan '*' agar variabel $kontak tersedia di SEMUA view (termasuk footer)
+        if (Schema::hasTable('contacts')) {
+            $kontak = Contact::first();
+            View::share('kontak', $kontak);
+        }
     }
 }

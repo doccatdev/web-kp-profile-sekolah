@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
 /*
@@ -50,7 +51,5 @@ Route::get('/video', function () {
     return view('video.video', ['videos' => []]); // nanti: Video::all()
 });
 
-// Kontak (siap untuk data dari Filament CRUD + pinpoint GMAPS)
-Route::get('/kontak', function () {
-    return view('kontak.kontak', ['kontak' => null]); // nanti: Kontak::first() atau Kontak::get()->first()
-});
+// Memanggil fungsi 'index' di dalam ContactController
+Route::get('/kontak', [ContactController::class, 'index'])->name('kontak.index');
