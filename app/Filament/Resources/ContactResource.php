@@ -59,9 +59,12 @@ class ContactResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('address')->limit(50),
-                Tables\Columns\TextColumn::make('phone'),
-                Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('address')->limit(50)
+                    ->label('Alamat'),
+                Tables\Columns\TextColumn::make('phone')
+                    ->label('Nomor Telepon'),
+                Tables\Columns\TextColumn::make('email')
+                    ->label('Email'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

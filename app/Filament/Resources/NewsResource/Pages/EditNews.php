@@ -6,6 +6,7 @@ use App\Filament\Resources\NewsResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Str;
 
 class EditNews extends EditRecord
 {
@@ -32,5 +33,14 @@ class EditNews extends EditRecord
             ->body('Berita berhasil diupdate')
             ->success()
             ->send();
+    }
+
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        // Ambil news_content, buang tag HTML, batasi 150 karakter
+        $data['short_description'] = Str::limit(strip_tags($data['news_content']), 150);
+
+        return $data;
     }
 }

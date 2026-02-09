@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string('news_title');
+            $table->text('short_description')->nullable();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('slug');
             $table->longText('news_content');
             $table->string('image')->nullable();
             $table->date('posted_at');
-
             $table->timestamps();
         });
     }

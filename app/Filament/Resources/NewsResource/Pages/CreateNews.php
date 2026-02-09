@@ -6,6 +6,7 @@ use App\Filament\Resources\NewsResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Str;
 
 class CreateNews extends CreateRecord
 {
@@ -26,5 +27,13 @@ class CreateNews extends CreateRecord
             ->body('Berita berhasil dibuat')
             ->success()
             ->send();
+    }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        // Ambil news_content, buang tag HTML, batasi 150 karakter
+        $data['short_description'] = Str::limit(strip_tags($data['news_content']), 150);
+
+        return $data;
     }
 }
