@@ -35,8 +35,8 @@ class News extends Model
 
         static::saving(function ($news) {
             // Jika kolom excerpt kosong, isi otomatis dari news_content
-            if (empty($news->excerpt)) {
-                $news->excerpt = str(strip_tags($news->news_content))->limit(50);
+            if (empty($news->short_description)) {
+                $news->short_description = str(strip_tags($news->news_content))->limit(50);
             }
         });
     }

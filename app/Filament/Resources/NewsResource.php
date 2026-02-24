@@ -11,10 +11,8 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Notifications\Notification;
@@ -34,7 +32,15 @@ class NewsResource extends Resource
 {
     protected static ?string $model = News::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+
+    protected static ?string $navigationLabel = 'Berita';
+
+    protected static ?string $modelLabel = 'Berita';
+
+    protected static ?string $pluralModelLabel = 'Berita';
+
+    protected static ?string $navigationGroup = 'Berita & Pengumuman';
 
     public static function form(Form $form): Form
     {
@@ -73,26 +79,11 @@ class NewsResource extends Resource
                 FileUpload::make('image')
                     ->label('File Berita'),
 
-                // Short Description
-                Textarea::make('short_description')
-                    ->label('Deskripsi Singkat')
-                    ->required()
-                    ->rows(3)
-                    ->helperText('Akan terisi otomatis dari konten, namun bisa diubah manual.'),
-
-
                 // Konten Berita
                 RichEditor::make('news_content')
                     ->label('Berita')
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(function (Set $set, $state) {
-                        // Otomatis isi short_description dari news_content
-                        $set('short_description', Str::limit(strip_tags($state), 160));
-                    }) // Kurung tutup untuk fungsi callback
                     ->required()
                     ->columnSpanFull(),
-
-                Hidden::make('short_description'),
             ]);
     }
 

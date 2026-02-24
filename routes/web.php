@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,17 +18,13 @@ use App\Models\News;
 |
 */
 
-Route::get('/', function () {
-    $news = News::orderBy('posted_at', 'desc')->take(3)->get();
-    return view('welcome', compact('news'));
-});
+// Beranda (menggunakan HomeController untuk data dinamis)
+Route::get('/', [HomeController::class, 'index']);
 
-// Profil (siap untuk data dari Filament CRUD)
-Route::get('/profil/sambutan', function () {
-    return view('profil.sambutan', ['sambutan' => null]); // nanti: Sambutan::first()
-});
+// Profil
 Route::get('/profil/profil-sekolah', function () {
-    return view('profil.profil-sekolah', ['profil' => null]);
+    $profilPhotos = ProfilPhoto::active()->ordered()->get();
+    return view('profil.profil-sekolah', ['profil' => null, 'profilPhotos' => $profilPhotos]);
 });
 Route::get('/profil/sejarah', function () {
     return view('profil.sejarah', ['sejarah' => null]);
@@ -33,23 +32,42 @@ Route::get('/profil/sejarah', function () {
 Route::get('/profil/visi-misi', function () {
     return view('profil.visi-misi', ['visiMisi' => null]);
 });
+Route::get('/profil/data-guru', function () {
+    return view('profil.data-guru');
+});
 
-// Berita
+// Program Unggulan
+Route::get('/program-unggulan', function () {
+    return view('program-unggulan.index');
+})->name('program-unggulan.index');
+
+Route::get('/program-unggulan/{id}', function ($id) {
+    return view('program-unggulan.detail');
+})->name('program-unggulan.show');
+
+// Ekstrakulikuler (halaman dedicated)
+Route::get('/ekstrakulikuler', function () {
+    return view('ekstrakulikuler.index', compact('extracurriculars'));
+});
+
+// Informasi: Berita
 Route::get('/berita', [BlogController::class, 'index'])->name('berita.index');
 Route::get('/berita/{slug}', [BlogController::class, 'show'])->name('berita.show');
 
-// Galeri: Foto Kegiatan & Ekstrakulikuler (siap untuk data dari Filament CRUD)
-Route::get('/galeri', function () {
-    return view('galeri.galeri', ['fotos' => []]); // nanti: FotoKegiatan::orderBy('tanggal', 'desc')->get()
-});
-Route::get('/galeri/ekstrakulikuler', function () {
-    return view('galeri.ekstrakulikuler', ['ekstrakulikuler' => []]); // nanti: Ekstrakulikuler::orderBy('nama')->get()
-});
+// Informasi: Pengumuman
+Route::get('/pengumuman', function () {
+    return view('pengumuman.index');
+})->name('pengumuman.index');
 
-// Video (siap untuk data dari Filament CRUD)
-Route::get('/video', function () {
-    return view('video.video', ['videos' => []]); // nanti: Video::all()
-});
+// PPDB
+Route::get('/ppdb', function () {
+    return view('ppdb.index');
+})->name('ppdb.index');
 
-// Memanggil fungsi 'index' di dalam ContactController
+// Prestasi
+Route::get('/prestasi', function () {
+    return view('prestasi.index');
+})->name('prestasi.index');
+
+// Kontak
 Route::get('/kontak', [ContactController::class, 'index'])->name('kontak.index');

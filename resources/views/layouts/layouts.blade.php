@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="{{ asset('assets/icons/edited-photo.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/icons/sekolah-ico.ico') }}">
     <title>SMP Al Husainiyah</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,11 +32,13 @@
                     <div class="col-12 col-md-3">
                         <h5 class="fw-bold mb-3">Navigasi</h5>
                         <ul class="nav flex-column gap-1 list-unstyled text-muted">
-                            <li><a href="{{ url('/profil/sambutan') }}"
+                            <li><a href="{{ url('/profil/profil-sekolah') }}"
                                     class="text-decoration-none text-muted">Profil</a></li>
-                            <li><a href="{{ url('/berita') }}" class="text-decoration-none text-muted">Berita</a></li>
-                            <li><a href="{{ url('/galeri') }}" class="text-decoration-none text-muted">Galeri</a></li>
-                            <li><a href="{{ url('/video') }}" class="text-decoration-none text-muted">Video</a></li>
+                            <li><a href="{{ url('/ekstrakulikuler') }}"
+                                    class="text-decoration-none text-muted">Ekstrakulikuler</a></li>
+                            <li><a href="{{ url('/ppdb') }}" class="text-decoration-none text-muted">PPDB</a></li>
+                            <li><a href="{{ url('/prestasi') }}" class="text-decoration-none text-muted">Prestasi</a>
+                            </li>
                             <li><a href="{{ url('/kontak') }}" class="text-decoration-none text-muted">Kontak</a></li>
                         </ul>
                     </div>

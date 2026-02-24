@@ -1,176 +1,235 @@
 @extends('layouts.layouts')
 
 @section('content')
-<!-- Hero -->
-<section id="hero">
-    <div class="container text-center text-white">
-        <div class="hero-title" data-aos="fade-up">
-            <h1 class="hero-text">Selamat Datang <br> di SMP Al Husainiyah</h1>
-        </div>
-    </div>
-</section>
-<!-- End Hero -->
-
-<!-- Slogan -->
-<section id="slogan" style="margin-top: -35px;">
-    <div class="container">
-        <div class="row text-center justify-content-center">
-            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="0">
-                <div class="card border-0 shadow-sm p-3 mb-5 bg-body rounded">
-                    <h4>Cerdas</h4>
-                </div>
-            </div>
-            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="card border-0 shadow-sm p-3 mb-5 bg-body rounded">
-                    <h4>Berkarakter</h4>
-                </div>
-            </div>
-            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="card border-0 shadow-sm p-3 mb-5 bg-body rounded">
-                    <h4>Religus</h4>
-                </div>
+    <!-- Hero -->
+    <section id="hero">
+        <div class="container text-center text-white">
+            <div class="hero-title" data-aos="fade-up">
+                <h1 class="hero-text">Selamat Datang <br> di SMP Al Husainiyah</h1>
             </div>
         </div>
-    </div>
-</section>
-<!-- End Slogan -->
+    </section>
+    <!-- End Hero -->
 
-<!-- Berita -->
-<section id="berita">
-    <div class="container py-5">
-        <div class="header-berita text-center mb-5" data-aos="fade-up">
-            <h2 class="fw-bold">Berita</h2>
-            <hr class="mx-auto"> </div>
-
-        <div class="row py-5">
-            @forelse($news as $item)
-                <div class="col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="card card-news border-0 shadow-sm h-100">
-                        <div class="position-relative">
-                            <img src="{{ $item->image ? asset('storage/'.$item->image) : asset('assets/images/il-berita-01.png') }}"
-                                 class="card-img-top"
-                                 alt="{{ $item->news_title }}">
-
-                            @if($item->category)
-                                <span class="position-absolute top-0 start-0 m-3 badge bg-danger category-badge shadow-sm">
-                                    {{ $item->category->name_category }}
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="card-body p-4">
-                            <div class="mb-2">
-                                <small class="text-muted">
-                                    <i class="bi bi-calendar3 me-1"></i>
-                                    {{ $item->posted_at->locale('id')->translatedFormat('j F Y') }}
-                                </small>
-                            </div>
-
-                            <h5 class="fw-bold mb-3">
-                                <a href="{{ route('berita.show', $item->slug) }}" class="text-decoration-none text-dark lh-base">
-                                    {{ \Illuminate\Support\Str::limit($item->news_title, 50) }}
-                                </a>
-                            </h5>
-
-                            <p class="text-muted small mb-4 text-excerpt">
-                                {{ $item->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($item->news_content), 100) }}
-                            </p>
-
-                            <a href="{{ route('berita.show', $item->slug) }}" class="btn-selengkapnya text-decoration-none text-danger fw-bold small text-uppercase">
-                                Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-                            </a>
-                        </div>
+    <!-- Slogan -->
+    <section id="slogan" style="margin-top: -35px;">
+        <div class="container">
+            <div class="row text-center justify-content-center">
+                <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="card border-0 shadow-sm p-3 mb-5 bg-body rounded">
+                        <h4>Cerdas</h4>
                     </div>
                 </div>
-            @empty
-                <div class="col-12 text-center">
-                    <p class="text-muted">Belum ada berita terbaru.</p>
+                <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card border-0 shadow-sm p-3 mb-5 bg-body rounded">
+                        <h4>Berkarakter</h4>
+                    </div>
                 </div>
-            @endforelse
-        </div>
-
-        <div class="footer-berita text-center">
-            <a href="{{ route('berita.index') }}" class="btn btn-outline-danger px-4 rounded-pill">Berita Lainnya</a>
-        </div>
-    </div>
-</section>
-<!-- End Berita -->
-
-<!-- Video -->
-<section id="video" class="py-5">
-    <div class="header-video text-center" data-aos="fade-up">
-        <h2 class="fw-bold">Video</h2>
-    </div>
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-8" data-aos="zoom-in">
-                <div class="ratio ratio-16x9">
-                    <iframe
-                        src="https://www.youtube.com/embed/5y4nlbwhAgE?si=rQ4a0yIKydBblYti"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card border-0 shadow-sm p-3 mb-5 bg-body rounded">
+                        <h4>Religus</h4>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="mt-4 text-center" data-aos="fade-up" data-aos-delay="200">
-            <a href="/video" class="btn btn-outline-danger">Video Lainnya</a>
-        </div>
-    </div>
-</section>
-<!-- End Video -->
+    </section>
+    <!-- End Slogan -->
 
-<!-- Foto -->
-<section id="foto" class="section-photo parallax">
-    <div class="container text-center">
-        <div class="mb-5" data-aos="fade-up">
-            <div class="stripe-hijau mx-auto" style="width: 100px;"></div>
-            <h5 class="fw-bold text-white">Galeri Foto</h5>
-        </div>
-        <div class="row justify-content-center g-3" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-6 col-md-4 col-lg-3 mb-3">
-                <img src="{{ asset('assets/images/activity-01.jpg') }}" class="img-fluid" alt="">
+    <!-- Program Unggulan -->
+    <section id="program-unggulan" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold">Program Unggulan</h2>
+                <div class="stripe-red mx-auto"
+                    style="width: 100px; height: 4px; background-color: #dc3545; margin-top: 10px;"></div>
+                <p class="text-muted mt-3">Program unggulan SMP Al Husainiyah untuk mencetak generasi berkualitas</p>
             </div>
-            <div class="col-6 col-md-4 col-lg-3 mb-3">
-                <img src="{{ asset('assets/images/activity-01.jpg') }}" class="img-fluid" alt="">
-            </div>
-            <div class="col-6 col-md-4 col-lg-3 mb-3">
-                <img src="{{ asset('assets/images/activity-01.jpg') }}" class="img-fluid" alt="">
-            </div>
-        </div>
-        <div class="mt-4" data-aos="fade-up" data-aos-delay="200">
-            <a href="{{ url('/galeri') }}" class="btn btn-outline-danger">Foto Lainnya</a>
-        </div>
-    </div>
-</section>
-<!-- End Foto Kegiatan -->
 
-<!-- Foto Ekstrakulikuler -->
-<section id="ekstrakulikuler" class="py-5 bg-white">
-    <div class="container text-center py-5">
-        <div class="mb-5" data-aos="fade-up">
-            <div class="stripe-hijau mx-auto mb-2" style="width: 100px;"></div>
-            <h2 class="fw-bold">Ekstrakulikuler</h2>
-            <p class="text-muted">Kegiatan ekstrakulikuler SMP Al Husainiyah</p>
+            @if (isset($flagshipPrograms) && $flagshipPrograms->count() > 0)
+                {{-- Dynamic Carousel dari database --}}
+                <div id="carouselProgram" class="carousel slide" data-bs-ride="carousel" data-aos="zoom-in">
+                    <div class="carousel-indicators">
+                        @foreach ($flagshipPrograms as $index => $program)
+                            <button type="button" data-bs-target="#carouselProgram" data-bs-slide-to="{{ $index }}"
+                                class="{{ $index === 0 ? 'active' : '' }}"
+                                aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                aria-label="Slide {{ $index + 1 }}"></button>
+                        @endforeach
+                    </div>
+                    <div class="carousel-inner rounded shadow-sm">
+                        @foreach ($flagshipPrograms as $index => $program)
+                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                <img src="{{ $program->image ? asset('storage/' . $program->image) : asset('assets/images/activity-01.jpg') }}"
+                                    class="d-block w-100" alt="{{ $program->title }}"
+                                    style="height: 500px; object-fit: cover;">
+                                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+                                    <h5 class="fw-bold">{{ $program->title }}</h5>
+                                    <p class="mb-2">{{ Str::limit(strip_tags($program->description), 120) }}</p>
+                                    <a href="{{ route('program-unggulan.show', $program->id) }}"
+                                        class="btn btn-sm btn-danger">Selengkapnya</a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselProgram"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselProgram"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            @else
+                {{-- Fallback static carousel ketika data belum diisi --}}
+                <div id="carouselProgram" class="carousel slide" data-bs-ride="carousel" data-aos="zoom-in">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselProgram" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselProgram" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselProgram" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner rounded shadow-sm">
+                        <div class="carousel-item active">
+                            <img src="{{ asset('assets/images/activity-01.jpg') }}" class="d-block w-100"
+                                alt="Program Unggulan 1" style="height: 500px; object-fit: cover;">
+                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+                                <h5 class="fw-bold">Program Tahfidz Al-Qur'an</h5>
+                                <p>Membentuk generasi penghafal Al-Qur'an yang berakhlak mulia.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('assets/images/activity-02.jpg') }}" class="d-block w-100"
+                                alt="Program Unggulan 2" style="height: 500px; object-fit: cover;">
+                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+                                <h5 class="fw-bold">Program Bilingual</h5>
+                                <p>Penguasaan bahasa asing (Arab & Inggris) untuk menghadapi tantangan global.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('assets/images/activity-03.jpg') }}" class="d-block w-100"
+                                alt="Program Unggulan 3" style="height: 500px; object-fit: cover;">
+                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+                                <h5 class="fw-bold">Sains & Teknologi</h5>
+                                <p>Pengembangan minat dan bakat di bidang sains dan teknologi informasi.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselProgram"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselProgram"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            @endif
         </div>
-        <div class="row justify-content-center g-3" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-6 col-md-4 col-lg-3 mb-3">
-                <img src="{{ asset('assets/images/activity-01.jpg') }}" class="img-fluid rounded" alt="Ekstrakulikuler">
-            </div>
-            <div class="col-6 col-md-4 col-lg-3 mb-3">
-                <img src="{{ asset('assets/images/activity-01.jpg') }}" class="img-fluid rounded" alt="Ekstrakulikuler">
-            </div>
-            <div class="col-6 col-md-4 col-lg-3 mb-3">
-                <img src="{{ asset('assets/images/activity-01.jpg') }}" class="img-fluid rounded" alt="Ekstrakulikuler">
-            </div>
-        </div>
-        <div class="mt-4" data-aos="fade-up" data-aos-delay="200">
-            <a href="{{ url('/galeri/ekstrakulikuler') }}" class="btn btn-outline-danger">Lihat Ekstrakulikuler</a>
-        </div>
-    </div>
-</section>
-<!-- End Foto Ekstrakulikuler -->
+    </section>
+    <!-- End Program Unggulan -->
 
-<!-- Fasilitas -->
-<!-- End Fasilitas -->
+    <!-- Ekstrakulikuler -->
+    <section id="ekstrakulikuler" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold">Ekstrakulikuler</h2>
+                <div class="stripe-red mx-auto"
+                    style="width: 100px; height: 4px; background-color: #dc3545; margin-top: 10px;"></div>
+                <p class="text-muted mt-3">Wadah pengembangan bakat dan minat siswa</p>
+            </div>
+
+            @if (isset($extracurriculars) && $extracurriculars->count() > 0)
+                {{-- Dynamic Carousel dari database --}}
+                <div id="carouselEkskul" class="carousel slide" data-bs-ride="carousel" data-aos="zoom-in">
+                    <div class="carousel-indicators">
+                        @foreach ($extracurriculars as $index => $ekskul)
+                            <button type="button" data-bs-target="#carouselEkskul"
+                                data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"
+                                aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                aria-label="Slide {{ $index + 1 }}"></button>
+                        @endforeach
+                    </div>
+                    <div class="carousel-inner rounded shadow-sm">
+                        @foreach ($extracurriculars as $index => $ekskul)
+                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                <img src="{{ $ekskul->image ? asset('storage/' . $ekskul->image) : asset('assets/images/activity-03.jpg') }}"
+                                    class="d-block w-100" alt="{{ $ekskul->title }}"
+                                    style="height: 500px; object-fit: cover;">
+                                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+                                    <h5 class="fw-bold">{{ $ekskul->title }}</h5>
+                                    <p class="mb-0">{{ Str::limit(strip_tags($ekskul->description), 120) }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselEkskul"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselEkskul"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            @else
+                {{-- Fallback static carousel --}}
+                <div id="carouselEkskul" class="carousel slide" data-bs-ride="carousel" data-aos="zoom-in">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselEkskul" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselEkskul" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselEkskul" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner rounded shadow-sm">
+                        <div class="carousel-item active">
+                            <img src="{{ asset('assets/images/activity-03.jpg') }}" class="d-block w-100" alt="Ekskul 1"
+                                style="height: 500px; object-fit: cover;">
+                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+                                <h5 class="fw-bold">Pramuka</h5>
+                                <p>Membentuk karakter disiplin, mandiri, dan cinta tanah air.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('assets/images/activity-01.jpg') }}" class="d-block w-100" alt="Ekskul 2"
+                                style="height: 500px; object-fit: cover;">
+                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+                                <h5 class="fw-bold">Pencak Silat</h5>
+                                <p>Melestarikan budaya bangsa dan menjaga kesehatan fisik.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('assets/images/activity-02.jpg') }}" class="d-block w-100" alt="Ekskul 3"
+                                style="height: 500px; object-fit: cover;">
+                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+                                <h5 class="fw-bold">Hadroh</h5>
+                                <p>Seni musik Islami untuk meningkatkan kecintaan kepada Nabi Muhammad SAW.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselEkskul"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselEkskul"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            @endif
+        </div>
+    </section>
+    <!-- End Ekstrakulikuler -->
 @endsection
