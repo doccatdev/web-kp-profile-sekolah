@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\FlagshipProgram;
-use App\Models\Extracurricular;
+use App\Models\PpdbInfo;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -16,7 +16,11 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
+        // Ambil data PPDB yang statusnya 'Buka'
+        // Gunakan nama variabel $ppdb agar sesuai dengan @if($ppdb) di Blade
+        $ppdb = PpdbInfo::where('status', 'Buka')->first();
 
-        return view('welcome', compact('news'));
+        // Kirimkan variabel $ppdb ke view
+        return view('welcome', compact('news', 'ppdb'));
     }
 }

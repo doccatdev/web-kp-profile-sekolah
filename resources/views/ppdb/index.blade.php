@@ -1,29 +1,122 @@
 @extends('layouts.layouts')
 
 @section('content')
-    <section id="ppdb" class="pt-5">
-        <div class="container py-5">
-            <div class="header-section text-center mb-5" data-aos="fade-up">
-                <h1 class="fw-bold">PPDB</h1>
-                <p class="text-muted">Penerimaan Peserta Didik Baru SMP Al Husainiyah</p>
-                <div class="stripe-red mx-auto"
-                    style="width: 100px; height: 4px; background-color: #dc3545; margin-top: 10px;"></div>
-            </div>
+    @if ($ppdb)
+        <section id="ppdb" class="min-vh-100 py-5">
+            <div class="container">
 
-            <div class="content-section" data-aos="fade-up">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-body p-5 text-center text-muted">
-                                <i class="bi bi-person-plus-fill fs-1 mb-3 d-block text-success"></i>
-                                <h4 class="fw-bold mb-3">Informasi PPDB</h4>
-                                <p class="mb-0">Informasi pendaftaran peserta didik baru akan ditampilkan di sini setelah
-                                    diisi melalui panel admin (Filament).</p>
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h1 class="fw-bold display-5" style="color: #1e293b;">
+                        PPDB TA {{ $ppdb->tahun_ajaran }}
+                    </h1>
+                    <p class="text-muted mb-3">Informasi Penerimaan Peserta Didik Baru</p>
+                    <div class="mx-auto" style="width: 60px; height: 4px; background-color: #10b981; border-radius: 2px;">
+                    </div>
+                </div>
+
+                <ul class="nav nav-ppdb-custom justify-content-center mb-5" id="ppdbTab" role="tablist"
+                    data-aos="fade-up">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#syarat" type="button">
+                            Syarat Pendaftaran
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#biaya" type="button">
+                            Biaya Pendidikan
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#brosur" type="button">
+                            Brosur
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#kontak" type="button">
+                            Kontak
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="ppdbTabContent" data-aos="fade-up">
+
+                    {{-- Tab Syarat --}}
+                    <div class="tab-pane fade show active" id="syarat" role="tabpanel">
+                        <div class="prose-content mx-auto" style="max-width: 900px;">
+                            <h3 class="text-center mb-4">Dokumen & Persyaratan</h3>
+                            <div class="bg-white p-4 p-md-5 border-0 shadow-sm rounded-4">
+                                {!! $ppdb->persyaratan !!}
                             </div>
                         </div>
                     </div>
+
+                    {{-- Tab Biaya (Sudah dimodifikasi menjadi Full Width) --}}
+                    <div class="tab-pane fade" id="biaya" role="tabpanel">
+                        <div class="prose-content mx-auto" style="max-width: 900px;">
+                            <h3 class="text-center mb-4">Rincian Biaya</h3>
+                            <div class="bg-white p-4 p-md-5 border-0 shadow-sm rounded-4">
+                                {!! $ppdb->rincian_biaya !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Tab Brosur --}}
+                    <div class="tab-pane fade" id="brosur" role="tabpanel">
+                        <div class="text-center">
+                            <h3 class="mb-4">Brosur Resmi PPDB</h3>
+                            @if ($ppdb->gambar_brosur)
+                                <div class="mb-4 mx-auto" style="max-width: 700px;">
+                                    <img src="{{ asset('storage/' . $ppdb->gambar_brosur) }}"
+                                        class="img-fluid rounded-4 shadow-sm border" alt="Brosur Lengkap">
+                                </div>
+                                <a href="{{ asset('storage/' . $ppdb->gambar_brosur) }}" download
+                                    class="btn btn-dark rounded-pill px-5 py-2">
+                                    <i class="bi bi-download me-2"></i>Unduh Brosur
+                                </a>
+                            @else
+                                <p class="text-muted">File brosur belum tersedia.</p>
+                            @endif
+                        </div>
+                    </div>
+
+                    {{-- Tab Kontak --}}
+                    <div class="tab-pane fade" id="kontak" role="tabpanel">
+                        <div class="text-center py-5">
+                            <h3 class="mb-3">Butuh Bantuan Pendaftaran?</h3>
+                            <p class="text-muted mb-5">Silahkan hubungi panitia PPDB kami melalui WhatsApp:</p>
+
+                            <div class="d-flex flex-wrap justify-content-center gap-3">
+                                @if (isset($ppdb->contacts) && $ppdb->contacts->count() > 0)
+                                    @foreach ($ppdb->contacts as $contact)
+                                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact->nomor_whatsapp) }}"
+                                            target="_blank"
+                                            class="btn btn-success btn-lg rounded-pill px-4 py-3 shadow-sm fw-bold">
+                                            <i class="bi bi-whatsapp me-2"></i>{{ $contact->nama_kontak }}
+                                        </a>
+                                    @endforeach
+                                @else
+                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $ppdb->kontak_whatsapp) }}"
+                                        target="_blank"
+                                        class="btn btn-success btn-lg rounded-pill px-4 py-3 shadow-sm fw-bold">
+                                        <i class="bi bi-whatsapp me-2"></i>Hubungi Panitia
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @else
+        {{-- Tampilan Saat Tutup --}}
+        <section class="py-5 min-vh-100 d-flex align-items-center bg-white text-center">
+            <div class="container">
+                <div class="mb-4 text-muted"><i class="bi bi-calendar-x" style="font-size: 4rem;"></i></div>
+                <h2 class="fw-bold text-dark">Pendaftaran Belum Dibuka</h2>
+                <p class="text-muted">Mohon maaf, informasi pendaftaran tahun ajaran baru belum tersedia saat ini.</p>
+                <a href="/" class="btn btn-outline-dark rounded-pill px-4 mt-3">Kembali ke Beranda</a>
+            </div>
+        </section>
+    @endif
 @endsection
