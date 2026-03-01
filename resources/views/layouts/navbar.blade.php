@@ -32,6 +32,7 @@
                              <hr class="dropdown-divider">
                          </li>
                          <li><a class="dropdown-item" href="{{ url('/program-unggulan') }}">Program Unggulan</a></li>
+                         <li><a class="dropdown-item" href="{{ url('/fasilitas') }}">Sarana & Prasarana</a></li>
                      </ul>
                  </li>
 

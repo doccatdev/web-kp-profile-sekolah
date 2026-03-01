@@ -16,8 +16,7 @@ return new class extends Migration
             $table->enum('status', ['Buka', 'Tutup'])->default('Tutup');
             $table->string('tahun_ajaran')->nullable();
             $table->text('rincian_biaya')->nullable();
-            $table->text('persyaratan_umum')->nullable();
-            $table->text('persyaratan_khusus')->nullable();
+            $table->text('persyaratan')->nullable();
             $table->string('gambar_brosur')->nullable();
             $table->timestamps();
         });

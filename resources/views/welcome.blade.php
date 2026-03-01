@@ -251,90 +251,95 @@
             <div class="row g-4">
                 <div class="col-6 col-md-4" data-aos="fade-up">
                     <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px;">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width:56px;height:56px;">
                             <i class="bi bi-display fs-4"></i>
                         </div>
                         <h5 class="fw-bold mb-2">Lab Komputer</h5>
-                        <p class="text-muted small mb-3">Laboratorium komputer modern dengan koneksi internet untuk mendukung pembelajaran digital.</p>
-                        <a href="{{ url('/fasilitas') }}" class="text-success fw-semibold small text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
+                        <p class="text-muted small mb-3">Laboratorium komputer modern dengan koneksi internet untuk
+                            mendukung pembelajaran digital.</p>
+                        <a href="{{ url('/fasilitas') }}"
+                            class="text-success fw-semibold small text-decoration-none">Read More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px;">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width:56px;height:56px;">
                             <i class="bi bi-dribbble fs-4"></i>
                         </div>
                         <h5 class="fw-bold mb-2">Sarana Olahraga</h5>
-                        <p class="text-muted small mb-3">Lapangan dan perlengkapan olahraga lengkap untuk aktivitas fisik siswa.</p>
-                        <a href="{{ url('/fasilitas') }}" class="text-success fw-semibold small text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
+                        <p class="text-muted small mb-3">Lapangan dan perlengkapan olahraga lengkap untuk aktivitas fisik
+                            siswa.</p>
+                        <a href="{{ url('/fasilitas') }}"
+                            class="text-success fw-semibold small text-decoration-none">Read More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px;">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width:56px;height:56px;">
                             <i class="bi bi-building-fill fs-4"></i>
                         </div>
                         <h5 class="fw-bold mb-2">Masjid</h5>
-                        <p class="text-muted small mb-3">Masjid sekolah sebagai pusat ibadah dan pembinaan spiritual siswa setiap hari.</p>
-                        <a href="{{ url('/fasilitas') }}" class="text-success fw-semibold small text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
+                        <p class="text-muted small mb-3">Masjid sekolah sebagai pusat ibadah dan pembinaan spiritual siswa
+                            setiap hari.</p>
+                        <a href="{{ url('/fasilitas') }}"
+                            class="text-success fw-semibold small text-decoration-none">Read More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-4" data-aos="fade-up">
                     <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px;">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width:56px;height:56px;">
                             <i class="bi bi-music-note-beamed fs-4"></i>
                         </div>
                         <h5 class="fw-bold mb-2">Alat Kesenian</h5>
-                        <p class="text-muted small mb-3">Perlengkapan seni seperti alat musik dan peralatan tari untuk pengembangan bakat siswa.</p>
-                        <a href="{{ url('/fasilitas') }}" class="text-success fw-semibold small text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
+                        <p class="text-muted small mb-3">Perlengkapan seni seperti alat musik dan peralatan tari untuk
+                            pengembangan bakat siswa.</p>
+                        <a href="{{ url('/fasilitas') }}"
+                            class="text-success fw-semibold small text-decoration-none">Read More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px;">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width:56px;height:56px;">
                             <i class="bi bi-door-open fs-4"></i>
                         </div>
                         <h5 class="fw-bold mb-2">Ruang Belajar</h5>
-                        <p class="text-muted small mb-3">Ruang kelas yang nyaman dan kondusif untuk proses belajar mengajar yang efektif.</p>
-                        <a href="{{ url('/fasilitas') }}" class="text-success fw-semibold small text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
+                        <p class="text-muted small mb-3">Ruang kelas yang nyaman dan kondusif untuk proses belajar mengajar
+                            yang efektif.</p>
+                        <a href="{{ url('/fasilitas') }}"
+                            class="text-success fw-semibold small text-decoration-none">Read More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px;">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width:56px;height:56px;">
                             <i class="bi bi-collection fs-4"></i>
                         </div>
                         <h5 class="fw-bold mb-2">Ruang Serba Guna</h5>
-                        <p class="text-muted small mb-3">Aula serbaguna untuk kegiatan rapat, seminar, dan acara sekolah lainnya.</p>
-                        <a href="{{ url('/fasilitas') }}" class="text-success fw-semibold small text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
+                        <p class="text-muted small mb-3">Aula serbaguna untuk kegiatan rapat, seminar, dan acara sekolah
+                            lainnya.</p>
+                        <a href="{{ url('/fasilitas') }}"
+                            class="text-success fw-semibold small text-decoration-none">Read More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
-                <div class="col-6 col-md-4" data-aos="fade-up">
-                    <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px;">
-                            <i class="bi bi-book fs-4"></i>
-                        </div>
-                        <h5 class="fw-bold mb-2">Perpustakaan</h5>
-                        <p class="text-muted small mb-3">Koleksi buku dan referensi ilmu agama maupun umum untuk memperluas wawasan siswa.</p>
-                        <a href="{{ url('/fasilitas') }}" class="text-success fw-semibold small text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style="width:56px;height:56px;">
-                            <i class="bi bi-droplet-half fs-4"></i>
-                        </div>
-                        <h5 class="fw-bold mb-2">Toilet & Wastafel</h5>
-                        <p class="text-muted small mb-3">Fasilitas sanitasi bersih dan memadai untuk kenyamanan seluruh warga sekolah.</p>
-                        <a href="{{ url('/fasilitas') }}" class="text-success fw-semibold small text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="text-center mt-5">
-                <a href="{{ url('/fasilitas') }}" class="btn btn-emerald rounded-pill px-5">Lihat Semua Fasilitas <i class="bi bi-arrow-right ms-1"></i></a>
+
+                <div class="text-center mt-5">
+                    <a href="{{ url('/fasilitas') }}" class="btn btn-emerald rounded-pill px-5">Lihat Semua Fasilitas <i
+                            class="bi bi-arrow-right ms-1"></i></a>
+                </div>
             </div>
-        </div>
     </section>
 
     <!-- Ekstrakurikuler -->
@@ -344,64 +349,81 @@
                 <span class="badge text-bg-success mb-2 px-3 py-2 rounded-pill fw-normal">Pengembangan Bakat</span>
                 <h2 class="fw-bold display-6">Ekstrakurikuler <span class="text-success">Unggulan</span></h2>
                 <div class="stripe-red mx-auto mt-3"></div>
-                <p class="text-muted mt-3 mx-auto" style="max-width: 500px;">Wadah pengembangan minat, bakat, dan potensi siswa di luar jam pelajaran.</p>
+                <p class="text-muted mt-3 mx-auto" style="max-width: 500px;">Wadah pengembangan minat, bakat, dan potensi
+                    siswa di luar jam pelajaran.</p>
             </div>
 
             <div class="row g-4 justify-content-center">
                 <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up">
                     <div class="card border-0 rounded-4 overflow-hidden shadow-sm feature-card text-center p-4 h-100">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3" style="width:56px;height:56px;">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
+                            style="width:56px;height:56px;">
                             <i class="bi bi-shield-fill fs-4"></i>
                         </div>
                         <h6 class="fw-bold mb-1">Pencak Silat</h6>
                         <p class="text-muted small mb-2">Bela diri tradisional</p>
-                        <a href="{{ url('/ekstrakulikuler') }}" class="text-success small fw-semibold text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
+                        <a href="{{ url('/ekstrakulikuler') }}"
+                            class="text-success small fw-semibold text-decoration-none">Read More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="card border-0 rounded-4 overflow-hidden shadow-sm feature-card text-center p-4 h-100">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3" style="width:56px;height:56px;">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
+                            style="width:56px;height:56px;">
                             <i class="bi bi-dribbble fs-4"></i>
                         </div>
                         <h6 class="fw-bold mb-1">Futsal</h6>
                         <p class="text-muted small mb-2">Olahraga tim & sportivitas</p>
-                        <a href="{{ url('/ekstrakulikuler') }}" class="text-success small fw-semibold text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
+                        <a href="{{ url('/ekstrakulikuler') }}"
+                            class="text-success small fw-semibold text-decoration-none">Read More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="200">
                     <div class="card border-0 rounded-4 overflow-hidden shadow-sm feature-card text-center p-4 h-100">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3" style="width:56px;height:56px;">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
+                            style="width:56px;height:56px;">
                             <i class="bi bi-person-arms-up fs-4"></i>
                         </div>
                         <h6 class="fw-bold mb-1">Seni Tari</h6>
                         <p class="text-muted small mb-2">Tari tradisional & modern</p>
-                        <a href="{{ url('/ekstrakulikuler') }}" class="text-success small fw-semibold text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
+                        <a href="{{ url('/ekstrakulikuler') }}"
+                            class="text-success small fw-semibold text-decoration-none">Read More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="300">
                     <div class="card border-0 rounded-4 overflow-hidden shadow-sm feature-card text-center p-4 h-100">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3" style="width:56px;height:56px;">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
+                            style="width:56px;height:56px;">
                             <i class="bi bi-compass fs-4"></i>
                         </div>
                         <h6 class="fw-bold mb-1">Pramuka</h6>
                         <p class="text-muted small mb-2">Kepemimpinan & alam bebas</p>
-                        <a href="{{ url('/ekstrakulikuler') }}" class="text-success small fw-semibold text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
+                        <a href="{{ url('/ekstrakulikuler') }}"
+                            class="text-success small fw-semibold text-decoration-none">Read More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="400">
                     <div class="card border-0 rounded-4 overflow-hidden shadow-sm feature-card text-center p-4 h-100">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3" style="width:56px;height:56px;">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
+                            style="width:56px;height:56px;">
                             <i class="bi bi-moon-stars-fill fs-4"></i>
                         </div>
                         <h6 class="fw-bold mb-1">Rohis / Tahfidz</h6>
                         <p class="text-muted small mb-2">Kerohanian & hafalan Qur'an</p>
-                        <a href="{{ url('/ekstrakulikuler') }}" class="text-success small fw-semibold text-decoration-none">Read More <i class="bi bi-chevron-right"></i></a>
+                        <a href="{{ url('/ekstrakulikuler') }}"
+                            class="text-success small fw-semibold text-decoration-none">Read More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="text-center mt-5">
-                <a href="{{ url('/ekstrakulikuler') }}" class="btn btn-emerald rounded-pill px-5">Lihat Semua Ekskul <i class="bi bi-arrow-right ms-1"></i></a>
+                <a href="{{ url('/ekstrakulikuler') }}" class="btn btn-emerald rounded-pill px-5">Lihat Semua Ekskul <i
+                        class="bi bi-arrow-right ms-1"></i></a>
             </div>
         </div>
     </section>
@@ -474,4 +496,3 @@
         </div>
     </div>
 @endsection
-

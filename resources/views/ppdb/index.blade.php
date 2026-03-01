@@ -5,14 +5,21 @@
         <section id="ppdb" class="min-vh-100 py-5">
             <div class="container">
 
-                <div class="text-center mb-5" data-aos="fade-up">
-                    <h1 class="fw-bold display-5" style="color: #1e293b;">
-                        PPDB TA {{ $ppdb->tahun_ajaran }}
-                    </h1>
-                    <p class="text-muted mb-3">Informasi Penerimaan Peserta Didik Baru</p>
-                    <div class="mx-auto" style="width: 60px; height: 4px; background-color: #10b981; border-radius: 2px;">
+                <!-- Page Header CSS Gradient Version for Performance -->
+                <section class="py-5 text-white pt-5 mb-5"
+                    style="margin-top: 76px; background: linear-gradient(135deg, var(--emerald-green, #14532d) 0%, #0f3f21 100%);">
+                    <div class="container py-5 text-center">
+                        <span class="badge text-bg-light text-success mb-2 px-3 py-2 rounded-pill fw-bold border-0 shadow-sm"
+                            data-aos="fade-down">Penerimaan Siswa Baru</span>
+                        <h1 class="display-4 fw-bold" data-aos="fade-down" data-aos-delay="100">PPDB TA
+                            {{ $ppdb->tahun_ajaran }}</h1>
+                        <p class="lead mb-0 opacity-75 mx-auto mt-2" style="max-width: 600px;" data-aos="fade-up"
+                            data-aos-delay="200">
+                            Informasi lengkap syarat pendaftaran, biaya, dan brosur Penerimaan Peserta Didik Baru SMP
+                            Al-Husainiyyah.
+                        </p>
                     </div>
-                </div>
+                </section>
 
                 <ul class="nav nav-ppdb-custom justify-content-center mb-5" id="ppdbTab" role="tablist"
                     data-aos="fade-up">

@@ -14,10 +14,11 @@
     @endphp
 
     <!-- Detail Hero Section -->
-    <section class="position-relative mt-5 pt-3">
+    <section class="position-relative" style="margin-top: 76px;">
         <!-- Background Banner -->
         <div class="w-100 overflow-hidden" style="height: 400px; position: relative;">
-            <div class="bg-dark position-absolute w-100 h-100 top-0 start-0" style="opacity: 0.6; z-index: 1;"></div>
+            <div class="position-absolute w-100 h-100 top-0 start-0"
+                style="background: linear-gradient(to top, rgba(20, 83, 45, 0.85), rgba(0, 0, 0, 0.3)); z-index: 1;"></div>
             <img src="{{ $program->image ? asset('storage/' . $program->image) : asset('assets/images/activity-02.jpg') }}"
                 class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="{{ $program->title }}">
 

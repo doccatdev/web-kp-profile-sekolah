@@ -1,13 +1,21 @@
 @extends('layouts.layouts')
 
 @section('content')
-    <section id="profil-sekolah" class="pt-5">
-        <div class="container py-5">
-            <div class="header-section text-center mb-5">
-                <h1 class="fw-bold">Profil Sekolah</h1>
-                <p class="text-muted">Profil SMP Al Husainiyah</p>
-            </div>
+    <!-- Page Header CSS Gradient Version for Performance -->
+    <section class="py-5 text-white pt-5"
+        style="margin-top: 76px; background: linear-gradient(135deg, var(--emerald-green, #14532d) 0%, #0f3f21 100%);">
+        <div class="container py-5 text-center">
+            <span class="badge text-bg-light text-success mb-2 px-3 py-2 rounded-pill fw-bold border-0 shadow-sm"
+                data-aos="fade-down">Tentang Kami</span>
+            <h1 class="display-4 fw-bold" data-aos="fade-down" data-aos-delay="100">Profil Sekolah</h1>
+            <p class="lead mb-0 opacity-75 mx-auto mt-2" style="max-width: 600px;" data-aos="fade-up" data-aos-delay="200">
+                Mengenal lebih dekat lingkungan dan profil SMP Al Husainiyah.
+            </p>
+        </div>
+    </section>
 
+    <section class="py-5 bg-light">
+        <div class="container py-4">
             {{-- Image Carousel Profil Sekolah --}}
             @if (isset($profilPhotos) && $profilPhotos->count() > 0)
                 <div class="mb-5" data-aos="fade-up">
