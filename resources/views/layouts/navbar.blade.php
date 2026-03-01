@@ -24,7 +24,7 @@
                      </a>
                      <ul class="dropdown-menu">
                          <li><a class="dropdown-item" href="{{ url('/profil/profil-sekolah') }}">Profil Sekolah</a></li>
-                         <li><a class="dropdown-item" href="{{ url('/profil/sejarah') }}">Sejarah</a></li>
+                         <li><a class="dropdown-item" href="{{ url('/profil/sejarah') }}">Sejarah Singkat</a></li>
                          <li><a class="dropdown-item" href="{{ url('/profil/visi-misi') }}">Visi & Misi</a></li>
                          <li><a class="dropdown-item" href="{{ url('/profil/data-guru') }}">Tenaga
                                  Kependidikan</a></li>
