@@ -14,9 +14,7 @@
             ];
         }
     @endphp
-    <!-- Detail Hero Section -->
     <section class="position-relative" style="margin-top: 76px;">
-        <!-- Background Banner -->
         <div class="w-100 overflow-hidden" style="height: 450px; position: relative;">
             <div class="position-absolute w-100 h-100 top-0 start-0"
                 style="background: linear-gradient(to top, rgba(20, 83, 45, 0.85), rgba(0, 0, 0, 0.3)); z-index: 1;"></div>
@@ -38,30 +36,74 @@
         </div>
     </section>
 
-    <!-- Detail Content -->
-    <section class="py-5 bg-light pb-5 mb-5">
-        <div class="container" style="margin-top: -80px; position: relative; z-index: 3;">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-body p-4 p-md-5 bg-white">
+    <section class="py-5 bg-white pb-5 mb-5">
+        <div class="container" style="position: relative; z-index: 3;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-white p-0" data-aos="fade-up" data-aos-delay="100">
+                        <div class="p-0 bg-white">
                             <div class="konten-berita">
                                 <h2 class="fw-bold mb-3">{{ $title ?? 'Detail Ekstrakurikuler' }}</h2>
 
-                                <div class="d-flex align-items-center flex-wrap mb-4 text-secondary shadow-sm bg-light rounded-3 px-4 py-3"
-                                    style="gap: 20px; font-size: 0.95rem; border: 1px solid #eee;">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-star-fill me-2 text-warning fs-5"></i>
-                                        <span class="fw-bold text-dark">Pengembangan Bakat Siswa</span>
-                                    </div>
-                                </div>
 
-                                <div class="text-secondary body-text"
+                                <div class="text-secondary body-text mb-5"
                                     style="line-height: 1.8; text-align: justify; color: #4b5563;">
                                     {!! $data->description ??
                                         '<p>Informasi detail mengenai ekstrakurikuler ini akan segera ditambahkan oleh pengurus terkait. Pantau terus update terbarunya!</p>' !!}
                                 </div>
+
+                                <h5 class="fw-bold text-dark mt-5 mb-3">Galeri Kegiatan {{ $title }}</h5>
+                                <div id="ekskulGallery" class="carousel slide mb-4" data-bs-ride="carousel">
+                                    <div class="carousel-indicators">
+                                        <button type="button" data-bs-target="#ekskulGallery" data-bs-slide-to="0"
+                                            class="active" aria-current="true"></button>
+                                        <button type="button" data-bs-target="#ekskulGallery"
+                                            data-bs-slide-to="1"></button>
+                                        <button type="button" data-bs-target="#ekskulGallery"
+                                            data-bs-slide-to="2"></button>
+                                    </div>
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active" data-bs-interval="3000">
+                                            <img src="{{ asset('assets/images/activity-01.jpg') }}"
+                                                class="d-block w-100 object-fit-cover" style="height: 400px;"
+                                                alt="Galeri 1">
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="3000">
+                                            <img src="{{ asset('assets/images/activity-02.jpg') }}"
+                                                class="d-block w-100 object-fit-cover" style="height: 400px;"
+                                                alt="Galeri 2">
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="3000">
+                                            <img src="{{ asset('assets/images/activity-03.jpg') }}"
+                                                class="d-block w-100 object-fit-cover" style="height: 400px;"
+                                                alt="Galeri 3">
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#ekskulGallery"
+                                        data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon bg-dark rounded-circle p-2 bg-opacity-50"
+                                            aria-hidden="true"
+                                            style="width: 2.5rem; height: 2.5rem; background-size: 50%;"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#ekskulGallery"
+                                        data-bs-slide="next">
+                                        <span class="carousel-control-next-icon bg-dark rounded-circle p-2 bg-opacity-50"
+                                            aria-hidden="true"
+                                            style="width: 2.5rem; height: 2.5rem; background-size: 50%;"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
                             </div>
+
+                            {{-- Tombol Kembali --}}
+                            <div class="mt-5 border-top pt-4">
+                                <a href="{{ route('ekstrakulikuler.index') }}"
+                                    class="btn btn-outline-success rounded-pill px-4">
+                                    <i class="bi bi-arrow-left me-2"></i>Kembali ke Daftar Ekskul
+                                </a>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -31,7 +31,7 @@
     @endphp
     <!-- Page Header CSS Gradient Version for Performance -->
     <section class="py-5 text-white pt-5"
-        style="margin-top: 76px; background: linear-gradient(135deg, var(--emerald-green, #14532d) 0%, #0f3f21 100%);">
+        style="margin-top: 76px; background: linear-gradient(135deg, var(--emerald-green, #009b4d) 0%, #0f3f21 100%);">
         <div class="container py-5 text-center">
             <span class="badge text-bg-light text-success mb-2 px-3 py-2 rounded-pill fw-bold border-0 shadow-sm"
                 data-aos="fade-down">Pendidik Inspiratif</span>
@@ -57,7 +57,7 @@
                                         <div class="card-body pt-5 px-4 pb-4 d-flex flex-column align-items-center">
                                             <img src="{{ $item->avatar ?? asset('assets/images/activity-01.jpg') }}"
                                                 class="rounded-circle shadow-sm mb-3 position-relative bg-white p-1"
-                                                style="width: 120px; height: 120px; object-fit: cover; border: 3px solid var(--emerald-green, #14532d); margin-top: -30px;"
+                                                style="width: 120px; height: 120px; object-fit: cover; border: 3px solid var(--emerald-green, #009b4d); margin-top: -30px;"
                                                 alt="{{ $item->title }}">
                                             <h5 class="fw-bold fs-6 mb-1">{{ $item->title }}</h5>
                                             <span

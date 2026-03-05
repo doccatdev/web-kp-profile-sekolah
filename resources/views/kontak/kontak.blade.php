@@ -7,7 +7,7 @@
     <section id="kontak" class="pt-5">
         <div class="container py-5">
     <!-- Page Header CSS Gradient Version for Performance -->
-    <section class="py-5 text-white pt-5" style="margin-top: 76px; background: linear-gradient(135deg, var(--emerald-green, #14532d) 0%, #0f3f21 100%);">
+    <section class="py-5 text-white pt-5" style="margin-top: 76px; background: linear-gradient(135deg, var(--emerald-green, #009b4d) 0%, #0f3f21 100%);">
         <div class="container py-5 text-center">
             <span class="badge text-bg-light text-success mb-2 px-3 py-2 rounded-pill fw-bold border-0 shadow-sm" data-aos="fade-down">Pusat Layanan</span>
             <h1 class="display-4 fw-bold" data-aos="fade-down" data-aos-delay="100">Hubungi Kami</h1>
@@ -109,7 +109,7 @@
 
                 marker.bindPopup(`
                     <div style="text-align: center; padding: 5px;">
-                        <strong style="color: #198754; font-size: 14px;">SMP Al Husainiyah</strong><br>
+                        <strong style="color: #009b4d; font-size: 14px;">SMP Al Husainiyah</strong><br>
                         <span style="font-size: 12px; color: #666;">{{ $kontak->address }}</span>
                     </div>
                 `).openPopup();

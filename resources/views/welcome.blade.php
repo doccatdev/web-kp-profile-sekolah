@@ -199,7 +199,7 @@
                     style="grid-column: span 4; grid-row: span 3; background: url('{{ asset('assets/images/activity-01.jpg') }}') center/cover;"
                     data-aos="fade-up" data-aos-delay="100">
                     <div class="h-100 d-flex flex-column justify-content-end p-4 rounded-4"
-                        style="background: linear-gradient(to top, rgba(20,83,45,0.92) 0%, transparent 60%);">
+                        style="background: linear-gradient(to top, rgba(0,155,77,0.92) 0%, transparent 60%);">
                         <span class="badge bg-success bg-opacity-75 rounded-pill mb-2 d-inline-block"
                             style="width:fit-content!important;">Akademik</span>
                         <h5 class="fw-bold mb-1 text-white">Juara 1 OSN Matematika</h5>
@@ -496,3 +496,4 @@
         </div>
     </div>
 @endsection
+

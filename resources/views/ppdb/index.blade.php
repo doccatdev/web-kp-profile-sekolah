@@ -7,7 +7,7 @@
 
                 <!-- Page Header CSS Gradient Version for Performance -->
                 <section class="py-5 text-white pt-5 mb-5"
-                    style="margin-top: 76px; background: linear-gradient(135deg, var(--emerald-green, #14532d) 0%, #0f3f21 100%);">
+                    style="margin-top: 76px; background: linear-gradient(135deg, var(--emerald-green, #009b4d) 0%, #0f3f21 100%);">
                     <div class="container py-5 text-center">
                         <span class="badge text-bg-light text-success mb-2 px-3 py-2 rounded-pill fw-bold border-0 shadow-sm"
                             data-aos="fade-down">Penerimaan Siswa Baru</span>

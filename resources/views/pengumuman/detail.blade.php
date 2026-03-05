@@ -37,12 +37,12 @@
     </section>
 
     <!-- Detail Content -->
-    <section class="py-5 bg-light pb-5 mb-5">
-        <div class="container" style="margin-top: -80px; position: relative; z-index: 3;">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-body p-4 p-md-5 bg-white">
+    <section class="py-5 bg-white pb-5 mb-5">
+        <div class="container" style="position: relative; z-index: 3;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-white p-0" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-white p-0">
                             <div class="konten-berita">
                                 <h2 class="fw-bold mb-3">{{ $title ?? 'Detail Pengumuman' }}</h2>
 

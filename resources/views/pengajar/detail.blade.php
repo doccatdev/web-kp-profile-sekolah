@@ -40,17 +40,17 @@
     </section>
 
     <!-- Detail Content -->
-    <section class="py-5 bg-light pb-5 mb-5">
-        <div class="container" style="margin-top: -80px; position: relative; z-index: 3;">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-body p-4 p-md-5 bg-white">
+    <section class="py-5 bg-white pb-5 mb-5">
+        <div class="container" style="position: relative; z-index: 3;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-white p-0" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-white p-0">
                             <div class="row text-center text-md-start align-items-center mb-4 pb-4 border-bottom">
                                 <div class="col-md-3 mb-4 mb-md-0">
                                     <img src="{{ $data->avatar ?? asset('assets/images/activity-01.jpg') }}"
                                         class="rounded-circle shadow-sm object-fit-cover mx-auto mx-md-0"
-                                        style="width: 150px; height: 150px; border: 4px solid var(--emerald-green, #14532d)"
+                                        style="width: 150px; height: 150px; border: 4px solid var(--emerald-green, #009b4d)"
                                         alt="{{ $title }}">
                                 </div>
                                 <div class="col-md-9">

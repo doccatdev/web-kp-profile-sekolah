@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --emerald-green: #14532d;
+    --emerald-green: #009b4d;
     --emerald-light: #22c55e;
-    --emerald-gradient: linear-gradient(135deg, #14532d 0%, #166534 100%);
+    --emerald-gradient: linear-gradient(135deg, #009b4d 0%, #007a3c 100%);
     --gold-accent: #fbbf24;
     --gold-metallic: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
     --bg-light: #f8fafc;
@@ -310,7 +310,7 @@ body {
 
 /* Warna teks dan background saat normal */
 .pagination .page-link {
-    color: #198754; /* Warna hijau Bootstrap success */
+    color: #009b4d; /* Warna hijau Bootstrap success */
     border-color: #dee2e6;
     transition: all 0.3s ease;
 }
@@ -324,8 +324,8 @@ body {
 
 /* Warna saat aktif (halaman yang sedang dibuka) */
 .pagination .page-item.active .page-link {
-    background-color: #198754 !important; /* Hijau solid */
-    border-color: #198754 !important;
+    background-color: #009b4d !important; /* Hijau solid */
+    border-color: #009b4d !important;
     color: white !important;
 }
 
@@ -762,7 +762,7 @@ body {
 
 /* Bullet Point Hijau Kecil Sesuai Gambar */
 .prose-content li:before {
-    content: "●"; /* Menggunakan bulatan yang lebih solid */
+    content: "â—"; /* Menggunakan bulatan yang lebih solid */
     color: #10b981;
     font-size: 0.7rem;
     margin-right: 15px;
@@ -778,7 +778,7 @@ body {
 }
 
 /* ==========================================
-   HIGH-FIDELITY BERANDA – NEW COMPONENTS
+   HIGH-FIDELITY BERANDA â€“ NEW COMPONENTS
    ========================================== */
 
 /* --- Stripe Accent --- */
@@ -1025,3 +1025,37 @@ body {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+
+/* --- Bootstrap Success Color Override to #009b4d --- */
+:root, [data-bs-theme="light"], [data-bs-theme="dark"] {
+    --bs-success: #009b4d;
+    --bs-success-rgb: 0, 155, 77;
+}
+
+.btn-success {
+    --bs-btn-bg: #009b4d;
+    --bs-btn-border-color: #009b4d;
+    --bs-btn-hover-bg: #007a3c;
+    --bs-btn-hover-border-color: #007a3c;
+    --bs-btn-active-bg: #007a3c;
+    --bs-btn-active-border-color: #007a3c;
+    --bs-btn-disabled-bg: #009b4d;
+    --bs-btn-disabled-border-color: #009b4d;
+}
+.btn-outline-success {
+    --bs-btn-color: #009b4d;
+    --bs-btn-border-color: #009b4d;
+    --bs-btn-hover-bg: #009b4d;
+    --bs-btn-hover-border-color: #009b4d;
+    --bs-btn-active-bg: #009b4d;
+    --bs-btn-active-border-color: #009b4d;
+    color: #009b4d !important;
+    border-color: #009b4d !important;
+}
+.btn-outline-success:hover {
+    background-color: #009b4d !important;
+    color: white !important;
+}
+.border-success { border-color: #009b4d !important; }
+

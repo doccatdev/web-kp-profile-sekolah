@@ -13,9 +13,7 @@
         }
     @endphp
 
-    <!-- Detail Hero Section -->
     <section class="position-relative" style="margin-top: 76px;">
-        <!-- Background Banner -->
         <div class="w-100 overflow-hidden" style="height: 400px; position: relative;">
             <div class="position-absolute w-100 h-100 top-0 start-0"
                 style="background: linear-gradient(to top, rgba(20, 83, 45, 0.85), rgba(0, 0, 0, 0.3)); z-index: 1;"></div>
@@ -37,20 +35,64 @@
         </div>
     </section>
 
-    <!-- Detail Content -->
-    <section class="py-5 bg-light pb-5 mb-5">
-        <div class="container" style="margin-top: -60px; position: relative; z-index: 3;">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-body p-4 p-md-5 bg-white">
+    <section class="py-5 bg-white pb-5 mb-5">
+        <div class="container" style="position: relative; z-index: 3;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-white p-0" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-white p-0">
 
-                            <!-- Main Content Block -->
-                            <div class="content article-body text-dark lh-lg fs-5" style="color: #444 !important;">
+                            <div class="content article-body text-dark lh-lg fs-5 mb-5" style="color: #444 !important;">
                                 {!! $program->description !!}
                             </div>
 
-                            <!-- Share & Return -->
+                            <div class="gallery-section mt-5">
+                                <h4 class="fw-bold text-dark mb-4 d-flex align-items-center">
+                                    <span class="bg-success rounded-2 me-2" style="width: 12px; height: 24px;"></span>
+                                    Dokumentasi Kegiatan
+                                </h4>
+
+                                <div id="programGallery" class="carousel slide overflow-hidden" data-bs-ride="carousel">
+                                    <div class="carousel-indicators">
+                                        <button type="button" data-bs-target="#programGallery" data-bs-slide-to="0"
+                                            class="active" aria-current="true"></button>
+                                        <button type="button" data-bs-target="#programGallery"
+                                            data-bs-slide-to="1"></button>
+                                        <button type="button" data-bs-target="#programGallery"
+                                            data-bs-slide-to="2"></button>
+                                    </div>
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active" data-bs-interval="3500">
+                                            <img src="{{ asset('assets/images/activity-01.jpg') }}"
+                                                class="d-block w-100 object-fit-cover" style="height: 450px;"
+                                                alt="Dokumentasi 1">
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="3500">
+                                            <img src="{{ asset('assets/images/activity-02.jpg') }}"
+                                                class="d-block w-100 object-fit-cover" style="height: 450px;"
+                                                alt="Dokumentasi 2">
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="3500">
+                                            <img src="{{ asset('assets/images/activity-03.jpg') }}"
+                                                class="d-block w-100 object-fit-cover" style="height: 450px;"
+                                                alt="Dokumentasi 3">
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#programGallery"
+                                        data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon bg-dark rounded-circle p-3 bg-opacity-50"
+                                            aria-hidden="true" style="background-size: 50%;"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#programGallery"
+                                        data-bs-slide="next">
+                                        <span class="carousel-control-next-icon bg-dark rounded-circle p-3 bg-opacity-50"
+                                            aria-hidden="true" style="background-size: 50%;"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+
                             <hr class="my-5 opacity-25">
                             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                                 <a href="{{ url('/program-unggulan') }}"

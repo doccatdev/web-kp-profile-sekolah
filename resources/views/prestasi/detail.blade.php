@@ -4,9 +4,7 @@
     @php
         $title = $title ?? ucwords(str_replace('-', ' ', $id ?? 'Detail Prestasi'));
     @endphp
-    <!-- Detail Hero Section -->
     <section class="position-relative" style="margin-top: 76px;">
-        <!-- Background Banner -->
         <div class="w-100 overflow-hidden" style="height: 450px; position: relative;">
             <div class="position-absolute w-100 h-100 top-0 start-0"
                 style="background: linear-gradient(to top, rgba(20, 83, 45, 0.85), rgba(0, 0, 0, 0.3)); z-index: 1;"></div>
@@ -28,13 +26,12 @@
         </div>
     </section>
 
-    <!-- Detail Content -->
-    <section class="py-5 bg-light pb-5 mb-5">
-        <div class="container" style="margin-top: -80px; position: relative; z-index: 3;">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-body p-4 p-md-5 bg-white">
+    <section class="py-5 bg-white pb-5 mb-5">
+        <div class="container" style="position: relative; z-index: 3;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-white p-0" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-white p-0">
                             <div class="konten-berita">
                                 {{-- 1. Judul --}}
                                 <h2 class="fw-bold mb-3">{{ $title ?? 'Detail Prestasi' }}</h2>
@@ -54,26 +51,54 @@
                                     </div>
                                 </div>
 
-                                {{-- 3. Isi Konten --}}
+                                {{-- 3. Isi Konten (Hanya Galeri) --}}
                                 <div class="text-secondary body-text"
                                     style="line-height: 1.8; text-align: justify; color: #4b5563;">
-                                    <p class="lead fw-normal text-dark">
-                                        Siswa SMP Al-Husainiyyah kembali menorehkan prestasi gemilang di kancah pendidikan.
-                                        Berkat kerja keras, dedikasi, serta bimbingan intensif dari para guru, gelar juara
-                                        berhasil diraih.
-                                    </p>
-                                    <p>
-                                        Prestasi ini membuktikan bahwa program unggulan sekolah berjalan dengan sangat
-                                        efektif dalam mencetak generasi cerdas, berkarakter, dan religius sesuai visi dan
-                                        misi sekolah. Kami sangat bangga atas pencapaian ini dan senantiasa mendukung
-                                        seluruh siswa untuk terus mengeksplorasi potensi maksimal mereka baik di bidang
-                                        akademik maupun non-akademik.
-                                    </p>
-                                    <div
-                                        class="bg-success bg-opacity-10 p-4 rounded-3 border-start border-success border-4 mt-4">
-                                        <h5 class="fw-bold text-success mb-2">Pesan Kepala Sekolah</h5>
-                                        <p class="mb-0 text-dark fst-italic">"Keberhasilan ini adalah langkah awal. Teruslah
-                                            berkarya, junjung tinggi akhlak mulia, dan jadilah inspirasi bagi sesama."</p>
+
+                                    <h5 class="fw-bold text-dark mt-4 mb-3">Galeri {{ $title }}</h5>
+                                    <div id="fasilitasGallery" class="carousel slide overflow-hidden mb-4"
+                                        data-bs-ride="carousel">
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#fasilitasGallery" data-bs-slide-to="0"
+                                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                                            <button type="button" data-bs-target="#fasilitasGallery" data-bs-slide-to="1"
+                                                aria-label="Slide 2"></button>
+                                            <button type="button" data-bs-target="#fasilitasGallery" data-bs-slide-to="2"
+                                                aria-label="Slide 3"></button>
+                                        </div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active" data-bs-interval="3000">
+                                                <img src="{{ asset('assets/images/activity-01.jpg') }}"
+                                                    class="d-block w-100 object-fit-cover" style="height: 350px;"
+                                                    alt="Galeri 1">
+                                            </div>
+                                            <div class="carousel-item" data-bs-interval="3000">
+                                                <img src="{{ asset('assets/images/activity-02.jpg') }}"
+                                                    class="d-block w-100 object-fit-cover" style="height: 350px;"
+                                                    alt="Galeri 2">
+                                            </div>
+                                            <div class="carousel-item" data-bs-interval="3000">
+                                                <img src="{{ asset('assets/images/activity-03.jpg') }}"
+                                                    class="d-block w-100 object-fit-cover" style="height: 350px;"
+                                                    alt="Galeri 3">
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#fasilitasGallery" data-bs-slide="prev">
+                                            <span
+                                                class="carousel-control-prev-icon bg-dark rounded-circle p-2 bg-opacity-50"
+                                                aria-hidden="true"
+                                                style="width: 2rem; height: 2rem; background-size: 50%;"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#fasilitasGallery" data-bs-slide="next">
+                                            <span
+                                                class="carousel-control-next-icon bg-dark rounded-circle p-2 bg-opacity-50"
+                                                aria-hidden="true"
+                                                style="width: 2rem; height: 2rem; background-size: 50%;"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
