@@ -58,10 +58,6 @@ class PpdbInfoResource extends Resource
                         RichEditor::make('persyaratan')
                             ->columnSpanFull()
                             ->required(),
-                        TextInput::make('kontak_whatsapp')
-                            ->label('Nomor WhatsApp Admin')
-                            ->placeholder('08123456789')
-                            ->required(),
                         FileUpload::make('gambar_brosur')
                             ->image()
                             ->label('Gambar Brosur')
@@ -80,8 +76,6 @@ class PpdbInfoResource extends Resource
                     ->label('Tahun Ajaran'),
                 TextColumn::make('status')
                     ->label('Status'),
-                TextColumn::make('kontak_whatsapp')
-                    ->label('Nomor WhatsApp Admin'),
                 ImageColumn::make('gambar_brosur')
                     ->label('Brosur')
                     ->disk('public'),

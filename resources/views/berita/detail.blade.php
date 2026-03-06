@@ -47,7 +47,7 @@
                                 {{-- Icon Kategori --}}
                                 @if ($item->category)
                                     <div class="d-flex align-items-center">
-                                        <i class="fa-solid fa-layer-group me-2 text-success" style="font-size: 1.1rem;"></i>
+                                        <i class="bi bi-tags-fill text-success" style="font-size: 1.1rem;"></i>
                                         <span>Kategori:
                                             <a href="{{ route('berita.index', ['category' => $item->category->slug]) }}"
                                                 class="text-decoration-none fw-bold text-success">

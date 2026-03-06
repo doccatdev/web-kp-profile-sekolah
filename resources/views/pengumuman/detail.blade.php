@@ -46,16 +46,16 @@
                             <div class="konten-berita">
                                 <h2 class="fw-bold mb-3">{{ $title ?? 'Detail Pengumuman' }}</h2>
 
-                                <div class="d-flex align-items-center flex-wrap mb-4 text-secondary shadow-sm bg-light rounded-3 px-4 py-3"
-                                    style="gap: 20px; font-size: 0.95rem; border: 1px solid #eee;">
+                                <div class="d-flex align-items-center flex-wrap mb-4 text-secondary"
+                                    style="gap: 20px; font-size: 0.95rem;">
                                     <div class="d-flex align-items-center">
-                                        <i class="bi bi-calendar-check me-2 text-danger fs-5"></i>
-                                        <span>Tanggal:
+                                        <i class="bi bi-calendar-check me-2 text-success fs-5"></i>
+                                        <span>Dipublikasikan:
                                             <strong>{{ \Carbon\Carbon::now()->translatedFormat('j F Y') }}</strong></span>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <i class="bi bi-megaphone-fill me-2 text-success fs-5"></i>
-                                        <span class="fw-bold text-dark">Pengumuman Sekolah</span>
+                                        <span>Pengumuman: <strong class="text-success">Pengumuman Sekolah</strong></span>
                                     </div>
                                 </div>
 

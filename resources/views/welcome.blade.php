@@ -2,10 +2,7 @@
 
 @section('content')
     <!-- Hero -->
-    <section id="hero" class="d-flex align-items-center relative w-100"
-        style="background: url('{{ asset('assets/images/smp-bg.jpg') }}'); background-size: cover; background-position: center; min-height: 85vh;">
-
-        <div class="position-absolute w-100 h-100 top-0 start-0 bg-dark" style="opacity: 0.6; z-index: 0;"></div>
+    <section id="hero" class="d-flex align-items-center relative w-100 bg-success" style="min-height: 85vh;">
 
         <div class="container position-relative text-white" style="z-index: 1;">
             <div class="row align-items-center text-start">
@@ -24,7 +21,7 @@
                             daftarkan putra-putri Anda untuk bergabung bersama kami.
                         </p>
                         <div class="d-flex gap-3">
-                            <a href="{{ url('/ppdb') }}" class="btn btn-emerald btn-lg rounded-pill px-5 shadow">
+                            <a href="{{ url('/ppdb') }}" class="btn btn-outline-white btn-lg rounded-pill px-5">
                                 Daftar Sekarang <i class="bi bi-arrow-right ms-2"></i>
                             </a>
                         </div>
@@ -38,7 +35,7 @@
                             nasional dan nilai-nilai Islami yang moderat.
                         </p>
                         <div class="d-flex gap-3">
-                            <a href="#strength" class="btn btn-emerald btn-lg rounded-pill px-5 shadow">
+                            <a href="#strength" class="btn btn-outline-white btn-lg rounded-pill px-5">
                                 Lihat Keunggulan <i class="bi bi-arrow-down ms-2"></i>
                             </a>
                         </div>
@@ -51,7 +48,7 @@
     <!-- End Hero -->
 
     <!-- Stats Bar -->
-    <section class="py-4 bg-white shadow-sm" style="margin-top: 0; z-index: 10; position: relative;">
+    <section class="py-4 bg-white border-bottom" style="margin-top: 0; z-index: 10; position: relative;">
         <div class="container">
             <div class="row text-center g-4 align-items-center justify-content-center">
                 <div class="col-6 col-md-3" data-aos="fade-up">
@@ -107,63 +104,60 @@
 
             <div class="row g-4 justify-content-center">
                 <div class="col-md-4" data-aos="fade-up">
-                    <div class="feature-card position-relative rounded-4 overflow-hidden shadow h-100"
-                        style="cursor:pointer;">
-                        <img src="{{ asset('assets/images/activity-01.jpg') }}" class="w-100 object-fit-cover"
-                            style="height: 320px;" alt="Tahfidz">
-                        <div class="ig-overlay"></div>
-                        <div class="position-absolute bottom-0 start-0 p-4 text-white" style="z-index:2;">
-                            <div class="d-flex align-items-center gap-2 mb-2">
-                                <div class="bg-white bg-opacity-20 rounded-3 p-2 d-inline-flex"><i
+                    <div class="card h-100 border rounded-3 overflow-hidden text-start shadow-none">
+                        <img src="{{ asset('assets/images/activity-01.jpg') }}" class="card-img-top object-fit-cover"
+                            style="height: 220px;" alt="Tahfidz">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <div class="bg-success bg-opacity-10 text-success rounded-3 p-2 d-inline-flex"><i
                                         class="bi bi-book-half fs-5"></i></div>
-                                <span class="badge bg-success bg-opacity-75 rounded-pill small">Unggulan</span>
+                                <span class="badge bg-success bg-opacity-10 text-success rounded-pill small">Unggulan</span>
                             </div>
-                            <h4 class="fw-bold mb-1">Tahfidz Qur'an</h4>
-                            <p class="small opacity-75 mb-3">Target hafalan minimal 3 Juz per tahun bagi setiap siswa.</p>
+                            <h5 class="fw-bold mb-2 text-dark">Tahfidz Qur'an</h5>
+                            <p class="small text-muted mb-4 flex-grow-1">Target hafalan minimal 3 Juz per tahun bagi setiap
+                                siswa.</p>
                             <a href="{{ url('/program-unggulan') }}"
-                                class="btn btn-outline-light btn-sm rounded-pill px-4">Read More <i
-                                    class="bi bi-chevron-right ms-1"></i></a>
+                                class="btn btn-outline-success btn-sm rounded-pill align-self-start px-4">Read More <i
+                                    class="bi bi-arrow-right ms-1"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-card position-relative rounded-4 overflow-hidden shadow h-100"
-                        style="cursor:pointer;">
-                        <img src="{{ asset('assets/images/activity-02.jpg') }}" class="w-100 object-fit-cover"
-                            style="height: 320px;" alt="Bilingual">
-                        <div class="ig-overlay"></div>
-                        <div class="position-absolute bottom-0 start-0 p-4 text-white" style="z-index:2;">
-                            <div class="d-flex align-items-center gap-2 mb-2">
-                                <div class="bg-white bg-opacity-20 rounded-3 p-2 d-inline-flex"><i
+                    <div class="card h-100 border rounded-3 overflow-hidden text-start shadow-none">
+                        <img src="{{ asset('assets/images/activity-02.jpg') }}" class="card-img-top object-fit-cover"
+                            style="height: 220px;" alt="Bilingual">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-2 d-inline-flex"><i
                                         class="bi bi-translate fs-5"></i></div>
-                                <span class="badge bg-warning bg-opacity-75 text-dark rounded-pill small">Bilingual</span>
+                                <span
+                                    class="badge bg-warning bg-opacity-10 text-warning rounded-pill small">Bilingual</span>
                             </div>
-                            <h4 class="fw-bold mb-1">Bilingual Class</h4>
-                            <p class="small opacity-75 mb-3">Pengembangan bahasa kompetitif Arab & Inggris secara intensif.
-                            </p>
+                            <h5 class="fw-bold mb-2 text-dark">Bilingual Class</h5>
+                            <p class="small text-muted mb-4 flex-grow-1">Pengembangan bahasa kompetitif Arab & Inggris
+                                secara intensif.</p>
                             <a href="{{ url('/program-unggulan') }}"
-                                class="btn btn-outline-light btn-sm rounded-pill px-4">Read More <i
-                                    class="bi bi-chevron-right ms-1"></i></a>
+                                class="btn btn-outline-success btn-sm rounded-pill align-self-start px-4">Read More <i
+                                    class="bi bi-arrow-right ms-1"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-card position-relative rounded-4 overflow-hidden shadow h-100"
-                        style="cursor:pointer;">
-                        <img src="{{ asset('assets/images/activity-03.jpg') }}" class="w-100 object-fit-cover"
-                            style="height: 320px;" alt="Digital">
-                        <div class="ig-overlay"></div>
-                        <div class="position-absolute bottom-0 start-0 p-4 text-white" style="z-index:2;">
-                            <div class="d-flex align-items-center gap-2 mb-2">
-                                <div class="bg-white bg-opacity-20 rounded-3 p-2 d-inline-flex"><i
+                    <div class="card h-100 border rounded-3 overflow-hidden text-start shadow-none">
+                        <img src="{{ asset('assets/images/activity-03.jpg') }}" class="card-img-top object-fit-cover"
+                            style="height: 220px;" alt="Digital">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <div class="bg-info bg-opacity-10 text-info rounded-3 p-2 d-inline-flex"><i
                                         class="bi bi-laptop fs-5"></i></div>
-                                <span class="badge bg-info bg-opacity-75 text-dark rounded-pill small">Digital</span>
+                                <span class="badge bg-info bg-opacity-10 text-info rounded-pill small">Digital</span>
                             </div>
-                            <h4 class="fw-bold mb-1">Digital Skills</h4>
-                            <p class="small opacity-75 mb-3">Penguasaan teknologi informasi dan multimedia terkini.</p>
+                            <h5 class="fw-bold mb-2 text-dark">Digital Skills</h5>
+                            <p class="small text-muted mb-4 flex-grow-1">Penguasaan teknologi informasi dan multimedia
+                                terkini.</p>
                             <a href="{{ url('/program-unggulan') }}"
-                                class="btn btn-outline-light btn-sm rounded-pill px-4">Read More <i
-                                    class="bi bi-chevron-right ms-1"></i></a>
+                                class="btn btn-outline-success btn-sm rounded-pill align-self-start px-4">Read More <i
+                                    class="bi bi-arrow-right ms-1"></i></a>
                         </div>
                     </div>
                 </div>
@@ -193,44 +187,45 @@
                 </div>
             </div>
 
-            <div class="strength-bento">
+            <div class="row g-4">
                 <!-- Achievement 1 -->
-                <div class="strength-item overflow-hidden"
-                    style="grid-column: span 4; grid-row: span 3; background: url('{{ asset('assets/images/activity-01.jpg') }}') center/cover;"
-                    data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-100 d-flex flex-column justify-content-end p-4 rounded-4"
-                        style="background: linear-gradient(to top, rgba(0,155,77,0.92) 0%, transparent 60%);">
-                        <span class="badge bg-success bg-opacity-75 rounded-pill mb-2 d-inline-block"
-                            style="width:fit-content!important;">Akademik</span>
-                        <h5 class="fw-bold mb-1 text-white">Juara 1 OSN Matematika</h5>
-                        <p class="text-white small mb-0 opacity-75">Tingkat Kabupaten Bekasi 2024</p>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 border rounded-3 overflow-hidden shadow-none">
+                        <img src="{{ asset('assets/images/activity-01.jpg') }}" class="card-img-top object-fit-cover"
+                            style="height: 200px;" alt="Akademik">
+                        <div class="card-body p-4 bg-white">
+                            <span class="badge bg-success bg-opacity-10 text-success rounded-pill mb-3">Akademik</span>
+                            <h5 class="fw-bold mb-1 text-dark">Juara 1 OSN Matematika</h5>
+                            <p class="text-muted small mb-0">Tingkat Kabupaten Bekasi 2024</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Achievement 2 -->
-                <div class="strength-item overflow-hidden"
-                    style="grid-column: span 4; grid-row: span 3; background: url('{{ asset('assets/images/activity-02.jpg') }}') center/cover;"
-                    data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-100 d-flex flex-column justify-content-end p-4 rounded-4"
-                        style="background: linear-gradient(to top, rgba(161,118,0,0.92) 0%, transparent 60%);">
-                        <span class="badge bg-warning text-dark rounded-pill mb-2 d-inline-block"
-                            style="width:fit-content!important;">Non-Akademik</span>
-                        <h5 class="fw-bold mb-1 text-white">Emas Pencak Silat</h5>
-                        <p class="text-white small mb-0 opacity-75">O2SN Provinsi Jawa Barat</p>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 border rounded-3 overflow-hidden shadow-none">
+                        <img src="{{ asset('assets/images/activity-02.jpg') }}" class="card-img-top object-fit-cover"
+                            style="height: 200px;" alt="Non-Akademik">
+                        <div class="card-body p-4 bg-white">
+                            <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill mb-3">Non-Akademik</span>
+                            <h5 class="fw-bold mb-1 text-dark">Emas Pencak Silat</h5>
+                            <p class="text-muted small mb-0">O2SN Provinsi Jawa Barat</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Achievement 3 -->
-                <div class="strength-item overflow-hidden"
-                    style="grid-column: span 4; grid-row: span 3; background: url('{{ asset('assets/images/activity-03.jpg') }}') center/cover;"
-                    data-aos="fade-up" data-aos-delay="300">
-                    <div class="h-100 d-flex flex-column justify-content-end p-4 rounded-4"
-                        style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);">
-                        <span class="badge bg-light text-dark rounded-pill mb-2 d-inline-block"
-                            style="width:fit-content!important;"><i class="bi bi-book me-1"></i>Tahfidz</span>
-                        <h5 class="fw-bold mb-1 text-white">Hafidz Al-Qur'an 30 Juz</h5>
-                        <p class="text-white small mb-0 opacity-75">Prestasi tertinggi bidang Tahfidz yang
-                            membanggakan pesantren.</p>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 border rounded-3 overflow-hidden shadow-none">
+                        <img src="{{ asset('assets/images/activity-03.jpg') }}" class="card-img-top object-fit-cover"
+                            style="height: 200px;" alt="Tahfidz">
+                        <div class="card-body p-4 bg-white">
+                            <span class="badge bg-secondary bg-opacity-10 text-secondary rounded-pill mb-3"><i
+                                    class="bi bi-book me-1"></i>Tahfidz</span>
+                            <h5 class="fw-bold mb-1 text-dark">Hafidz Al-Qur'an 30 Juz</h5>
+                            <p class="text-muted small mb-0">Prestasi tertinggi bidang Tahfidz yang membanggakan pesantren.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -250,7 +245,7 @@
 
             <div class="row g-4">
                 <div class="col-6 col-md-4" data-aos="fade-up">
-                    <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
+                    <div class="card border rounded-3 shadow-none h-100 p-4">
                         <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
                             style="width:56px;height:56px;">
                             <i class="bi bi-display fs-4"></i>
@@ -264,7 +259,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
+                    <div class="card border rounded-3 shadow-none h-100 p-4">
                         <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
                             style="width:56px;height:56px;">
                             <i class="bi bi-dribbble fs-4"></i>
@@ -278,7 +273,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
+                    <div class="card border rounded-3 shadow-none h-100 p-4">
                         <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
                             style="width:56px;height:56px;">
                             <i class="bi bi-building-fill fs-4"></i>
@@ -292,7 +287,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4" data-aos="fade-up">
-                    <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
+                    <div class="card border rounded-3 shadow-none h-100 p-4">
                         <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
                             style="width:56px;height:56px;">
                             <i class="bi bi-music-note-beamed fs-4"></i>
@@ -306,7 +301,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
+                    <div class="card border rounded-3 shadow-none h-100 p-4">
                         <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
                             style="width:56px;height:56px;">
                             <i class="bi bi-door-open fs-4"></i>
@@ -320,7 +315,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card border-0 rounded-4 shadow-sm h-100 p-4 feature-card">
+                    <div class="card border rounded-3 shadow-none h-100 p-4">
                         <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3"
                             style="width:56px;height:56px;">
                             <i class="bi bi-collection fs-4"></i>
@@ -355,7 +350,7 @@
 
             <div class="row g-4 justify-content-center">
                 <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up">
-                    <div class="card border-0 rounded-4 overflow-hidden shadow-sm feature-card text-center p-4 h-100">
+                    <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
                         <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
                             style="width:56px;height:56px;">
                             <i class="bi bi-shield-fill fs-4"></i>
@@ -368,7 +363,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card border-0 rounded-4 overflow-hidden shadow-sm feature-card text-center p-4 h-100">
+                    <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
                         <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
                             style="width:56px;height:56px;">
                             <i class="bi bi-dribbble fs-4"></i>
@@ -381,7 +376,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card border-0 rounded-4 overflow-hidden shadow-sm feature-card text-center p-4 h-100">
+                    <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
                         <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
                             style="width:56px;height:56px;">
                             <i class="bi bi-person-arms-up fs-4"></i>
@@ -394,7 +389,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card border-0 rounded-4 overflow-hidden shadow-sm feature-card text-center p-4 h-100">
+                    <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
                         <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
                             style="width:56px;height:56px;">
                             <i class="bi bi-compass fs-4"></i>
@@ -407,7 +402,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="400">
-                    <div class="card border-0 rounded-4 overflow-hidden shadow-sm feature-card text-center p-4 h-100">
+                    <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
                         <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
                             style="width:56px;height:56px;">
                             <i class="bi bi-moon-stars-fill fs-4"></i>
@@ -496,4 +491,3 @@
         </div>
     </div>
 @endsection
-

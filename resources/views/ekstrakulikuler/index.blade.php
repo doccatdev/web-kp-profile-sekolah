@@ -28,8 +28,7 @@
         }
     @endphp
     <!-- Page Header CSS Gradient Version for Performance -->
-    <section class="py-5 text-white pt-5"
-        style="margin-top: 76px; background: linear-gradient(135deg, var(--emerald-green, #009b4d) 0%, #0f3f21 100%);">
+    <section class="py-5 text-white pt-5" style="margin-top: 76px; background-color: var(--emerald-green, #009b4d);">
         <div class="container py-5 text-center">
             <span class="badge text-bg-light text-success mb-2 px-3 py-2 rounded-pill fw-bold border-0 shadow-sm"
                 data-aos="fade-down">Pengembangan Bakat</span>
@@ -44,39 +43,33 @@
     <section id="ekstrakulikuler-page" class="py-5 bg-light">
         <div class="container py-4">
             @if (isset($extracurriculars) && $extracurriculars->count() > 0)
-                <div class="row g-4">
+                <div class="row g-4 justify-content-center">
                     @foreach ($extracurriculars as $ekskul)
                         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
-                            <div class="feature-card position-relative rounded-4 overflow-hidden shadow h-100"
-                                style="cursor:pointer;">
+                            <div class="card h-100 border rounded-3 overflow-hidden text-start shadow-none">
                                 @if ($ekskul->image)
-                                    <img src="{{ asset('storage/' . $ekskul->image) }}" class="w-100 object-fit-cover"
-                                        alt="{{ $ekskul->title }}" style="height: 350px;">
+                                    <img src="{{ asset('storage/' . $ekskul->image) }}"
+                                        class="card-img-top object-fit-cover" alt="{{ $ekskul->title }}"
+                                        style="height: 220px;">
                                 @else
-                                    <img src="{{ asset('assets/images/activity-03.jpg') }}" class="w-100 object-fit-cover"
-                                        alt="{{ $ekskul->title }}" style="height: 350px;">
+                                    <img src="{{ asset('assets/images/activity-03.jpg') }}"
+                                        class="card-img-top object-fit-cover" alt="{{ $ekskul->title }}"
+                                        style="height: 220px;">
                                 @endif
-                                <div class="ig-overlay"></div>
-                                <div class="position-absolute bottom-0 start-0 p-4 text-white"
-                                    style="z-index:2; width: 100%;">
-                                    <div class="d-flex flex-column justify-content-end h-100">
-                                        <div class="d-flex align-items-center gap-2 mb-2">
-                                            <div class="bg-white bg-opacity-20 rounded-3 p-2 d-inline-flex"><i
-                                                    class="bi bi-star-fill fs-5"></i></div>
-                                            <span class="badge bg-success bg-opacity-75 rounded-pill small">Giat
-                                                Ekskul</span>
-                                        </div>
-                                        <h5 class="fw-bold mb-1">{{ $ekskul->title }}</h5>
-                                        <div class="small opacity-75 mb-3 text-truncate"
-                                            style="max-height: 40px; overflow: hidden;">
-                                            {!! Str::limit(strip_tags($ekskul->description), 100) !!}
-                                        </div>
-                                        <div class="mt-auto">
-                                            <a href="{{ route('ekstrakulikuler.detail', ['id' => $ekskul->id]) }}"
-                                                class="btn btn-outline-light btn-sm rounded-pill px-4">Lihat Detail <i
-                                                    class="bi bi-chevron-right ms-1"></i></a>
-                                        </div>
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <div class="d-flex align-items-center gap-2 mb-3">
+                                        <div class="bg-success bg-opacity-10 text-success rounded-3 p-2 d-inline-flex"><i
+                                                class="bi bi-star-fill fs-5"></i></div>
+                                        <span class="badge bg-success bg-opacity-10 text-success rounded-pill small">Giat
+                                            Ekskul</span>
                                     </div>
+                                    <h5 class="fw-bold mb-2 text-dark">{{ $ekskul->title }}</h5>
+                                    <p class="small text-muted mb-4 flex-grow-1">
+                                        {!! Str::limit(strip_tags($ekskul->description), 100) !!}
+                                    </p>
+                                    <a href="{{ route('ekstrakulikuler.detail', ['id' => $ekskul->id]) }}"
+                                        class="btn btn-outline-success btn-sm rounded-pill align-self-start px-4">Read More
+                                        <i class="bi bi-arrow-right ms-1"></i></a>
                                 </div>
                             </div>
                         </div>

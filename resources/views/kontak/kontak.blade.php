@@ -7,7 +7,7 @@
     <section id="kontak" class="pt-5">
         <div class="container py-5">
     <!-- Page Header CSS Gradient Version for Performance -->
-    <section class="py-5 text-white pt-5" style="margin-top: 76px; background: linear-gradient(135deg, var(--emerald-green, #009b4d) 0%, #0f3f21 100%);">
+    <section class="py-5 text-white pt-5" style="margin-top: 76px; background-color: var(--emerald-green, #009b4d);">
         <div class="container py-5 text-center">
             <span class="badge text-bg-light text-success mb-2 px-3 py-2 rounded-pill fw-bold border-0 shadow-sm" data-aos="fade-down">Pusat Layanan</span>
             <h1 class="display-4 fw-bold" data-aos="fade-down" data-aos-delay="100">Hubungi Kami</h1>
@@ -81,10 +81,62 @@
             </div>
 
             {{-- PETA FULL WIDTH --}}
-            <div class="row" data-aos="fade-up" data-aos-delay="200">
+            <div class="row mb-5" data-aos="fade-up" data-aos-delay="200">
                 <div class="col-12">
-                    <div class="card border-0 shadow-sm overflow-hidden" style="border-radius: 20px;">
+                    <div class="card border-0 shadow-sm overflow-hidden" style="border-radius: 0;">
                         <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- FORM KIRIM PESAN --}}
+            <div class="row justify-content-center mb-5" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm p-4 p-md-5" style="border-radius: 0;">
+                        <div class="text-center mb-4">
+                            <h3 class="fw-bold text-dark">Kirim Pesan</h3>
+                            <div class="stripe-red mx-auto"></div>
+                            <p class="text-muted small">Punya pertanyaan atau butuh informasi lebih lanjut? Silakan kirim pesan kepada kami melalui formulir di bawah ini.</p>
+                        </div>
+
+                        <form action="#" method="POST">
+                            @csrf
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label small fw-bold text-muted">Nama Lengkap</label>
+                                        <input type="text" name="name" class="form-control bg-light border-0 p-3"
+                                            placeholder="Masukkan nama Anda" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label small fw-bold text-muted">Alamat Email</label>
+                                        <input type="email" name="email" class="form-control bg-light border-0 p-3"
+                                            placeholder="email@contoh.com" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label small fw-bold text-muted">Subjek / Perihal</label>
+                                        <input type="text" name="subject" class="form-control bg-light border-0 p-3"
+                                            placeholder="Subjek pesan" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label small fw-bold text-muted">Pesan Anda</label>
+                                        <textarea name="message" class="form-control bg-light border-0 p-3" rows="5"
+                                            placeholder="Tuliskan pesan atau pertanyaan Anda di sini..." required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-emerald rounded-pill px-5 py-3 shadow-sm">
+                                        <i class="bi bi-send-fill me-2"></i> Kirim Pesan Sekarang
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -2,8 +2,7 @@
 
 @section('content')
     <!-- Page Header CSS Gradient Version for Performance -->
-    <section class="py-5 text-white pt-5"
-        style="margin-top: 76px; background: linear-gradient(135deg, var(--emerald-green, #009b4d) 0%, #0f3f21 100%);">
+    <section class="py-5 text-white pt-5" style="margin-top: 76px; background-color: var(--emerald-green, #009b4d);">
         <div class="container py-5 text-center">
             <h1 class="display-4 fw-bold" data-aos="fade-down">Sarana & Prasarana</h1>
             <p class="lead mb-0 opacity-75" data-aos="fade-up" data-aos-delay="100">Fasilitas modern untuk mendukung

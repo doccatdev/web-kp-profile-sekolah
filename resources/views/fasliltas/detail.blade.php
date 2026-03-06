@@ -21,14 +21,7 @@
             <div class="row g-0 justify-content-center">
                 <div class="col-12">
 
-                    <div class="container pt-4">
-                        <a href="{{ route('fasilitas.index') }}"
-                            class="btn btn-outline-success rounded-pill mb-4 px-4 shadow-sm">
-                            <i class="bi bi-arrow-left me-2"></i>Kembali
-                        </a>
-                    </div>
-
-                    <div class="card border-0 shadow-none overflow-hidden">
+                    <div class="card border-0 shadow-none">
                         <div class="position-relative">
                             {{-- Image Cover Utama - Full View --}}
                             <img src="{{ $item->image ? asset('storage/' . $item->image) : asset('assets/images/activity-02.jpg') }}"
@@ -94,6 +87,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="container pb-5 text-center">
+                            <a href="{{ route('fasilitas.index') }}"
+                                class="btn btn-outline-success rounded-pill px-5 shadow-sm">
+                                <i class="bi bi-arrow-left me-2"></i>Kembali ke Daftar Fasilitas
+                            </a>
                         </div>
                     </div>
 

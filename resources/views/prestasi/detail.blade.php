@@ -37,17 +37,17 @@
                                 <h2 class="fw-bold mb-3">{{ $title ?? 'Detail Prestasi' }}</h2>
 
                                 {{-- 2. Baris Icon --}}
-                                <div class="d-flex align-items-center flex-wrap mb-4 text-secondary shadow-sm bg-light rounded-3 px-4 py-3"
-                                    style="gap: 20px; font-size: 0.95rem; border: 1px solid #eee;">
-
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-trophy-fill me-2 text-warning fs-5"></i>
-                                        <span class="fw-bold text-dark">Tingkat Nasional</span>
-                                    </div>
+                                <div class="d-flex align-items-center flex-wrap mb-4 text-secondary"
+                                    style="gap: 20px; font-size: 0.95rem;">
 
                                     <div class="d-flex align-items-center">
                                         <i class="bi bi-calendar-check me-2 text-success fs-5"></i>
-                                        <span>Tahun: <strong>{{ date('Y') }}</strong></span>
+                                        <span>Dipublikasikan: <strong>{{ date('Y') }}</strong></span>
+                                    </div>
+
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-layers-fill me-2 text-success fs-5"></i>
+                                        <span>Kategori Lomba: <strong class="text-success">Tingkat Nasional</strong></span>
                                     </div>
                                 </div>
 

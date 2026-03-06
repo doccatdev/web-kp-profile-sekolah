@@ -77,7 +77,8 @@ class NewsResource extends Resource
 
                 // Image/Gambar/Tumbnail berita
                 FileUpload::make('image')
-                    ->label('File Berita'),
+                    ->label('File Berita')
+                    ->disk('public'),
 
                 // Konten Berita
                 RichEditor::make('news_content')

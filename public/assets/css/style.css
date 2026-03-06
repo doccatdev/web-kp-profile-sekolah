@@ -19,25 +19,23 @@ body {
 
 /* Button */
 .btn-emerald {
-    background: var(--emerald-gradient);
-    border-radius: 10px;
+    background: var(--emerald-green);
+    border-radius: 4px;
     border: none;
     padding: 10px 40px;
     color: white;
-    font-weight: 600;
+    font-weight: 500;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(20, 83, 45, 0.3);
 }
 
 .btn-emerald:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(20, 83, 45, 0.4);
+    background: #007a3c;
     color: white;
 }
 
 .btn-danger {
     background-color: var(--emerald-green);
-    border-radius: 10px;
+    border-radius: 4px;
     border-color: var(--emerald-green);
     padding: 10px 40px;
     color: white;
@@ -45,7 +43,7 @@ body {
 
 .btn-outline-danger {
     background-color: transparent;
-    border-radius: 10px;
+    border-radius: 4px;
     border-color: var(--emerald-green);
     padding: 10px 40px;
     color: var(--text-dark);
@@ -59,9 +57,9 @@ body {
 
 .btn-outline-white {
     background-color: transparent;
-    border-radius: 10px;
+    border-radius: 4px;
     border-color: white;
-    padding : 10px 40px;
+    padding: 10px 40px;
     color: white;
 }
 
@@ -73,8 +71,7 @@ body {
 
 /* Navbar - solid background to hide hero image and improve logo clarity */
 .navbar {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background-color: #ffffff;
     border-bottom: 2px solid var(--emerald-green);
     transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
@@ -141,11 +138,10 @@ body {
 }
 
 .navbar .dropdown-menu {
-    background-color: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: none;
 }
 
 .navbar .dropdown-item {
@@ -171,8 +167,7 @@ body {
 
 .navbar.scroll-nav-activate,
 .navbar.text-nav-activate {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background-color: #ffffff;
     border-bottom: 2px solid var(--emerald-green);
 }
 
