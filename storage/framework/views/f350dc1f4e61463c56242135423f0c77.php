@@ -47,9 +47,9 @@
                     <div class="col-12 col-md-3">
                         <h5 class="fw-bold mb-3">Media Sosial Kami</h5>
                         <div class="d-flex gap-3">
-                            <a href="#" target="_blank" class="text-dark"><i class="bi bi-facebook fs-5"></i></a>
-                            <a href="#" target="_blank" class="text-dark"><i class="bi bi-instagram fs-5"></i></a>
-                            <a href="#" target="_blank" class="text-dark"><i class="bi bi-youtube fs-5"></i></a>
+                            <a href="https://www.facebook.com/SMPALHUSAINIYYAH/" target="_blank" class="text-dark"><i class="bi bi-facebook fs-5"></i></a>
+                            <a href="https://www.instagram.com/smpalhusainiyyah_official/" target="_blank" class="text-dark"><i class="bi bi-instagram fs-5"></i></a>
+                            <a href="https://www.youtube.com/@SMPALHUSAINIYYAH_OFFICIAL" target="_blank" class="text-dark"><i class="bi bi-youtube fs-5"></i></a>
                             <a href="#" target="_blank" class="text-dark"><i class="bi bi-tiktok fs-5"></i></a>
                         </div>
                     </div>

@@ -2,68 +2,104 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PpdbInfoResource\Pages;
-use App\Filament\Resources\PpdbInfoResource\RelationManagers;
 use App\Models\PpdbInfo;
+use App\Filament\Resources\PpdbInfoResource\Pages;
+use Filament\Resources\Resource;
 use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Tables;
+use Filament\Tables\Table;
+
+// Form Components
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Card;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
+use Filament\Forms\Components\Repeater;
+
+// Table Components
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PpdbInfoResource extends Resource
 {
     protected static ?string $model = PpdbInfo::class;
-
-    // Mengubah nama di Sidebar
-    protected static ?string $navigationLabel = 'Informasi PPDB';
-
-    // Mengubah judul jamak (header halaman)
+    protected static ?string $navigationLabel = 'PPDB';
     protected static ?string $pluralLabel = 'Informasi PPDB';
-
-    // Mengubah judul tunggal
     protected static ?string $modelLabel = 'Informasi PPDB';
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+    protected static ?string $navigationGroup = 'PPDB Sekolah';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
-                Card::make()
+                Grid::make(3)
                     ->schema([
-                        Select::make('status')
-                            ->options([
-                                'Buka' => 'Buka',
-                                'Tutup' => 'Tutup',
-                            ])
-                            ->required()
-                            ->native(false),
-                        TextInput::make('tahun_ajaran')
-                            ->placeholder('2024/2025')
-                            ->required(),
-                        RichEditor::make('rincian_biaya')
-                            ->columnSpanFull()
-                            ->required(),
-                        RichEditor::make('persyaratan')
-                            ->columnSpanFull()
-                            ->required(),
-                        FileUpload::make('gambar_brosur')
-                            ->image()
-                            ->label('Gambar Brosur')
-                            ->disk('public')
-                            ->required(),
-                    ])->columns(2),
+                        // Sisi Kiri: Detail & Persyaratan (Lebar 2)
+                        Section::make('Rincian Penerimaan')
+                            ->description('Kelola informasi status, biaya, tahun ajaran dan persyaratan PPDB')
+                            ->columnSpan(2)
+                            ->schema([
+                                Grid::make(2)
+                                    ->schema([
+                                        Select::make('status')
+                                            ->options([
+                                                'Buka' => 'Buka',
+                                                'Tutup' => 'Tutup',
+                                            ])
+                                            ->required()
+                                            ->native(false),
+
+                                        TextInput::make('tahun_ajaran')
+                                            ->placeholder('2024/2025')
+                                            ->required(),
+                                    ]),
+
+                                RichEditor::make('rincian_biaya')
+                                    ->label('Rincian Biaya')
+                                    ->required(),
+
+                                RichEditor::make('persyaratan')
+                                    ->label('Persyaratan Pendaftaran')
+                                    ->required(),
+                            ]),
+
+                        // Sisi Kanan: Brosur & Kontak (Lebar 1)
+                        Section::make('Media & Kontak')
+                            ->description('Kelola informasi brosur dan kontak panitia PPDB')
+                            ->columnSpan(1)
+                            ->schema([
+                                FileUpload::make('gambar_brosur')
+                                    ->label('Brosur PPDB')
+                                    ->image()
+                                    ->imageEditor()
+                                    ->directory('ppdb')
+                                    ->disk('public')
+                                    ->required(),
+
+                                Repeater::make('contacts')
+                                    ->relationship('contacts')
+                                    ->label('Admin WA')
+                                    ->schema([
+                                        TextInput::make('nama_admin')
+                                            ->label('Nama')
+                                            ->required(),
+                                        TextInput::make('nomor_whatsapp')
+                                            ->label('No. WA')
+                                            ->placeholder('628xxx')
+                                            ->tel()
+                                            ->required(),
+                                    ])
+                                    ->itemLabel(fn (array $state): ?string => $state['nama_admin'] ?? null)
+                                    ->collapsible()
+                                    ->collapsed() // Default tertutup agar hemat ruang
+                                    ->addActionLabel('Tambah Admin'),
+                            ]),
+                    ]),
             ]);
     }
 
@@ -71,33 +107,40 @@ class PpdbInfoResource extends Resource
     {
         return $table
             ->columns([
-                //
                 TextColumn::make('tahun_ajaran')
-                    ->label('Tahun Ajaran'),
+                    ->label('Tahun Ajaran')
+                    ->sortable()
+                    ->searchable(),
+
                 TextColumn::make('status')
-                    ->label('Status'),
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'Buka' => 'success',
+                        'Tutup' => 'danger',
+                        default => 'gray',
+                    }),
+
+                TextColumn::make('contacts_count')
+                    ->label('Total Admin')
+                    ->counts('contacts')
+                    ->badge()
+                    ->color('info'),
+
                 ImageColumn::make('gambar_brosur')
                     ->label('Brosur')
-                    ->disk('public'),
+                    ->disk('public')
+                    ->square(),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

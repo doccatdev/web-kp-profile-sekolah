@@ -1,4 +1,6 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 
 :root {
     --emerald-green: #009b4d;
@@ -757,7 +759,7 @@ body {
 
 /* Bullet Point Hijau Kecil Sesuai Gambar */
 .prose-content li:before {
-    content: "â—"; /* Menggunakan bulatan yang lebih solid */
+    content: "\25CF"; /* Menggunakan bulatan yang lebih solid */
     color: #10b981;
     font-size: 0.7rem;
     margin-right: 15px;
@@ -1054,3 +1056,113 @@ body {
 }
 .border-success { border-color: #009b4d !important; }
 
+
+/* Container Utama Card */
+.card-guru-alt {
+    border: none;
+    border-radius: 15px;
+    background-color: #fff;
+    width: 100%;
+    /* Maksa card ngikutin tinggi kolom grid */
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.card-guru-alt:hover {
+    transform: translateY(-5px);
+}
+
+/* Bagian Atas Card */
+.card-header-bg {
+    height: 100px;
+    background-color: #009b4d;
+    flex-shrink: 0;
+}
+
+.avatar-wrapper {
+    margin-top: -60px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avatar-img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Body Card - KUNCI UKURAN SAMA ADA DI SINI */
+.card-guru-alt .card-body {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* Maksa body ngambil sisa ruang */
+    flex: 1 1 auto; 
+}
+
+/* Nama Guru - Tinggi Tetap */
+.card-guru-alt .guru-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    /* KUNCI: Kasih tinggi pasti buat 2 baris nama */
+    height: 2.8rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Container Role (Jabatan & Mapel) - Tinggi Tetap */
+.card-guru-alt .role-container {
+    /* KUNCI: Tinggi pasti biar kartu ga naik turun (Cukup buat 3-4 baris teks) */
+    height: 100px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.card-guru-alt .role-text {
+    color: #009b4d;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.5;
+    width: 100%;
+    /* Hilangkan margin/padding bawaan */
+    margin: 0; 
+}
+
+/* Tombol Lihat Profil - Selalu di dasar */
+.card-guru-alt .btn-lihat {
+    /* Dorong ke paling bawah */
+    margin-top: auto; 
+    border: 2px solid #009b4d;
+    color: #009b4d;
+    border-radius: 8px;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    background-color: transparent;
+}
+
+.card-guru-alt .btn-lihat:hover {
+    background-color: #009b4d;
+    color: #fff;
+}

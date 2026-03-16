@@ -7,13 +7,19 @@ use App\Models\PpdbInfo;
 
 class PpdbController extends Controller
 {
-    //
     public function index()
     {
-        // Mengambil data pertama
-        $ppdb = PpdbInfo::active()->latest()->first();
+        // Menggunakan with('contacts') agar data admin ikut terambil
+        $ppdb = PpdbInfo::with('contacts')
+                        ->active() // Pastikan scopeActive() sudah ada di model
+                        ->latest()
+                        ->first();
 
-        // Kirim dengan nama 'ppdb'
+        // Jika data tidak ada, kita bisa beri fallback agar view tidak error
+        if (!$ppdb) {
+            return view('ppdb.index')->with('ppdb', null);
+        }
+
         return view('ppdb.index', compact('ppdb'));
     }
 }

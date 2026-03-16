@@ -402,26 +402,11 @@
                                 class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="400">
-                    <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
-                            style="width:56px;height:56px;">
-                            <i class="bi bi-moon-stars-fill fs-4"></i>
-                        </div>
-                        <h6 class="fw-bold mb-1">Rohis / Tahfidz</h6>
-                        <p class="text-muted small mb-2">Kerohanian & hafalan Qur'an</p>
-                        <a href="<?php echo e(url('/ekstrakulikuler')); ?>"
-                            class="text-success small fw-semibold text-decoration-none">Read More <i
-                                class="bi bi-chevron-right"></i></a>
-                    </div>
+                <div class="text-center mt-5">
+                    <a href="<?php echo e(url('/ekstrakulikuler')); ?>" class="btn btn-emerald rounded-pill px-5">Lihat Semua Ekskul
+                        <i class="bi bi-arrow-right ms-1"></i></a>
                 </div>
             </div>
-
-            <div class="text-center mt-5">
-                <a href="<?php echo e(url('/ekstrakulikuler')); ?>" class="btn btn-emerald rounded-pill px-5">Lihat Semua Ekskul <i
-                        class="bi bi-arrow-right ms-1"></i></a>
-            </div>
-        </div>
     </section>
 
     <!-- Advanced Instagram Feed: Kegiatan Terbaru -->

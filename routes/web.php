@@ -4,6 +4,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PpdbController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\GuruController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
 
@@ -61,22 +63,15 @@ Route::get('/ekstrakulikuler/{id}', function ($id) {
     return view('ekstrakulikuler.detail', compact('id'));
 })->name('ekstrakulikuler.detail');
 
-Route::get('/profil/profil-sekolah', function () {
-    return view('profil.profil-sekolah', ['profil' => null, 'profilPhotos' => collect()]);
-});
-Route::get('/profil/sejarah', function () {
-    return view('profil.sejarah', ['sejarah' => null]);
-});
-Route::get('/profil/visi-misi', function () {
-    return view('profil.visi-misi', ['visiMisi' => null]);
-});
-Route::get('/profil/data-guru', function () {
-    return view('pengajar.data-guru');
-})->name('profil.data-guru');
+Route::get('/profil/profil-sekolah', [ProfilController::class, 'profilSekolah']);
+Route::get('/profil/sejarah', [ProfilController::class, 'sejarah']);
+Route::get('/profil/visi-misi', [ProfilController::class, 'visiMisi']);
 
-Route::get('/profil/data-guru/{id}', function ($id) {
-    return view('pengajar.detail', compact('id'));
-})->name('profil.data-guru.detail');
+// Menampilkan daftar semua guru
+Route::get('/profil/data-guru', [GuruController::class, 'index'])->name('profil.data-guru');
+
+// Menampilkan detail guru berdasarkan SLUG (lebih SEO friendly daripada ID)
+Route::get('/profil/data-guru/{slug}', [GuruController::class, 'detail'])->name('profil.data-guru.detail');
 
 
 // Informasi: Berita

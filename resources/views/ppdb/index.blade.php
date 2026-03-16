@@ -40,7 +40,7 @@
                     </li>
                     <li class="nav-item">
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#kontak" type="button">
-                            Kontak
+                            Kontak PPDB
                         </button>
                     </li>
                 </ul>
@@ -95,15 +95,38 @@
                             <div class="d-flex flex-wrap justify-content-center gap-3">
                                 @if (isset($ppdb->contacts) && $ppdb->contacts->count() > 0)
                                     @foreach ($ppdb->contacts as $contact)
-                                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact->nomor_whatsapp) }}"
-                                            target="_blank"
+                                        @php
+                                            // 1. Ambil angka saja
+                                            $cleanNumber = preg_replace('/[^0-9]/', '', $contact->nomor_whatsapp);
+
+                                            // 2. Ubah 08... menjadi 628...
+                                            if (str_starts_with($cleanNumber, '0')) {
+                                                $cleanNumber = '62' . substr($cleanNumber, 1);
+                                            }
+
+                                            // 3. Template pesan (Optional tapi sangat membantu)
+                                            $message = urlencode(
+                                                'Halo ' .
+                                                    $contact->nama_admin .
+                                                    ', saya ingin bertanya mengenai PPDB TA ' .
+                                                    $ppdb->tahun_ajaran,
+                                            );
+                                        @endphp
+
+                                        <a href="https://wa.me/{{ $cleanNumber }}?text={{ $message }}" target="_blank"
                                             class="btn btn-success btn-lg rounded-pill px-4 py-3 shadow-sm fw-bold">
-                                            <i class="bi bi-whatsapp me-2"></i>{{ $contact->nama_kontak }}
+                                            <i class="bi bi-whatsapp me-2"></i>{{ $contact->nama_admin }}
                                         </a>
                                     @endforeach
                                 @else
-                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $ppdb->kontak_whatsapp) }}"
-                                        target="_blank"
+                                    {{-- Fallback ke kolom kontak_whatsapp lama jika tabel contacts kosong --}}
+                                    @php
+                                        $fallbackNumber = preg_replace('/[^0-9]/', '', $ppdb->kontak_whatsapp);
+                                        if (str_starts_with($fallbackNumber, '0')) {
+                                            $fallbackNumber = '62' . substr($fallbackNumber, 1);
+                                        }
+                                    @endphp
+                                    <a href="https://wa.me/{{ $fallbackNumber }}" target="_blank"
                                         class="btn btn-success btn-lg rounded-pill px-4 py-3 shadow-sm fw-bold">
                                         <i class="bi bi-whatsapp me-2"></i>Hubungi Panitia
                                     </a>
@@ -111,9 +134,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
         </section>
     @else
         {{-- Tampilan Saat Tutup --}}
