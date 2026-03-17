@@ -63,6 +63,9 @@ class SekolahProfilesResource extends Resource
                             ->label('Upload Logo')
                             ->image()
                             ->directory('sekolah')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])
+                            ->helperText('Format file yang didukung adalah JPEG, PNG, JPG, WEBP. Maksimal ukuran file 2MB')
+                            ->maxSize(2048)
                             ->disk('public')
                             ->required(),
                     ]),
@@ -88,9 +91,9 @@ class SekolahProfilesResource extends Resource
             ])
             ->filters([])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
-                    ->hidden(fn () => SekolahProfile::count() <= 1),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

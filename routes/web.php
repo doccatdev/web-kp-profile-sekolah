@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PpdbController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\GuruController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
@@ -35,15 +36,9 @@ Route::get('/program-unggulan/{id}', function ($id) {
 
 
 // Sarana & Prasarana
-Route::get('/fasilitas', function () {
-    return view('fasliltas.fasilitas');
-})->name('fasilitas.index');
+Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
 
-Route::get('/fasilitas/{id}', function ($id) {
-    // Generate a formatted title based on ID
-    $title = ucwords(str_replace('-', ' ', $id));
-    return view('fasliltas.detail', compact('id', 'title'));
-})->name('fasilitas.detail');
+Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('fasilitas.detail');
 
 // Prestasi
 Route::get('/prestasi', function () {

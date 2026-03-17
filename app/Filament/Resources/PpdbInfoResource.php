@@ -79,6 +79,9 @@ class PpdbInfoResource extends Resource
                                     ->imageEditor()
                                     ->directory('ppdb')
                                     ->disk('public')
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])
+                                    ->helperText('Format file yang didukung adalah JPEG, PNG, JPG, WEBP. Maksimal ukuran file 2MB')
+                                    ->maxSize(2048)
                                     ->required(),
 
                                 Repeater::make('contacts')
@@ -133,6 +136,7 @@ class PpdbInfoResource extends Resource
             ])
             ->filters([])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

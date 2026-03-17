@@ -85,6 +85,9 @@ class NewsResource extends Resource
                             ->image()
                             ->imageEditor()
                             ->directory('berita')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])
+                            ->helperText('Format file yang didukung adalah JPEG, PNG, JPG, WEBP. Maksimal ukuran file 2MB')
+                            ->maxSize(2048)
                             ->disk('public')
                             ->required(),
                     ]),
@@ -121,6 +124,7 @@ class NewsResource extends Resource
                     ->relationship('category', 'name_category'),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
                     ->successNotification(
@@ -132,7 +136,7 @@ class NewsResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

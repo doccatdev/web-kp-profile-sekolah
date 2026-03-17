@@ -16,4 +16,10 @@ class EditGuru extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    // redirect to index news pages after CRUD (Create, Read, Update, Delete)
+    public function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
