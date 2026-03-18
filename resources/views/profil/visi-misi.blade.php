@@ -54,8 +54,7 @@
                         <div class="col-lg-10">
                             <div class="card border-0 shadow-sm rounded-4 text-center p-5">
                                 <div class="card-body py-5 text-muted">
-                                    <p class="mb-0">Konten visi & misi akan ditampilkan di sini setelah diisi melalui
-                                        panel admin (Filament).</p>
+                                    <p class="mb-0">Data visi & misi sedang diupdate.</p>
                                 </div>
                             </div>
                         </div>

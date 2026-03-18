@@ -6,7 +6,8 @@
             <span class="badge text-bg-light text-success mb-2 px-3 py-2 rounded-pill fw-bold shadow-sm">Pendidik
                 Profesional</span>
             <h1 class="display-4 fw-bold">Data Guru</h1>
-            <p class="lead mb-0 opacity-75 mx-auto mt-2" style="max-width: 600px;">Guru profesional dan berdedikasi tinggi yang siap membimbing siswa meraih prestasi gemilang</p>
+            <p class="lead mb-0 opacity-75 mx-auto mt-2" style="max-width: 600px;">Guru profesional dan berdedikasi tinggi
+                yang siap membimbing siswa meraih prestasi gemilang</p>
         </div>
     </section>
 
@@ -50,8 +51,13 @@
                         </div>
                     </div>
                 @empty
-                    <div class="col-12 text-center py-5">
-                        <p class="text-muted">Data belum tersedia.</p>
+                    <div class="col-md-8 text-center py-5" data-aos="fade-up">
+                        <div class="mb-4">
+                            <i class="bi bi-info-circle display-1 text-muted opacity-25"></i>
+                        </div>
+                        <h3 class="fw-bold text-dark">Data Belum Tersedia</h3>
+                        <p class="text-muted">Saat ini kami sedang memperbarui informasi mengenai data guru sekolah. Silakan
+                            kembali lagi nanti.</p>
                     </div>
                 @endforelse
             </div>

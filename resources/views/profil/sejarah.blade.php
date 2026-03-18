@@ -36,7 +36,7 @@
                     <div class="row justify-content-center text-center py-5 text-muted">
                         <div class="col-lg-10">
                             <div class="card border-0 shadow-sm rounded-4 p-5">
-                                <p class="mb-0">Data sejarah belum tersedia.</p>
+                                <p class="mb-0">Data sejarah sekolah sedang diupdate.</p>
                             </div>
                         </div>
                     </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PpdbController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\ProgramUnggulanController;
 use App\Http\Controllers\GuruController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
@@ -25,14 +26,14 @@ use App\Models\News;
 // Beranda (menggunakan HomeController untuk data dinamis)
 Route::get('/', [HomeController::class, 'index']);
 
-// Program Unggulan
-Route::get('/program-unggulan', function () {
-    return view('program-unggulan.index');
-})->name('program-unggulan.index');
+// Route Program Unggulan
+Route::prefix('program-unggulan')->group(function () {
+    // Halaman List: smp-alhusainiyyah.sch.id/program-unggulan
+    Route::get('/', [ProgramUnggulanController::class, 'index'])->name('program-unggulan.index');
 
-Route::get('/program-unggulan/{id}', function ($id) {
-    return view('program-unggulan.detail', compact('id'));
-})->name('program-unggulan.detail');
+    // Halaman Detail: smp-alhusainiyyah.sch.id/program-unggulan/nama-slug
+    Route::get('/{slug}', [ProgramUnggulanController::class, 'show'])->name('program-unggulan.detail');
+});
 
 
 // Sarana & Prasarana

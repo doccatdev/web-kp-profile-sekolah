@@ -102,71 +102,44 @@
             </div>
 
             <div class="row g-4 justify-content-center">
-                <div class="col-md-4" data-aos="fade-up">
-                    <div class="card h-100 border rounded-3 overflow-hidden text-start shadow-none">
-                        <img src="<?php echo e(asset('assets/images/activity-01.jpg')); ?>" class="card-img-top object-fit-cover"
-                            style="height: 220px;" alt="Tahfidz">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex align-items-center gap-2 mb-3">
-                                <div class="bg-success bg-opacity-10 text-success rounded-3 p-2 d-inline-flex"><i
-                                        class="bi bi-book-half fs-5"></i></div>
-                                <span class="badge bg-success bg-opacity-10 text-success rounded-pill small">Unggulan</span>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $programUnggulan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="<?php echo e($loop->iteration * 100); ?>">
+                        <div class="card h-100 border rounded-3 overflow-hidden text-start shadow-none">
+                            <img src="<?php echo e(asset('storage/' . $item->thumbnail)); ?>" class="card-img-top object-fit-cover"
+                                style="height: 220px;" alt="<?php echo e($item->nama_program); ?>">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <div class="bg-success bg-opacity-10 text-success rounded-3 p-2 d-inline-flex">
+                                        <i class="<?php echo e($item->icon_class ?? 'bi bi-star-fill'); ?> fs-5"></i>
+                                    </div>
+                                    <span class="badge bg-success bg-opacity-10 text-success rounded-pill small">
+                                        <?php echo e($item->badge_text ?? 'Unggulan'); ?>
+
+                                    </span>
+                                </div>
+                                <h5 class="fw-bold mb-2 text-dark"><?php echo e($item->nama_program); ?></h5>
+                                <p class="small text-muted mb-4 flex-grow-1"><?php echo e($item->deskripsi_singkat); ?></p>
+                                <a href="<?php echo e(route('program-unggulan.detail', $item->slug)); ?>"
+                                    class="btn btn-outline-success btn-sm rounded-pill align-self-start px-4">
+                                    Read More <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
                             </div>
-                            <h5 class="fw-bold mb-2 text-dark">Tahfidz Qur'an</h5>
-                            <p class="small text-muted mb-4 flex-grow-1">Target hafalan minimal 3 Juz per tahun bagi setiap
-                                siswa.</p>
-                            <a href="<?php echo e(url('/program-unggulan')); ?>"
-                                class="btn btn-outline-success btn-sm rounded-pill align-self-start px-4">Read More <i
-                                    class="bi bi-arrow-right ms-1"></i></a>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card h-100 border rounded-3 overflow-hidden text-start shadow-none">
-                        <img src="<?php echo e(asset('assets/images/activity-02.jpg')); ?>" class="card-img-top object-fit-cover"
-                            style="height: 220px;" alt="Bilingual">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex align-items-center gap-2 mb-3">
-                                <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-2 d-inline-flex"><i
-                                        class="bi bi-translate fs-5"></i></div>
-                                <span
-                                    class="badge bg-warning bg-opacity-10 text-warning rounded-pill small">Bilingual</span>
-                            </div>
-                            <h5 class="fw-bold mb-2 text-dark">Bilingual Class</h5>
-                            <p class="small text-muted mb-4 flex-grow-1">Pengembangan bahasa kompetitif Arab & Inggris
-                                secara intensif.</p>
-                            <a href="<?php echo e(url('/program-unggulan')); ?>"
-                                class="btn btn-outline-success btn-sm rounded-pill align-self-start px-4">Read More <i
-                                    class="bi bi-arrow-right ms-1"></i></a>
-                        </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <div class="col-12 text-center py-5">
+                        <p class="text-muted italic">Data program unggulan belum tersedia.</p>
                     </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card h-100 border rounded-3 overflow-hidden text-start shadow-none">
-                        <img src="<?php echo e(asset('assets/images/activity-03.jpg')); ?>" class="card-img-top object-fit-cover"
-                            style="height: 220px;" alt="Digital">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex align-items-center gap-2 mb-3">
-                                <div class="bg-info bg-opacity-10 text-info rounded-3 p-2 d-inline-flex"><i
-                                        class="bi bi-laptop fs-5"></i></div>
-                                <span class="badge bg-info bg-opacity-10 text-info rounded-pill small">Digital</span>
-                            </div>
-                            <h5 class="fw-bold mb-2 text-dark">Digital Skills</h5>
-                            <p class="small text-muted mb-4 flex-grow-1">Penguasaan teknologi informasi dan multimedia
-                                terkini.</p>
-                            <a href="<?php echo e(url('/program-unggulan')); ?>"
-                                class="btn btn-outline-success btn-sm rounded-pill align-self-start px-4">Read More <i
-                                    class="bi bi-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
 
-            <div class="text-center mt-5">
-                <a href="<?php echo e(url('/program-unggulan')); ?>" class="btn btn-emerald rounded-pill px-5">
-                    Lihat Semua Program Unggulan <i class="bi bi-arrow-right ms-1"></i>
-                </a>
-            </div>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($programUnggulan->count() > 0): ?>
+                <div class="text-center mt-5">
+                    <a href="<?php echo e(route('program-unggulan.index')); ?>" class="btn btn-emerald rounded-pill px-5">
+                        Lihat Semua Program Unggulan <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
         </div>
     </section>
 
@@ -230,9 +203,9 @@
             </div>
         </div>
     </section>
-
-    <section class="py-5">
-        <div class="container">
+    <!--Fasilitas-->
+    <section class="py-5 bg-white">
+        <div class="container py-5">
             <div class="text-center mb-5">
                 <span class="badge rounded-pill bg-success bg-opacity-10 text-success px-3 py-2 mb-2">Lingkungan
                     Belajar</span>
@@ -241,40 +214,44 @@
                 </p>
             </div>
 
-            <div class="row g-4">
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($fasilitas)): ?>
-                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $fasilitas->take(6); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $f): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card border-0 shadow-sm rounded-4 h-100 p-4">
-                                <div class="bg-success bg-opacity-10 text-success rounded-3 d-flex align-items-center justify-content-center mb-3"
-                                    style="width:48px;height:48px;">
-                                    <i class="<?php echo e($f->icon_class ?? 'bi bi-building'); ?> fs-4"></i>
-                                </div>
-
-                                <h5 class="fw-bold mb-2"><?php echo e($f->nama_fasilitas); ?></h5>
-
-                                <p class="text-muted small mb-4">
-                                    <?php echo e($f->deskripsi_singkat); ?>
-
-                                </p>
-
-                                <a href="<?php echo e(route('fasilitas.detail', $f->slug)); ?>"
-                                    class="text-success text-decoration-none fw-bold small d-flex align-items-center">
-                                    Read More <i class="bi bi-chevron-right ms-1" style="font-size: 0.8rem;"></i>
-                                </a>
+            <div class="row g-4 justify-content-center">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $fasilitas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $f): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                        <div class="card border-0 shadow-sm rounded-4 h-100 p-4 border">
+                            <div class="bg-success bg-opacity-10 text-success rounded-3 d-flex align-items-center justify-content-center mb-3"
+                                style="width:48px;height:48px;">
+                                <i class="<?php echo e($f->icon_class ?? 'bi bi-building'); ?> fs-4"></i>
                             </div>
+
+                            <h5 class="fw-bold mb-2"><?php echo e($f->nama_fasilitas); ?></h5>
+                            <p class="text-muted small mb-4">
+                                <?php echo e($f->deskripsi_singkat); ?>
+
+                            </p>
+
+                            <a href="<?php echo e(route('fasilitas.detail', $f->slug)); ?>"
+                                class="text-success text-decoration-none fw-bold small d-flex align-items-center mt-auto">
+                                Read More <i class="bi bi-chevron-right ms-1" style="font-size: 0.8rem;"></i>
+                            </a>
                         </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <div class="col-12 text-center py-5">
+                        <p class="text-muted italic">Data fasilitas sekolah belum tersedia.</p>
+                    </div>
                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
 
-            <div class="text-center mt-5">
-                <a href="<?php echo e(route('fasilitas.index')); ?>" class="btn btn-success rounded-pill px-4 py-2">
-                    Lihat Semua Fasilitas <i class="bi bi-arrow-right ms-1"></i>
-                </a>
-            </div>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($fasilitas->count() > 0): ?>
+                <div class="text-center mt-5">
+                    <a href="<?php echo e(route('fasilitas.index')); ?>" class="btn btn-success rounded-pill px-4 py-2">
+                        Lihat Semua Fasilitas <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
         </div>
     </section>
+    <!-- End Fasilitas Section-->
 
     <!-- Ekstrakurikuler -->
     <section id="ekstrakulikuler" class="py-5 bg-white">

@@ -86,7 +86,7 @@ class NewsResource extends Resource
                             ->imageEditor()
                             ->directory('berita')
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])
-                            ->helperText('Format file yang didukung adalah JPEG, PNG, JPG, WEBP. Maksimal ukuran file 2MB')
+                            ->helperText('Format: JPG/PNG/JPEG/WEBP. Max: 2MB.')
                             ->maxSize(2048)
                             ->disk('public')
                             ->required(),

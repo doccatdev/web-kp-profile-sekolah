@@ -64,7 +64,7 @@ class SekolahProfilesResource extends Resource
                             ->image()
                             ->directory('sekolah')
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])
-                            ->helperText('Format file yang didukung adalah JPEG, PNG, JPG, WEBP. Maksimal ukuran file 2MB')
+                            ->helperText('Format: JPEG/PNG/JPG/WEBP. Max file 2MB')
                             ->maxSize(2048)
                             ->disk('public')
                             ->required(),

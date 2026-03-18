@@ -78,7 +78,7 @@ class GuruResource extends Resource
                             ->directory('guru')
                             ->disk('public')
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])
-                            ->helperText('Format file yang didukung adalah JPEG, PNG, JPG, WEBP. Maksimal ukuran file 2MB')
+                            ->helperText('Format: JPEG/PNG/JPG/WEBP. Max: 2MB')
                             ->maxSize(2048)
                             ->columnSpanFull(),
                     ]),
