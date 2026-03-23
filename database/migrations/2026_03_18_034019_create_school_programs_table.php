@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->string('icon_class')->nullable();
             $table->string('badge_text')->nullable();
-            $table->text('deskripsi_singkat');
+            $table->text('deskripsi_singkat')->nullable();
             $table->longText('deskripsi_program');
             $table->timestamps();
         });

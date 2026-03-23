@@ -7,7 +7,7 @@
     <section class="position-relative" style="margin-top: 76px;">
         <div class="w-100 overflow-hidden" style="height: 450px; position: relative;">
             <div class="position-absolute w-100 h-100 top-0 start-0"
-                style="background: linear-gradient(to top, rgba(20, 83, 45, 0.85), rgba(0, 0, 0, 0.3)); z-index: 1;"></div>
+                style="background: linear-gradient(to top, #009b4d; z-index: 1;"></div>
             {{-- In a real app we would use $prestasi->image, but we fallback to a placeholder --}}
             <img src="{{ asset('assets/images/activity-01.jpg') }}"
                 class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="{{ $title ?? 'Detail Prestasi' }}">

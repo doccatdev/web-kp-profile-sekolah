@@ -14,4 +14,10 @@ class Category extends Model
     {
         return $this->hasMany(News::class);
     }
+
+    public function pengumuman()
+    {
+        // Ini akan bekerja setelah nama class model di atas kamu ubah
+        return $this->hasMany(PengumumanSekolah::class, 'category_id');
+    }
 }

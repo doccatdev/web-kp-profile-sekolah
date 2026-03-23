@@ -30,10 +30,7 @@
                             <i class="bi bi-info-circle display-1 text-muted opacity-25"></i>
                         </div>
                         <h3 class="fw-bold text-dark">Data Belum Tersedia</h3>
-                        <p class="text-muted">Saat ini kami sedang memperbarui informasi mengenai sarana dan prasarana sekolah. Silakan kembali lagi nanti.</p>
-                        <a href="{{ url('/') }}" class="btn btn-outline-success rounded-pill px-4 mt-3">
-                            Kembali ke Beranda
-                        </a>
+                        <p class="text-muted">Informasi sedang dalam tahap pembaruan.</p>
                     </div>
                 @endforelse
             </div>

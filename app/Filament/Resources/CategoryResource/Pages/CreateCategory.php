@@ -11,6 +11,8 @@ class CreateCategory extends CreateRecord
 {
     protected static string $resource = CategoryResource::class;
 
+    protected static bool $canCreateAnother = false;
+
 
     // redirect to index category pages after CRUD (Create, Read, Update, Delete)
     public function getRedirectUrl(): string

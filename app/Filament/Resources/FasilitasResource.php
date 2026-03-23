@@ -31,7 +31,7 @@ class FasilitasResource extends Resource
     protected static ?string $model = Fasilitas::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
-    protected static ?string $navigationLabel = 'Sarana & Prasarana Sekolah';
+    protected static ?string $navigationLabel = 'Sarana & Prasarana';
     protected static ?string $navigationGroup = 'Profil Sekolah';
     protected static ?int $navigationSort = 3;
 
@@ -73,15 +73,14 @@ class FasilitasResource extends Resource
                             ->helperText('Format: JPG, PNG, atau WEBP. Maksimal ukuran file: 2MB.'),
 
                         Textarea::make('deskripsi_singkat')
-                            ->label('Ringkasan Singkat')
-                            ->required()
+                            ->label('Ringkasan')
                             ->rows(3)
                             ->placeholder('Tulis ringkasan singkat untuk tampilan kartu...')
                             ->columnSpanFull(),
                     ])->columns(2),
 
                 // SECTION 2: ARTIKEL LENGKAP
-                Section::make('Konten Detail')
+                Section::make('Detail Lengkap')
                     ->description('Tuliskan detail atau deskripsi lengkap fasilitas.')
                     ->schema([
                         RichEditor::make('deskripsi_fasilitas')

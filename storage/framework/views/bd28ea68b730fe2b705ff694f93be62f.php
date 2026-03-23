@@ -1,50 +1,82 @@
 <?php $__env->startSection('content'); ?>
-    <!-- Hero -->
-    <section id="hero" class="d-flex align-items-center relative w-100 bg-success" style="min-height: 85vh;">
+    <!--Hero Section-->
+    <section id="hero" class="p-0 block">
+        <div id="heroCarousel" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
 
-        <div class="container position-relative text-white" style="z-index: 1;">
-            <div class="row align-items-center text-start">
-                <div class="col-lg-7" data-aos="fade-right">
+            <?php
+                $allImages = [];
+                foreach ($sliders as $slider) {
+                    if ($slider->images && is_array($slider->images)) {
+                        foreach ($slider->images as $img) {
+                            $allImages[] = [
+                                'url' => $img,
+                                'title' => $slider->title,
+                                'caption' => $slider->caption,
+                            ];
+                        }
+                    }
+                }
+            ?>
 
-                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($ppdb): ?>
-                        
-                        <span class="badge bg-success mb-3 px-3 py-2 rounded-pill shadow-sm">
-                            Penerimaan Peserta Didik Baru (PPDB) <?php echo e($ppdb->tahun_ajaran); ?>
+            <div class="carousel-indicators" style="z-index: 5;">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $allImages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="<?php echo e($index); ?>"
+                        class="<?php echo e($index === 0 ? 'active' : ''); ?>" aria-current="<?php echo e($index === 0 ? 'true' : 'false'); ?>">
+                    </button>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
 
-                        </span>
-                        <h1 class="display-4 mb-4 fw-bold">Masa Depan Gemilang <br>
-                            <span style="color: #fbbf24;">Mulai dari Sini</span>
-                        </h1>
-                        <p class="lead mb-5" style="max-width: 600px;">
-                            Pendaftaran siswa baru tahun ajaran <?php echo e($ppdb->tahun_ajaran); ?> telah resmi dibuka. Segera
-                            daftarkan putra-putri Anda untuk bergabung bersama kami.
-                        </p>
-                        <div class="d-flex gap-3">
-                            <a href="<?php echo e(url('/ppdb')); ?>" class="btn btn-outline-white btn-lg rounded-pill px-5">
-                                Daftar Sekarang <i class="bi bi-arrow-right ms-2"></i>
-                            </a>
+            <div class="carousel-inner">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $allImages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    
+                    <div class="carousel-item <?php echo e($index === 0 ? 'active' : ''); ?>">
+
+                        <div class="d-flex align-items-center"
+                            style="height: 100vh; min-height: 600px;
+                        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('<?php echo e(Storage::url($item['url'])); ?>') center/cover no-repeat;">
+
+                            <div class="container position-relative text-white" style="z-index: 1;">
+                                <div class="row align-items-center text-start">
+                                    <div class="col-lg-8" data-aos="fade-right">
+                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($ppdb) && $ppdb->status === 'Buka'): ?>
+                                            <span class="badge bg-success mb-3 px-3 py-2 rounded-pill shadow-sm">
+                                                <i class="bi bi-megaphone-fill me-2"></i> PPDB <?php echo e($ppdb->tahun_ajaran); ?>
+
+                                                Telah Dibuka
+                                            </span>
+
+                                            <h1 class="display-4 mb-4 fw-bold">
+                                                <?php echo e($ppdb->hero_title ?? 'Penerimaan Peserta Didik Baru'); ?></h1>
+                                            <p class="lead mb-5" style="max-width: 650px;">
+                                                <?php echo e($ppdb->hero_description ?? 'Mari bergabung bersama kami.'); ?></p>
+
+                                            <div class="d-flex gap-3">
+                                                <a href="<?php echo e(url('/ppdb')); ?>"
+                                                    class="btn btn-outline-light btn-lg rounded-pill px-5 shadow">
+                                                    Daftar Sekarang <i class="bi bi-arrow-right ms-2"></i>
+                                                </a>
+                                            </div>
+                                        <?php else: ?>
+                                            <h1 class="display-4 mb-4 fw-bold"><?php echo e($item['title']); ?></h1>
+                                            <p class="lead mb-5" style="max-width: 650px;"><?php echo e($item['caption']); ?></p>
+
+                                            <div class="d-flex gap-3">
+                                                <a href="#strength"
+                                                    class="btn btn-outline-light btn-lg rounded-pill px-5 shadow">
+                                                    Pelajari Lebih Lanjut <i class="bi bi-arrow-down ms-2"></i>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    <?php else: ?>
-                        
-                        <h1 class="display-4 mb-4 fw-bold">Membentuk Generasi <br>
-                            <span style="color: #fbbf24;">Cerdas, Berkarakter & Religius</span>
-                        </h1>
-                        <p class="lead mb-5" style="max-width: 600px;">
-                            SMP Al-Husainiyyah berkomitmen memberikan pendidikan berkualitas dengan memadukan kurikulum
-                            nasional dan nilai-nilai Islami yang moderat.
-                        </p>
-                        <div class="d-flex gap-3">
-                            <a href="#strength" class="btn btn-outline-white btn-lg rounded-pill px-5">
-                                Lihat Keunggulan <i class="bi bi-arrow-down ms-2"></i>
-                            </a>
-                        </div>
-                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-
-                </div>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
         </div>
     </section>
-    <!-- End Hero -->
+    <!--End of Hero Section-->
 
     <!-- Stats Bar -->
     <section class="py-4 bg-white border-bottom" style="margin-top: 0; z-index: 10; position: relative;">
@@ -265,64 +297,35 @@
             </div>
 
             <div class="row g-4 justify-content-center">
-                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up">
-                    <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
-                            style="width:56px;height:56px;">
-                            <i class="bi bi-shield-fill fs-4"></i>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $ekstrakulikulers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ekskul): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="<?php echo e($loop->index * 100); ?>">
+                        <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
+                            <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
+                                style="width:56px;height:56px;">
+                                <i class="bi <?php echo e($ekskul->icon_class); ?> fs-4"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1"><?php echo e($ekskul->nama_ekskul); ?></h6>
+                            <p class="text-muted small mb-2"><?php echo e(Str::limit($ekskul->deskripsi_singkat, 40)); ?></p>
+                            <a href="<?php echo e(route('ekstrakulikuler.detail', $ekskul->slug)); ?>"
+                                class="text-success small fw-semibold text-decoration-none mt-auto">Read More <i
+                                    class="bi bi-chevron-right"></i></a>
                         </div>
-                        <h6 class="fw-bold mb-1">Pencak Silat</h6>
-                        <p class="text-muted small mb-2">Bela diri tradisional</p>
-                        <a href="<?php echo e(url('/ekstrakulikuler')); ?>"
-                            class="text-success small fw-semibold text-decoration-none">Read More <i
-                                class="bi bi-chevron-right"></i></a>
                     </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
-                            style="width:56px;height:56px;">
-                            <i class="bi bi-dribbble fs-4"></i>
-                        </div>
-                        <h6 class="fw-bold mb-1">Futsal</h6>
-                        <p class="text-muted small mb-2">Olahraga tim & sportivitas</p>
-                        <a href="<?php echo e(url('/ekstrakulikuler')); ?>"
-                            class="text-success small fw-semibold text-decoration-none">Read More <i
-                                class="bi bi-chevron-right"></i></a>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <div class="col-12 text-center text-muted">
+                        <p>Belum ada data ekstrakurikuler.</p>
                     </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
-                            style="width:56px;height:56px;">
-                            <i class="bi bi-person-arms-up fs-4"></i>
-                        </div>
-                        <h6 class="fw-bold mb-1">Seni Tari</h6>
-                        <p class="text-muted small mb-2">Tari tradisional & modern</p>
-                        <a href="<?php echo e(url('/ekstrakulikuler')); ?>"
-                            class="text-success small fw-semibold text-decoration-none">Read More <i
-                                class="bi bi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
-                            style="width:56px;height:56px;">
-                            <i class="bi bi-compass fs-4"></i>
-                        </div>
-                        <h6 class="fw-bold mb-1">Pramuka</h6>
-                        <p class="text-muted small mb-2">Kepemimpinan & alam bebas</p>
-                        <a href="<?php echo e(url('/ekstrakulikuler')); ?>"
-                            class="text-success small fw-semibold text-decoration-none">Read More <i
-                                class="bi bi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <div class="text-center mt-5">
-                    <a href="<?php echo e(url('/ekstrakulikuler')); ?>" class="btn btn-emerald rounded-pill px-5">Lihat Semua Ekskul
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                <div class="text-center mt-5 w-100">
+                    <a href="<?php echo e(route('ekstrakulikuler.index')); ?>" class="btn btn-success rounded-pill px-5">Lihat Semua
+                        Ekskul
                         <i class="bi bi-arrow-right ms-1"></i></a>
                 </div>
             </div>
+        </div>
     </section>
+    <!--End Ekstrakulikuler Section-->
 
     <!-- Advanced Instagram Feed: Kegiatan Terbaru -->
     <section id="instagram-feed" class="py-5" style="background: #f8fafc;">

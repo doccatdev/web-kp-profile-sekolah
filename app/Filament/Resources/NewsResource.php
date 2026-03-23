@@ -31,7 +31,7 @@ class NewsResource extends Resource
     protected static ?string $model = News::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
-    protected static ?string $navigationLabel = 'Berita';
+    protected static ?string $navigationLabel = 'Berita Sekolah';
     protected static ?string $modelLabel = 'Berita';
     protected static ?string $pluralLabel = 'Berita';
     protected static ?string $navigationGroup = 'Berita & Pengumuman';

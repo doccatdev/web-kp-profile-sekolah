@@ -12,6 +12,7 @@ class CreateNews extends CreateRecord
 {
     protected static string $resource = NewsResource::class;
 
+    protected static bool $canCreateAnother = false;
 
     // redirect to index news pages after CRUD (Create, Read, Update, Delete)
     public function getRedirectUrl(): string

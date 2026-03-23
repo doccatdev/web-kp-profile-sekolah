@@ -52,10 +52,10 @@
                 @else
                     <div class="row justify-content-center">
                         <div class="col-lg-10">
-                            <div class="card border-0 shadow-sm rounded-4 text-center p-5">
-                                <div class="card-body py-5 text-muted">
-                                    <p class="mb-0">Data visi & misi sedang diupdate.</p>
-                                </div>
+                            <div class="col-md-8 text-center py-5" data-aos="fade-up">
+                                <i class="bi bi-info-circle display-1 text-muted opacity-25"></i>
+                                <h3 class="fw-bold text-dark mt-3">Data Belum Tersedia</h3>
+                                <p class="text-muted">Informasi sedang dalam tahap pembaruan.</p>
                             </div>
                         </div>
                     </div>

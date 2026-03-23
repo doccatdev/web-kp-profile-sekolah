@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_fasilitas');
             $table->string('slug')->unique();
             $table->string('icon_class')->nullable();
-            $table->text('deskripsi_singkat');
+            $table->text('deskripsi_singkat')->nullable();
             $table->text('deskripsi_fasilitas');
             $table->string('thumbnail');
             $table->timestamps();

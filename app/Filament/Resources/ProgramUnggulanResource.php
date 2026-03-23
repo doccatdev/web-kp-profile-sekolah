@@ -80,7 +80,6 @@ class ProgramUnggulanResource extends Resource
 
                         Textarea::make('deskripsi_singkat')
                             ->label('Ringkasan')
-                            ->required()
                             ->rows(3)
                             ->columnSpanFull(),
 

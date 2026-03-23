@@ -25,8 +25,9 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
+
     protected static ?string $navigationIcon = 'heroicon-o-tag';
-    protected static ?string $navigationLabel = 'Kategori Berita';
+    protected static ?string $navigationLabel = 'Kategori Berita & Pengumuman';
     protected static ?string $modelLabel = 'Kategori';
     protected static ?string $pluralModelLabel = 'Kategori';
     protected static ?string $navigationGroup = 'Berita & Pengumuman';
@@ -50,7 +51,7 @@ class CategoryResource extends Resource
                         // Slug otomatis & hidden agar UI bersih
                         TextInput::make('slug')
                             ->required()
-                            ->hidden()
+                            ->readOnly()
                             ->dehydrated(true)
                             ->unique(ignoreRecord: true),
                     ]),

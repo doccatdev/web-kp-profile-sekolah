@@ -8,6 +8,8 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\ProgramUnggulanController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\PengumumanSekolahController;
+use App\Http\Controllers\EkstrakulikulerController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
 
@@ -50,14 +52,14 @@ Route::get('/prestasi/{id}', function ($id) {
     return view('prestasi.detail', compact('id'));
 })->name('prestasi.detail');
 
-// Ekstrakulikuler
-Route::get('/ekstrakulikuler', function () {
-    return view('ekstrakulikuler.index');
-})->name('ekstrakulikuler.index');
+//Ekstrakulikuler
+// Halaman Daftar Semua Ekskul
 
-Route::get('/ekstrakulikuler/{id}', function ($id) {
-    return view('ekstrakulikuler.detail', compact('id'));
-})->name('ekstrakulikuler.detail');
+
+Route::get('/ekstrakulikuler', [EkstrakulikulerController::class, 'index'])->name('ekstrakulikuler.index');
+
+// Halaman Detail Ekskul (Menggunakan Slug agar lebih SEO Friendly)
+Route::get('/ekstrakulikuler/{slug}', [EkstrakulikulerController::class, 'show'])->name('ekstrakulikuler.detail');
 
 Route::get('/profil/profil-sekolah', [ProfilController::class, 'profilSekolah']);
 Route::get('/profil/sejarah', [ProfilController::class, 'sejarah']);
@@ -75,13 +77,12 @@ Route::get('/berita', [BlogController::class, 'index'])->name('berita.index');
 Route::get('/berita/{slug}', [BlogController::class, 'show'])->name('berita.show');
 
 // Informasi: Pengumuman
-Route::get('/pengumuman', function () {
-    return view('pengumuman.index');
-})->name('pengumuman.index');
 
-Route::get('/pengumuman/{id}', function ($id) {
-    return view('pengumuman.detail', compact('id'));
-})->name('pengumuman.detail');
+// Halaman Daftar Pengumuman (Card View)
+Route::get('/pengumuman', [PengumumanSekolahController::class, 'index'])->name('pengumuman.index');
+
+// Halaman Detail Pengumuman (Detail View)
+Route::get('/pengumuman/{slug}', [PengumumanSekolahController::class, 'show'])->name('pengumuman.show');
 
 // PPDB
 Route::get('/ppdb', [PpdbController::class, 'index'])->name('ppdb.index');

@@ -34,11 +34,11 @@
                     </div>
                 @else
                     <div class="row justify-content-center text-center py-5 text-muted">
-                        <div class="col-lg-10">
-                            <div class="card border-0 shadow-sm rounded-4 p-5">
-                                <p class="mb-0">Data sejarah sekolah sedang diupdate.</p>
-                            </div>
-                        </div>
+                        <div class="col-md-8 text-center py-5" data-aos="fade-up">
+                        <i class="bi bi-info-circle display-1 text-muted opacity-25"></i>
+                        <h3 class="fw-bold text-dark mt-3">Data Belum Tersedia</h3>
+                        <p class="text-muted">Informasi sedang dalam tahap pembaruan.</p>
+                    </div>
                     </div>
                 @endif
             </div>
