@@ -4,20 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany; // WAJIB ADA
 
 class Category extends Model
 {
     use HasFactory;
-    protected $fillable = ['name_category', 'slug'];
 
-    public function news()
+    
+    protected $fillable = ['name_category', 'slug', 'type'];
+
+    /**
+     * Relasi ke News (Sudah ada di kode lu sebelumnya)
+     */
+    public function news(): HasMany
     {
-        return $this->hasMany(News::class);
+        return $this->hasMany(News::class, 'category_id');
     }
 
-    public function pengumuman()
+    /**
+     * Relasi ke Prestasi (INI YANG HILANG)
+     */
+    public function prestasi    (): HasMany
     {
-        // Ini akan bekerja setelah nama class model di atas kamu ubah
-        return $this->hasMany(PengumumanSekolah::class, 'category_id');
+        // Pastikan nama modelnya 'Prestasi'
+        return $this->hasMany(Prestasi::class, 'category_id');
     }
 }

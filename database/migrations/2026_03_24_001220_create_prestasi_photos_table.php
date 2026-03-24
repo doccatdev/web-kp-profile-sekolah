@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('prestasi_photos', function (Blueprint $table) {
             $table->id();
-            $table->string('name_category');
-            $table->string('slug')->unique();
-            $table->string('type');
+            $table->foreignId('prestasi_id')->constrained('prestasi')->onDelete('cascade');
+            $table->string('foto');
+            $table->string('caption')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('prestasi_photos');
     }
 };

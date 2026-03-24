@@ -9,6 +9,7 @@ use App\Models\Fasilitas;
 use App\Models\ProgramUnggulan;
 use App\Models\PengumumanSekolah;
 use App\Models\Ekstrakulikuler;
+use App\Models\Prestasi;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -33,8 +34,9 @@ class HomeController extends Controller
 
         $programUnggulan = ProgramUnggulan::latest()->take(3)->get();
 
-        // Perbaikan Typo: samakan dengan variabel yang dipakai di Blade
         $ekstrakulikulers = Ekstrakulikuler::latest()->take(6)->get();
+
+        $prestasis = Prestasi::latest()->take(3)->get();
 
         return view('welcome', compact(
             'sliders',
@@ -44,6 +46,7 @@ class HomeController extends Controller
             'fasilitas',
             'programUnggulan',
             'ekstrakulikulers',
+            'prestasis',
         ));
     }
 }

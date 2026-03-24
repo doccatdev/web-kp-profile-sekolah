@@ -10,6 +10,7 @@ use App\Http\Controllers\ProgramUnggulanController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\PengumumanSekolahController;
 use App\Http\Controllers\EkstrakulikulerController;
+use App\Http\Controllers\PrestasiController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
 
@@ -44,13 +45,11 @@ Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas
 Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('fasilitas.detail');
 
 // Prestasi
-Route::get('/prestasi', function () {
-    return view('prestasi.index');
-})->name('prestasi.index');
+// Route Halaman List Prestasi
+Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi.index');
 
-Route::get('/prestasi/{id}', function ($id) {
-    return view('prestasi.detail', compact('id'));
-})->name('prestasi.detail');
+// Route Halaman Detail Prestasi (Menggunakan Slug)
+Route::get('/prestasi/{slug}', [PrestasiController::class, 'show'])->name('prestasi.show');
 
 //Ekstrakulikuler
 // Halaman Daftar Semua Ekskul

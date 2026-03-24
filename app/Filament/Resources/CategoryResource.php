@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 // Form Components
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Set;
 
 // Table & Notification
@@ -25,11 +26,10 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-
     protected static ?string $navigationIcon = 'heroicon-o-tag';
     protected static ?string $navigationLabel = 'Kategori Berita & Pengumuman';
     protected static ?string $modelLabel = 'Kategori';
-    protected static ?string $pluralModelLabel = 'Kategori';
+    protected static ?string $pluralModelLabel = 'Kategori Berita & Pengumuman';
     protected static ?string $navigationGroup = 'Berita & Pengumuman';
     protected static ?int $navigationSort = 1;
 
@@ -38,22 +38,33 @@ class CategoryResource extends Resource
         return $form
             ->schema([
                 Section::make('Data Kategori')
-                    ->description('Kelola pengelompokan berita dan pengumuman.')
+                    ->description('Kelola pengelompokan untuk Berita dan Pengumuman sekolah.')
                     ->schema([
                         TextInput::make('name_category')
                             ->label('Nama Kategori')
-                            ->placeholder('Contoh: Kegiatan Sekolah, Prestasi, dll')
+                            ->placeholder('Contoh: Kegiatan Sekolah, Info Kurikulum, dll')
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                            ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
 
-                        // Slug otomatis & hidden agar UI bersih
                         TextInput::make('slug')
+                            ->label('Slug (Otomatis)')
                             ->required()
                             ->readOnly()
                             ->dehydrated(true)
                             ->unique(ignoreRecord: true),
+
+                        // MODIFIKASI: Menghapus opsi 'prestasi'
+                        Select::make('type')
+                            ->label('Tipe Kategori')
+                            ->options([
+                                'berita' => 'Berita',
+                                'pengumuman' => 'Pengumuman',
+                            ])
+                            ->required()
+                            ->native(false)
+                            ->helperText('Tentukan apakah kategori ini digunakan untuk modul Berita atau Pengumuman.'),
                     ]),
             ]);
     }
@@ -67,22 +78,46 @@ class CategoryResource extends Resource
                     ->searchable()
                     ->sortable(),
 
+                TextColumn::make('type')
+                    ->label('Tipe')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'berita' => 'info',
+                        'pengumuman' => 'warning',
+                        default => 'gray',
+                    })
+                    ->searchable(),
+
                 TextColumn::make('slug')
                     ->label('Slug')
                     ->badge()
                     ->color('gray'),
 
-                TextColumn::make('news_count') // Opsional: Menghitung jumlah berita per kategori
-                    ->label('Total Berita')
+                // MODIFIKASI: Hanya menghitung jumlah Berita (Relasi news/berita)
+                // Pastikan di Model Category ada relasi public function news()
+                TextColumn::make('news_count')
+                    ->label('Total Post')
                     ->counts('news')
-                    ->badge(),
+                    ->badge()
+                    ->color('success')
+                    ->toggleable(),
+
+                // MODIFIKASI: Kolom prestasis_count DIHAPUS karena sudah beda tabel
 
                 TextColumn::make('created_at')
                     ->label('Dibuat pada')
                     ->dateTime('d M Y')
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([])
+            ->filters([
+                // MODIFIKASI: Filter Tipe hanya Berita & Pengumuman
+                Tables\Filters\SelectFilter::make('type')
+                    ->label('Filter Tipe')
+                    ->options([
+                        'berita' => 'Berita',
+                        'pengumuman' => 'Pengumuman',
+                    ]),
+            ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
@@ -91,7 +126,7 @@ class CategoryResource extends Resource
                         Notification::make()
                             ->success()
                             ->title('Kategori Dihapus')
-                            ->body('Data kategori telah berhasil dibersihkan.')
+                            ->body('Data kategori telah berhasil dihapus.')
                     ),
             ])
             ->bulkActions([

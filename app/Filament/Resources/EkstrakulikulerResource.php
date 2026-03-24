@@ -36,7 +36,7 @@ use Filament\Tables\Actions\DeleteBulkAction;
 class EkstrakulikulerResource extends Resource
 {
     protected static ?string $model = Ekstrakulikuler::class;
-    protected static ?string $navigationIcon = 'heroicon-o-trophy';
+    protected static ?string $navigationIcon = 'heroicon-o-puzzle-piece';
     protected static ?string $navigationLabel = 'Ekstrakulikuler';
     protected static ?string $pluralLabel = 'Ekstrakulikuler';
     protected static ?string $navigationGroup = 'Profil Sekolah';
@@ -65,10 +65,10 @@ class EkstrakulikulerResource extends Resource
                         Select::make('icon_class')
                             ->label('Icon Visual (Bootstrap Icons)')
                             ->options([
-                                'bi-shield-fill' => 'Pencak Silat (Shield)',
-                                'bi-dribbble' => 'Futsal (Ball)',
-                                'bi-person-arms-up' => 'Seni Tari (Person)',
-                                'bi-compass' => 'Pramuka (Compass)',
+                                'bi-shield-fill' => 'Pencak Silat',
+                                'bi-dribbble' => 'Futsal',
+                                'bi-person-arms-up' => 'Seni Tari',
+                                'bi-compass' => 'Pramuka',
                                 'bi-music-note-beamed' => 'Seni Musik',
                                 'bi-trophy' => 'Default Icon',
                                 'bi-camera' => 'Fotografi',
@@ -81,7 +81,7 @@ class EkstrakulikulerResource extends Resource
                         FileUpload::make('thumbnail')
                             ->label('Foto Thumbnail')
                             ->image()
-                            ->directory('ekskul-thumbnails')
+                            ->directory('ekskul-galeri/ekskul-thumbnails')
                             ->maxSize(2048)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->helperText('Format: JPG, PNG, atau WEBP. Maksimal: 2MB.')
