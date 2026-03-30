@@ -81,7 +81,7 @@ class NewsResource extends Resource
                             ->default(now()),
 
                         FileUpload::make('image')
-                            ->label('Gambar Utama')
+                            ->label('Thumbnail Berita')
                             ->image()
                             ->imageEditor()
                             ->directory('berita')

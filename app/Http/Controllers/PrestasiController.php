@@ -10,7 +10,7 @@ class PrestasiController extends Controller
     // Halaman List Prestasi (Tampilan Grid/Banyak Data)
     public function index()
     {
-        $prestasis = Prestasi::latest('tanggal_prestasi')
+        $prestasis = Prestasi::latest('tanggal_posting')
             ->paginate(12);
 
         return view('prestasi.index', compact('prestasis'));

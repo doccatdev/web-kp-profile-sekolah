@@ -12,14 +12,7 @@
                 class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="{{ $prestasi->judul }}">
 
             <div class="container position-relative h-100 d-flex flex-column justify-content-end pb-5" style="z-index: 2;">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-2">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-white text-decoration-none">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('prestasi.index') }}" class="text-white text-decoration-none">Prestasi</a></li>
-                        <li class="breadcrumb-item active text-white-50" aria-current="page">Detail</li>
-                    </ol>
-                </nav>
-                <h1 class="text-white fw-bold display-5">{{ $prestasi->judul }}</h1>
+                <h1 class="text-white fw-bold display-5 mb-0">{{ $prestasi->judul }}</h1>
             </div>
         </div>
     </section>
@@ -28,39 +21,51 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
+                    
+                    {{-- INFO BAR: SEMUA STYLE DISAMAKAN --}}
                     <div class="d-flex align-items-center flex-wrap mb-4 text-secondary gap-3">
+                        {{-- Tanggal Posting --}}
                         <div class="d-flex align-items-center">
                             <i class="bi bi-calendar-check me-2 text-success"></i>
-                            <span>{{ \Carbon\Carbon::parse($prestasi->tanggal_prestasi)->format('d M Y') }}</span>
+                            <span class="small fw-bold text-uppercase text-muted me-1">Posting:</span>
+                            <span>{{ \Carbon\Carbon::parse($prestasi->tanggal_posting)->format('d M Y') }}</span>
                         </div>
-                        {{-- Menambahkan Info Kategori --}}
-                        <div class="d-flex align-items-center border-start ps-3 ms-1 d-none d-md-flex">
+                        
+                        {{-- Kategori Lomba --}}
+                        <div class="d-flex align-items-center border-start ps-3 ms-1">
                             <i class="bi bi-tag-fill me-2 text-success"></i>
+                            <span class="small fw-bold text-uppercase text-muted me-1">Kategori:</span>
                             <span>{{ $prestasi->kategori_prestasi }}</span>
                         </div>
+
+                        {{-- Tingkat Prestasi --}}
                         <div class="d-flex align-items-center border-start ps-3 ms-1">
-                            <i class="bi bi-layers-fill me-2 text-success"></i>
-                            <span>Tingkat: <strong>{{ $prestasi->tingkat }}</strong></span>
+                            <i class="bi bi-trophy-fill me-2 text-success"></i>
+                            <span class="small fw-bold text-uppercase text-muted me-1">Tingkat:</span>
+                            <span>{{ $prestasi->tingkat }}</span>
                         </div>
                     </div>
 
                     {{-- Isi Konten --}}
-                    <div class="body-text mb-5" style="line-height: 1.8; color: #444;">
+                    <div class="body-text mb-5" style="line-height: 1.8; color: #444; font-size: 1.1rem; text-align: justify;">
                         {!! $prestasi->konten !!}
                     </div>
 
-                    {{-- Galeri Foto Dinamis --}}
-                    @if($prestasi->photos->count() > 0)
+                    {{-- Galeri Foto --}}
+                    @if($prestasi->photos && $prestasi->photos->count() > 0)
                     <div class="mt-5 pt-4 border-top">
-                        <h5 class="fw-bold text-dark mb-4"><i class="bi bi-images me-2 text-success"></i>Galeri Foto Prestasi</h5>
-                        <div id="prestasiGallery" class="carousel slide rounded-4 shadow overflow-hidden mb-4" data-bs-ride="carousel">
+                        <h5 class="fw-bold text-dark mb-4"><i class="bi bi-images me-2 text-success"></i>Foto-Foto Prestasi {{$prestasi->judul}}</h5>
+                        <div id="prestasiGallery" class="carousel slide rounded-4 shadow-sm overflow-hidden mb-4" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach($prestasi->photos as $index => $photo)
-                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                    <img src="{{ asset('storage/' . $photo->foto) }}" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Galeri {{ $index }}">
+                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" data-bs-interval="4000">
+                                    <img src="{{ asset('storage/' . $photo->foto) }}" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Galeri">
+                                    
                                     @if($photo->caption)
-                                        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 py-2 px-3 mx-auto mb-3" style="width: fit-content;">
-                                            <p class="mb-0 small">{{ $photo->caption }}</p>
+                                        <div class="carousel-caption d-block">
+                                            <div class="d-inline-block bg-dark bg-opacity-50 px-4 py-1 rounded-pill">
+                                                <p class="mb-0 text-white small">{{ $photo->caption }}</p>
+                                            </div>
                                         </div>
                                     @endif
                                 </div>
@@ -69,19 +74,19 @@
 
                             @if($prestasi->photos->count() > 1)
                             <button class="carousel-control-prev" type="button" data-bs-target="#prestasiGallery" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3 bg-opacity-25" aria-hidden="true"></span>
                             </button>
                             <button class="carousel-control-next" type="button" data-bs-target="#prestasiGallery" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="carousel-control-next-icon bg-dark rounded-circle p-3 bg-opacity-25" aria-hidden="true"></span>
                             </button>
                             @endif
                         </div>
                     </div>
                     @endif
 
-                    <div class="text-center mt-5 pt-4">
+                    <div class="text-center mt-5">
                         <a href="{{ route('prestasi.index') }}" class="btn btn-outline-success rounded-pill px-5 py-2 fw-bold">
-                            <i class="bi bi-arrow-left me-2"></i>Kembali Ke List
+                            <i class="bi bi-arrow-left me-2"></i>Kembali Ke Daftar Prestasi
                         </a>
                     </div>
                 </div>

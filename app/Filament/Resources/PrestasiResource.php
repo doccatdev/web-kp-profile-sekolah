@@ -63,8 +63,8 @@ class PrestasiResource extends Resource
                             ->placeholder('Contoh: Nasional, Provinsi, Kabupaten')
                             ->required(),
 
-                        DatePicker::make('tanggal_prestasi')
-                            ->label('Tanggal Prestasi')
+                        DatePicker::make('tanggal_posting')
+                            ->label('Tanggal Posting')
                             ->required(),
                     ]),
 
@@ -147,8 +147,8 @@ class PrestasiResource extends Resource
                     ->label('Tingkat')
                     ->sortable(),
 
-                TextColumn::make('tanggal_prestasi')
-                    ->label('Tanggal')
+                TextColumn::make('tanggal_posting')
+                    ->label('Tanggal Posting')
                     ->date('d M Y')
                     ->sortable(),
             ])

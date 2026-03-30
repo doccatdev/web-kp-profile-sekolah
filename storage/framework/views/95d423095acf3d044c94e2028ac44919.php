@@ -2,7 +2,8 @@
     <section class="position-relative" style="margin-top: 76px;">
         <div class="w-100 overflow-hidden" style="height: 400px; position: relative;">
             <div class="position-absolute w-100 h-100 top-0 start-0"
-                style="background: linear-gradient(to top, rgba(20, 83, 45, 0.85), rgba(0, 0, 0, 0.3)); z-index: 1;"></div>
+                style="background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); z-index: 1;"></div>
+
             <img src="<?php echo e(asset('storage/' . $program->thumbnail)); ?>"
                 class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="<?php echo e($program->nama_program); ?>">
 
@@ -22,43 +23,46 @@
                     </div>
 
                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($program->galleries->count() > 0): ?>
-                    <div class="gallery-section mt-5">
-                        <h4 class="fw-bold text-dark mb-4 d-flex align-items-center">
-                            <span class="bg-success rounded-2 me-2" style="width: 12px; height: 24px;"></span>
-                            Foto-Foto Kegiatan
-                        </h4>
+                        <div class="gallery-section mt-5">
+                            <h4 class="fw-bold text-dark mb-4 d-flex align-items-center">
+                                <span class="bg-success rounded-2 me-2" style="width: 12px; height: 24px;"></span>
+                                Foto-Foto Kegiatan <?php echo e($program->nama_program); ?>
 
-                        <div id="programGallery" class="carousel slide overflow-hidden shadow-sm rounded-4" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $program->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $galeri): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <button type="button" data-bs-target="#programGallery" data-bs-slide-to="<?php echo e($key); ?>"
-                                        class="<?php echo e($key == 0 ? 'active' : ''); ?>"></button>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                            </h4>
+
+                            <div id="programGallery" class="carousel slide overflow-hidden shadow-sm rounded-4"
+                                data-bs-ride="carousel">
+                                
+                                
+
+                                <div class="carousel-inner">
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $program->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $galeri): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="carousel-item <?php echo e($key == 0 ? 'active' : ''); ?>" data-bs-interval="3500">
+                                            <img src="<?php echo e(asset('storage/' . $galeri->image)); ?>"
+                                                class="d-block w-100 object-fit-cover" style="height: 500px;"
+                                                alt="<?php echo e($galeri->caption ?? 'Galeri ' . $program->nama_program); ?>">
+                                            
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($galeri->caption): ?>
+                                                
+                                                <div class="carousel-caption d-block">
+                                                    <div class="d-inline-block bg-dark bg-opacity-50 px-4 py-1 rounded-pill">
+                                                        <p class="mb-0 text-white" style="font-size: 0.9rem;"><?php echo e($galeri->caption); ?></p>
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                </div>
+
+                                
+                                <button class="carousel-control-prev" type="button" data-bs-target="#programGallery" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon bg-dark rounded-circle p-3 bg-opacity-25" aria-hidden="true"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#programGallery" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon bg-dark rounded-circle p-3 bg-opacity-25" aria-hidden="true"></span>
+                                </button>
                             </div>
-                            <div class="carousel-inner">
-                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $program->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $galeri): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="carousel-item <?php echo e($key == 0 ? 'active' : ''); ?>" data-bs-interval="3500">
-                                        <img src="<?php echo e(asset('storage/' . $galeri->image)); ?>"
-                                            class="d-block w-100 object-fit-cover" style="height: 500px;"
-                                            alt="<?php echo e($galeri->caption ?? 'Galeri ' . $program->nama_program); ?>">
-                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($galeri->caption): ?>
-                                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-pill py-1">
-                                                <p class="mb-0"><?php echo e($galeri->caption); ?></p>
-                                            </div>
-                                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                                    </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#programGallery" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3 bg-opacity-50" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#programGallery" data-bs-slide="next">
-                                <span class="carousel-control-next-icon bg-dark rounded-circle p-3 bg-opacity-50" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
                         </div>
-                    </div>
                     <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
                     <div class="mt-5 pt-3">
@@ -71,5 +75,4 @@
         </div>
     </section>
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\belajar\laravel-website-sekolah\web-profile-sekolah\resources\views/program-unggulan/detail.blade.php ENDPATH**/ ?>

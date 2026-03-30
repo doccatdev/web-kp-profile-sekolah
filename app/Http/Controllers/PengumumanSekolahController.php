@@ -2,41 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\PengumumanSekolah; // Sesuaikan nama model
+use App\Models\PengumumanSekolah;
 use Illuminate\Http\Request;
 
 class PengumumanSekolahController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $kategoriAktif = $request->query('kategori');
+        // Ambil semua pengumuman, urutkan dari yang terbaru (posted_at)
+        $announcements = PengumumanSekolah::orderBy('posted_at', 'desc')
+            ->paginate(6);
 
-        // Mengambil kategori yang punya pengumuman sekolah
-        $categories = Category::query()
-            ->withCount('pengumuman') // Sesuaikan nama relasi di Model Category
-            ->orderBy('name_category')
-            ->get();
-
-        $query = PengumumanSekolah::with('category')
-            ->orderBy('posted_at', 'desc');
-
-        // Filter kategori jika ada di URL
-        if ($kategoriAktif) {
-            $query->whereHas('category', function ($q) use ($kategoriAktif) {
-                $q->where('slug', $kategoriAktif);
-            });
-        }
-
-        $announcements = $query->paginate(6)->withQueryString();
-
-        return view('pengumuman.index', compact('announcements', 'categories', 'kategoriAktif'));
+        // Langsung kirim ke view, gak perlu lagi bawa variabel $categories
+        return view('pengumuman.index', compact('announcements'));
     }
 
     public function show(string $slug)
     {
-        $item = PengumumanSekolah::with('category')
-            ->where('slug', $slug)
+        // Cari pengumuman berdasarkan slug, tanpa relasi category
+        $item = PengumumanSekolah::where('slug', $slug)
             ->firstOrFail();
 
         return view('pengumuman.detail', compact('item'));

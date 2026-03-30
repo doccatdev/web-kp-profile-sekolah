@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('judul_pengumuman');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->string('slug')->unique();
             $table->string('thumbnail')->nullable();
             $table->text('deskripsi_singkat');

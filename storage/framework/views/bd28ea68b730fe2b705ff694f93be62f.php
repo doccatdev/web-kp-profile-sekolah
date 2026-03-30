@@ -153,7 +153,7 @@
                                 <p class="small text-muted mb-4 flex-grow-1"><?php echo e($item->deskripsi_singkat); ?></p>
                                 <a href="<?php echo e(route('program-unggulan.detail', $item->slug)); ?>"
                                     class="btn btn-outline-success btn-sm rounded-pill align-self-start px-4">
-                                    Read More <i class="bi bi-arrow-right ms-1"></i>
+                                    Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
                                 </a>
                             </div>
                         </div>
@@ -241,7 +241,7 @@
                                         <a href="<?php echo e(route('prestasi.show', $item->slug)); ?>"
                                             class="text-decoration-none fw-bold d-flex align-items-center"
                                             style="color: #009b4d; font-size: 0.85rem;">
-                                            Read More <i class="bi bi-chevron-right ms-1"></i>
+                                            Selengkapnya <i class="bi bi-chevron-right ms-1"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -289,7 +289,7 @@
 
                                 <a href="<?php echo e(route('fasilitas.detail', $f->slug)); ?>"
                                     class="text-success text-decoration-none fw-bold small d-flex align-items-center mt-auto">
-                                    Read More <i class="bi bi-chevron-right ms-1" style="font-size: 0.8rem;"></i>
+                                    Selengkapnya <i class="bi bi-chevron-right ms-1" style="font-size: 0.8rem;"></i>
                                 </a>
                             </div>
                         </div>
@@ -410,21 +410,6 @@
             </div>
         </section>
 
-        <!-- Dynamic Recent News Toast -->
-        <div id="recent-news-toast">
-            <div class="d-flex align-items-start gap-3">
-                <div class="bg-warning bg-opacity-15 text-warning rounded-3 p-2 d-inline-flex flex-shrink-0">
-                    <i class="bi bi-trophy-fill fs-5"></i>
-                </div>
-                <div>
-                    <p class="fw-bold mb-0 small text-dark">🏆 Prestasi Terbaru!</p>
-                    <p class="text-muted mb-0" style="font-size:12px;">siswa meraih <strong>Juara 1 Nasional</strong> OSN
-                        2024</p>
-                </div>
-                <button type="button" class="btn-close ms-auto flex-shrink-0" style="font-size:10px;"
-                    onclick="document.getElementById('recent-news-toast').style.display='none'"></button>
-            </div>
-        </div>
     <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\belajar\laravel-website-sekolah\web-profile-sekolah\resources\views/welcome.blade.php ENDPATH**/ ?>

@@ -15,7 +15,6 @@ use Illuminate\Support\Str;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
@@ -70,14 +69,9 @@ class PengumumanSekolahResource extends Resource
 
                 // Section Atribut & Media
                 Section::make('Atribut & Gambar')
-                    ->description('Pilih kategori dan unggah gambar utama.')
+                    ->description('Unggah gambar utama dan tentukan tanggal terbit.')
                     ->schema([
-                        Select::make('category_id')
-                            ->label('Kategori')
-                            ->relationship('category', 'name_category') // Pastikan relasi di model sudah benar
-                            ->searchable()
-                            ->preload()
-                            ->required(),
+                        // Select category_id sudah DIHAPUS
 
                         DatePicker::make('posted_at')
                             ->label('Tanggal Posting')
@@ -98,7 +92,7 @@ class PengumumanSekolahResource extends Resource
                             ->label('Ringkasan (Excerpt)')
                             ->placeholder('Tulis ringkasan singkat untuk tampilan card...')
                             ->rows(3)
-                            ->helperText('Jika dikosongkan, sistem akan mengambil 150 karakter pertama dari isi pengumuman.'),
+                            ->helperText('Ringkasan singkat yang akan muncul di halaman depan.'),
                     ])->columns(2),
             ]);
     }
@@ -117,10 +111,7 @@ class PengumumanSekolahResource extends Resource
                     ->wrap()
                     ->limit(50),
 
-                TextColumn::make('category.name_category')
-                    ->label('Kategori')
-                    ->badge()
-                    ->color('success'),
+                // TextColumn category.name_category sudah DIHAPUS
 
                 TextColumn::make('posted_at')
                     ->label('Terbit')
@@ -128,9 +119,7 @@ class PengumumanSekolahResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('category_id')
-                    ->label('Kategori')
-                    ->relationship('category', 'name_category'),
+                // Filter category_id sudah DIHAPUS
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

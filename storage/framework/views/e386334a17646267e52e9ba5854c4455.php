@@ -12,13 +12,6 @@
                 alt="<?php echo e($ekskul->nama_ekskul); ?>">
 
             <div class="container position-relative h-100 d-flex flex-column justify-content-end pb-5" style="z-index: 2;">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-2">
-                        <li class="breadcrumb-item"><a href="<?php echo e(url('/')); ?>" class="text-white text-decoration-none opacity-75 small">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="<?php echo e(route('ekstrakulikuler.index')); ?>" class="text-white text-decoration-none opacity-75 small">Ekstrakurikuler</a></li>
-                        <li class="breadcrumb-item active text-white small" aria-current="page">Detail</li>
-                    </ol>
-                </nav>
                 <h1 class="text-white fw-bold display-4 mb-0" data-aos="fade-up"><?php echo e($ekskul->nama_ekskul); ?></h1>
             </div>
         </div>
@@ -48,17 +41,26 @@
 
                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($ekskul->photos && $ekskul->photos->count() > 0): ?>
                         <div class="galeri-section mt-5 pt-5 border-top">
-                            <h4 class="fw-bold mb-4 text-center text-dark">Dokumentasi Kegiatan</h4>
+                            <h4 class="fw-bold mb-4 text-center text-dark">Dokumentasi Kegiatan Ekstrakulikuler <?php echo e($ekskul->nama_ekskul); ?> </h4>
                             <div id="ekskulGallery" class="carousel slide shadow rounded-4 overflow-hidden" data-bs-ride="carousel">
                                 <div class="carousel-inner">
-                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $ekskul->photos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="carousel-item <?php echo e($key == 0 ? 'active' : ''); ?>" data-bs-interval="4000">
-                                            <img src="<?php echo e(asset('storage/' . $photo->foto)); ?>"
-                                                class="d-block w-100 object-fit-cover" style="height: 500px;"
-                                                alt="<?php echo e($photo->caption); ?>">
-                                        </div>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                                </div>
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $ekskul->photos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <div class="carousel-item <?php echo e($key == 0 ? 'active' : ''); ?>" data-bs-interval="4000">
+            <img src="<?php echo e(asset('storage/' . $photo->foto)); ?>"
+                class="d-block w-100 object-fit-cover" style="height: 500px;"
+                alt="<?php echo e($photo->caption); ?>">
+            
+            
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($photo->caption): ?>
+                <div class="carousel-caption d-block">
+                    <div class="d-inline-block bg-dark bg-opacity-50 px-4 py-1 rounded-pill">
+                        <p class="mb-0 text-white" style="font-size: 0.9rem;"><?php echo e($photo->caption); ?></p>
+                    </div>
+                </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </div>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+</div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#ekskulGallery" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon bg-dark rounded-circle p-3 bg-opacity-50"></span>
                                 </button>

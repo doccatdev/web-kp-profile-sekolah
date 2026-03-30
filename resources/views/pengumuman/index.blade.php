@@ -15,7 +15,6 @@
     <section class="py-5 bg-light">
         <div class="container py-5">
             <div class="content-section" data-aos="fade-up">
-                {{-- Cek apakah ada data announcements dari Controller --}}
                 @if ($announcements->count() > 0)
                     <div class="row g-4 justify-content-center">
                         @foreach ($announcements as $item)
@@ -28,7 +27,8 @@
                                             </div>
                                             <span class="text-muted small fw-bold">
                                                 <i class="bi bi-calendar-event me-1"></i>
-                                                {{ $item->posted_at->translatedFormat('d F Y') }}
+                                                {{-- Pastikan ini Carbon instance, jika tidak gunakan date() --}}
+                                                {{ \Carbon\Carbon::parse($item->posted_at)->translatedFormat('d F Y') }}
                                             </span>
                                         </div>
                                         <h5 class="fw-bold mb-2">{{ $item->judul_pengumuman }}</h5>

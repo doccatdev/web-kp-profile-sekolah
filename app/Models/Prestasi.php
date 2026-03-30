@@ -23,7 +23,7 @@ class Prestasi extends Model
         'thumbnail',
         'deskripsi_singkat',
         'konten',
-        'tanggal_prestasi',
+        'tanggal_posting',
     ];
 
 

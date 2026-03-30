@@ -56,7 +56,7 @@ class ProgramUnggulanResource extends Resource
                             ->unique(ProgramUnggulan::class, 'slug', ignoreRecord: true),
 
                         TextInput::make('badge_text')
-                            ->label('Label Kategori (Contoh: Tahfidz)'),
+                            ->label('Label (Contoh: Tahfidz)'),
 
                         TextInput::make('icon_class')
                             ->label('Icon Class')
@@ -67,7 +67,7 @@ class ProgramUnggulanResource extends Resource
                 Section::make('Konten & Media')
                     ->schema([
                         FileUpload::make('thumbnail')
-                            ->label('Foto Utama')
+                            ->label('Foto Thumbnail')
                             ->image()
                             ->disk('public')
                             ->directory('program-unggulan')

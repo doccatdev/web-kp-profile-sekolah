@@ -65,7 +65,7 @@ Route::get('/profil/sejarah', [ProfilController::class, 'sejarah']);
 Route::get('/profil/visi-misi', [ProfilController::class, 'visiMisi']);
 
 // Menampilkan daftar semua guru
-Route::get('/profil/data-guru', [GuruController::class, 'index'])->name('profil.data-guru');
+Route::get('/profil/data-guru', [GuruController::class, 'index'])->name('profil.data-guru.index');
 
 // Menampilkan detail guru berdasarkan SLUG (lebih SEO friendly daripada ID)
 Route::get('/profil/data-guru/{slug}', [GuruController::class, 'detail'])->name('profil.data-guru.detail');
@@ -88,3 +88,4 @@ Route::get('/ppdb', [PpdbController::class, 'index'])->name('ppdb.index');
 
 // Kontak
 Route::get('/kontak', [ContactController::class, 'index'])->name('kontak.index');
+Route::post('/kontak', [ContactController::class, 'send'])->name('contact.send');

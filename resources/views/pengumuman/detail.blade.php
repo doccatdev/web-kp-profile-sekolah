@@ -6,8 +6,8 @@
             <div class="position-absolute w-100 h-100 top-0 start-0"
                 style="background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); z-index: 1;"></div>
 
-            {{-- Mengambil thumbnail asli dari database --}}
-            <img src="{{ Storage::url($item->thumbnail) }}"
+            {{-- Mengambil thumbnail --}}
+            <img src="{{ asset('storage/' . $item->thumbnail) }}"
                 class="w-100 h-100 object-fit-cover position-absolute top-0 start-0"
                 alt="{{ $item->judul_pengumuman }}">
 
@@ -28,9 +28,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="d-flex align-items-center mb-4 text-muted" style="gap: 15px;">
-                        <span><i class="fa-regular fa-calendar me-1 text-success"></i> {{ $item->posted_at->translatedFormat('d F Y') }}</span>
-                        <span><i class="bi bi-tags-fill text-success"></i> {{ $item->category->name_category }}</span>
+                    <div class="d-flex align-items-center mb-4 text-muted">
+                        <span>
+                            <i class="fa-regular fa-calendar me-1 text-success"></i> 
+                            {{ \Carbon\Carbon::parse($item->posted_at)->translatedFormat('d F Y') }}
+                        </span>
+                        {{-- Icon dan Label "Pengumuman Sekolah" sudah dihapus --}}
                     </div>
 
                     <div class="content-body" style="line-height: 1.8; color: #374151;">

@@ -18,7 +18,6 @@ class PengumumanSekolah extends Model
 
     protected $fillable = [
         'judul_pengumuman',
-        'category_id',
         'slug',
         'thumbnail',
         'deskripsi_singkat',
@@ -29,11 +28,6 @@ class PengumumanSekolah extends Model
     protected $casts = [
         'posted_at' => 'date',
     ];
-
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
 
     protected static function booted()
     {

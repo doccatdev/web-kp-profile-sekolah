@@ -405,19 +405,4 @@
             </div>
         </section>
 
-        <!-- Dynamic Recent News Toast -->
-        <div id="recent-news-toast">
-            <div class="d-flex align-items-start gap-3">
-                <div class="bg-warning bg-opacity-15 text-warning rounded-3 p-2 d-inline-flex flex-shrink-0">
-                    <i class="bi bi-trophy-fill fs-5"></i>
-                </div>
-                <div>
-                    <p class="fw-bold mb-0 small text-dark">🏆 Prestasi Terbaru!</p>
-                    <p class="text-muted mb-0" style="font-size:12px;">siswa meraih <strong>Juara 1 Nasional</strong> OSN
-                        2024</p>
-                </div>
-                <button type="button" class="btn-close ms-auto flex-shrink-0" style="font-size:10px;"
-                    onclick="document.getElementById('recent-news-toast').style.display='none'"></button>
-            </div>
-        </div>
     @endsection

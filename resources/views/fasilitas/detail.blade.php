@@ -36,8 +36,13 @@
                                                 class="d-block w-100 object-fit-cover" style="height: 550px;"
                                                 alt="Gallery">
                                             @if ($g->caption)
-                                                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50">
-                                                    <p>{{ $g->caption }}</p>
+                                                <div class="carousel-caption d-block">
+                                                    {{-- Penjelasan Class: text-center (tengah), d-inline-block (lebar ikut teks), bg-dark bg-opacity-50 (hitam transparan), px-4 py-1 (jarak teks), rounded-pill (sudut bulat penuh) --}}
+                                                    <div
+                                                        class="text-center d-inline-block bg-dark bg-opacity-50 px-4 py-1 rounded-pill">
+                                                        <p class="m-0 text-white" style="font-size: 0.9rem;">
+                                                            {{ $g->caption }}</p>
+                                                    </div>
                                                 </div>
                                             @endif
                                         </div>

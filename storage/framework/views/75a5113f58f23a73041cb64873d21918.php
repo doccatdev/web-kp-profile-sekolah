@@ -13,7 +13,6 @@
     <section class="py-5 bg-light">
         <div class="container py-5">
             <div class="content-section" data-aos="fade-up">
-                
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($announcements->count() > 0): ?>
                     <div class="row g-4 justify-content-center">
                         <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $announcements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -26,7 +25,8 @@
                                             </div>
                                             <span class="text-muted small fw-bold">
                                                 <i class="bi bi-calendar-event me-1"></i>
-                                                <?php echo e($item->posted_at->translatedFormat('d F Y')); ?>
+                                                
+                                                <?php echo e(\Carbon\Carbon::parse($item->posted_at)->translatedFormat('d F Y')); ?>
 
                                             </span>
                                         </div>
@@ -63,5 +63,4 @@
         </div>
     </section>
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\belajar\laravel-website-sekolah\web-profile-sekolah\resources\views/pengumuman/index.blade.php ENDPATH**/ ?>

@@ -9,19 +9,15 @@ class GuruController extends Controller
 {
     public function index()
     {
-        // Mengambil semua data guru dari tabel 'teachers'
         $guru = Guru::orderBy('nama', 'asc')->get();
-
-        // Diarahkan ke resources/views/pengajar/data-guru.blade.php
+        // Pastikan ini 'pengajar.data-guru' sesuai folder lu di gambar
         return view('pengajar.data-guru', compact('guru'));
     }
 
     public function detail($slug)
     {
-        // Mencari data berdasarkan slug, jika tidak ada tampilkan 404
         $data = Guru::where('slug', $slug)->firstOrFail();
-
-        // Diarahkan ke resources/views/pengajar/detail.blade.php
+        // Pastikan ini 'pengajar.detail'
         return view('pengajar.detail', [
             'data' => $data,
             'title' => $data->nama

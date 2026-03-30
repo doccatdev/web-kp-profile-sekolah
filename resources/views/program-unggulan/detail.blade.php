@@ -4,7 +4,8 @@
     <section class="position-relative" style="margin-top: 76px;">
         <div class="w-100 overflow-hidden" style="height: 400px; position: relative;">
             <div class="position-absolute w-100 h-100 top-0 start-0"
-                style="background: linear-gradient(to top, rgba(20, 83, 45, 0.85), rgba(0, 0, 0, 0.3)); z-index: 1;"></div>
+                style="background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); z-index: 1;"></div>
+
             <img src="{{ asset('storage/' . $program->thumbnail) }}"
                 class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="{{ $program->nama_program }}">
 
@@ -22,44 +23,46 @@
                         {!! $program->deskripsi_program !!}
                     </div>
 
-                    @if($program->galleries->count() > 0)
-                    <div class="gallery-section mt-5">
-                        <h4 class="fw-bold text-dark mb-4 d-flex align-items-center">
-                            <span class="bg-success rounded-2 me-2" style="width: 12px; height: 24px;"></span>
-                            Foto-Foto Kegiatan
-                        </h4>
+                    @if ($program->galleries->count() > 0)
+                        <div class="gallery-section mt-5">
+                            <h4 class="fw-bold text-dark mb-4 d-flex align-items-center">
+                                <span class="bg-success rounded-2 me-2" style="width: 12px; height: 24px;"></span>
+                                Foto-Foto Kegiatan {{ $program->nama_program }}
+                            </h4>
 
-                        <div id="programGallery" class="carousel slide overflow-hidden shadow-sm rounded-4" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                @foreach ($program->galleries as $key => $galeri)
-                                    <button type="button" data-bs-target="#programGallery" data-bs-slide-to="{{ $key }}"
-                                        class="{{ $key == 0 ? 'active' : '' }}"></button>
-                                @endforeach
+                            <div id="programGallery" class="carousel slide overflow-hidden shadow-sm rounded-4"
+                                data-bs-ride="carousel">
+                                
+                                {{-- BAR PUTIH (INDICATORS) SUDAH DIHAPUS DI SINI --}}
+
+                                <div class="carousel-inner">
+                                    @foreach ($program->galleries as $key => $galeri)
+                                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-bs-interval="3500">
+                                            <img src="{{ asset('storage/' . $galeri->image) }}"
+                                                class="d-block w-100 object-fit-cover" style="height: 500px;"
+                                                alt="{{ $galeri->caption ?? 'Galeri ' . $program->nama_program }}">
+                                            
+                                            @if ($galeri->caption)
+                                                {{-- Caption cuma seukuran teks & melengkung pill --}}
+                                                <div class="carousel-caption d-block">
+                                                    <div class="d-inline-block bg-dark bg-opacity-50 px-4 py-1 rounded-pill">
+                                                        <p class="mb-0 text-white" style="font-size: 0.9rem;">{{ $galeri->caption }}</p>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                {{-- Tombol navigasi tetap ada tapi dibuat bersih --}}
+                                <button class="carousel-control-prev" type="button" data-bs-target="#programGallery" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon bg-dark rounded-circle p-3 bg-opacity-25" aria-hidden="true"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#programGallery" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon bg-dark rounded-circle p-3 bg-opacity-25" aria-hidden="true"></span>
+                                </button>
                             </div>
-                            <div class="carousel-inner">
-                                @foreach ($program->galleries as $key => $galeri)
-                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-bs-interval="3500">
-                                        <img src="{{ asset('storage/' . $galeri->image) }}"
-                                            class="d-block w-100 object-fit-cover" style="height: 500px;"
-                                            alt="{{ $galeri->caption ?? 'Galeri ' . $program->nama_program }}">
-                                        @if($galeri->caption)
-                                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-pill py-1">
-                                                <p class="mb-0">{{ $galeri->caption }}</p>
-                                            </div>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#programGallery" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3 bg-opacity-50" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#programGallery" data-bs-slide="next">
-                                <span class="carousel-control-next-icon bg-dark rounded-circle p-3 bg-opacity-50" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
                         </div>
-                    </div>
                     @endif
 
                     <div class="mt-5 pt-3">

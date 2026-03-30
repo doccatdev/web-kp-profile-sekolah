@@ -119,7 +119,7 @@ class EkstrakulikulerResource extends Resource
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                                     ->required(),
                                 TextInput::make('caption')
-                                    ->required(),
+                                    ->label('Keterangan Foto'),
                             ])
                             ->grid(2)
                             ->collapsible()
