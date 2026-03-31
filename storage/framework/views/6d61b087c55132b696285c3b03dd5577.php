@@ -53,7 +53,8 @@
                     
                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($prestasi->photos && $prestasi->photos->count() > 0): ?>
                     <div class="mt-5 pt-4 border-top">
-                        <h5 class="fw-bold text-dark mb-4"><i class="bi bi-images me-2 text-success"></i>Foto-Foto Prestasi <?php echo e($prestasi->judul); ?></h5>
+                        
+                        <h5 class="fw-bold text-dark mb-4">Foto-Foto Prestasi <?php echo e($prestasi->judul); ?></h5>
                         <div id="prestasiGallery" class="carousel slide rounded-4 shadow-sm overflow-hidden mb-4" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $prestasi->photos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -85,7 +86,7 @@
 
                     <div class="text-center mt-5">
                         <a href="<?php echo e(route('prestasi.index')); ?>" class="btn btn-outline-success rounded-pill px-5 py-2 fw-bold">
-                            <i class="bi bi-arrow-left me-2"></i>Kembali Ke Daftar
+                            <i class="bi bi-arrow-left me-2"></i>Kembali Ke Daftar Prestasi
                         </a>
                     </div>
                 </div>

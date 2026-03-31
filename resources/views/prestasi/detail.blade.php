@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     
-                    {{-- INFO BAR: SEMUA STYLE DISAMAKAN --}}
+                    {{-- INFO BAR: STYLE MINIMALIS --}}
                     <div class="d-flex align-items-center flex-wrap mb-4 text-secondary gap-3">
                         {{-- Tanggal Posting --}}
                         <div class="d-flex align-items-center">
@@ -54,7 +54,8 @@
                     {{-- Galeri Foto --}}
                     @if($prestasi->photos && $prestasi->photos->count() > 0)
                     <div class="mt-5 pt-4 border-top">
-                        <h5 class="fw-bold text-dark mb-4"><i class="bi bi-images me-2 text-success"></i>Foto-Foto Prestasi {{$prestasi->judul}}</h5>
+                        {{-- Icon bi-images sudah dibuang --}}
+                        <h5 class="fw-bold text-dark mb-4">Foto-Foto Prestasi {{ $prestasi->judul }}</h5>
                         <div id="prestasiGallery" class="carousel slide rounded-4 shadow-sm overflow-hidden mb-4" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach($prestasi->photos as $index => $photo)
