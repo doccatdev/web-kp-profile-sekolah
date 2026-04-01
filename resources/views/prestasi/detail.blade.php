@@ -2,66 +2,44 @@
 
 @section('content')
     <section class="position-relative" style="margin-top: 76px;">
-        <div class="w-100 overflow-hidden" style="height: 450px; position: relative; background-color: #000;">
-            {{-- Background Masking --}}
-            <div class="position-absolute w-100 h-50 bottom-0 start-0"
-                style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); z-index: 1;"></div>
-
-            {{-- Banner --}}
-            <img src="{{ asset('storage/' . $prestasi->thumbnail) }}"
-                class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="{{ $prestasi->judul }}">
-
-            <div class="container position-relative h-100 d-flex flex-column justify-content-end pb-5" style="z-index: 2;">
-                <h1 class="text-white fw-bold display-5 mb-0">{{ $prestasi->judul }}</h1>
+        <div class="position-relative w-100">
+            <div class="detail-thumb-bg w-100">
+                <img src="{{ asset('storage/' . $prestasi->thumbnail) }}" class="detail-thumb-bg__img"
+                    alt="{{ $prestasi->judul }}">
+            </div>
+            <div class="detail-thumb-bg__shade"></div>
+            <div class="container position-absolute bottom-0 start-0 end-0 d-flex flex-column align-items-start justify-content-end pb-4 pb-md-5 px-3 text-start" style="z-index: 2;">
+                <h1 class="text-white fw-bold display-6 mb-0">{{ $prestasi->judul }}</h1>
             </div>
         </div>
     </section>
 
     <section class="py-5 bg-white mb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    
-                    {{-- INFO BAR: STYLE MINIMALIS --}}
-                    <div class="d-flex align-items-center flex-wrap mb-4 text-secondary gap-3">
-                        {{-- Tanggal Posting --}}
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-calendar-check me-2 text-success"></i>
-                            <span class="small fw-bold text-uppercase text-muted me-1">Posting:</span>
-                            <span>{{ \Carbon\Carbon::parse($prestasi->tanggal_posting)->format('d M Y') }}</span>
-                        </div>
-                        
-                        {{-- Kategori Lomba --}}
-                        <div class="d-flex align-items-center border-start ps-3 ms-1">
-                            <i class="bi bi-tag-fill me-2 text-success"></i>
-                            <span class="small fw-bold text-uppercase text-muted me-1">Kategori:</span>
-                            <span>{{ $prestasi->kategori_prestasi }}</span>
-                        </div>
+        <div class="container text-start">
+            <div class="d-flex align-items-center flex-wrap gap-2 gap-md-3 mb-4 pb-3 border-bottom border-light text-muted small">
+                <span class="d-inline-flex align-items-center">
+                    <i class="bi bi-calendar-check me-1 text-success"></i>
+                    {{ \Carbon\Carbon::parse($prestasi->tanggal_posting)->format('d M Y') }}
+                </span>
+                <span class="d-none d-md-inline text-muted">·</span>
+                <span>{{ $prestasi->kategori_prestasi }}</span>
+                <span class="d-none d-md-inline text-muted">·</span>
+                <span>{{ $prestasi->tingkat }}</span>
+            </div>
 
-                        {{-- Tingkat Prestasi --}}
-                        <div class="d-flex align-items-center border-start ps-3 ms-1">
-                            <i class="bi bi-trophy-fill me-2 text-success"></i>
-                            <span class="small fw-bold text-uppercase text-muted me-1">Tingkat:</span>
-                            <span>{{ $prestasi->tingkat }}</span>
-                        </div>
-                    </div>
+            <div class="body-text mb-5 detail-desc-body" style="line-height: 1.8; color: #475569; font-size: 1.05rem;">
+                {!! $prestasi->konten !!}
+            </div>
 
-                    {{-- Isi Konten --}}
-                    <div class="body-text mb-5" style="line-height: 1.8; color: #444; font-size: 1.1rem; text-align: justify;">
-                        {!! $prestasi->konten !!}
-                    </div>
-
-                    {{-- Galeri Foto --}}
-                    @if($prestasi->photos && $prestasi->photos->count() > 0)
-                    <div class="mt-5 pt-4 border-top">
-                        {{-- Icon bi-images sudah dibuang --}}
-                        <h5 class="fw-bold text-dark mb-4">Foto-Foto Prestasi {{ $prestasi->judul }}</h5>
-                        <div id="prestasiGallery" class="carousel slide rounded-4 shadow-sm overflow-hidden mb-4" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                @foreach($prestasi->photos as $index => $photo)
+            @if($prestasi->photos && $prestasi->photos->count() > 0)
+                <div class="mt-5 pt-4 border-top border-light">
+                    <h2 class="h5 fw-semibold text-dark mb-3 text-start">Galeri — {{ $prestasi->judul }}</h2>
+                    <div id="prestasiGallery" class="carousel slide rounded-3 border border-light overflow-hidden mb-4" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach($prestasi->photos as $index => $photo)
                                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" data-bs-interval="4000">
                                     <img src="{{ asset('storage/' . $photo->foto) }}" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Galeri">
-                                    
+
                                     @if($photo->caption)
                                         <div class="carousel-caption d-block">
                                             <div class="d-inline-block bg-dark bg-opacity-50 px-4 py-1 rounded-pill">
@@ -70,27 +48,25 @@
                                         </div>
                                     @endif
                                 </div>
-                                @endforeach
-                            </div>
+                            @endforeach
+                        </div>
 
-                            @if($prestasi->photos->count() > 1)
-                            <button class="carousel-control-prev" type="button" data-bs-target="#prestasiGallery" data-bs-slide="prev">
+                        @if($prestasi->photos->count() > 1)
+                            <button class="carousel-control-prev" type="button" data-bs-target="#prestasiGallery" data-bs-slide="prev" aria-label="Sebelumnya">
                                 <span class="carousel-control-prev-icon bg-dark rounded-circle p-3 bg-opacity-25" aria-hidden="true"></span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#prestasiGallery" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#prestasiGallery" data-bs-slide="next" aria-label="Berikutnya">
                                 <span class="carousel-control-next-icon bg-dark rounded-circle p-3 bg-opacity-25" aria-hidden="true"></span>
                             </button>
-                            @endif
-                        </div>
-                    </div>
-                    @endif
-
-                    <div class="text-center mt-5">
-                        <a href="{{ route('prestasi.index') }}" class="btn btn-outline-success rounded-pill px-5 py-2 fw-bold">
-                            <i class="bi bi-arrow-left me-2"></i>Kembali Ke Daftar Prestasi
-                        </a>
+                        @endif
                     </div>
                 </div>
+            @endif
+
+            <div class="mt-5 text-start">
+                <a href="{{ route('prestasi.index') }}" class="btn btn-outline-success rounded-pill px-4 py-2">
+                    <i class="bi bi-arrow-left me-2"></i>Kembali ke daftar prestasi
+                </a>
             </div>
         </div>
     </section>

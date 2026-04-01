@@ -30,20 +30,9 @@
                     </div>
 
                     
-                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($data->deskripsi): ?>
-                    <div class="mb-4">
-                        <label class="fw-bold d-block text-dark small text-uppercase">Tentang Pendidik</label>
-                        <div class="text-muted lh-lg">
-                            <?php echo $data->deskripsi; ?>
-
-                        </div>
-                    </div>
-                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-
-                    
                     <div class="mt-5">
                         <a href="<?php echo e(route('profil.data-guru.index')); ?>" 
-                           class="btn text-white px-4 py-2 shadow-sm" 
+                           class="btn text-white px-4 py-2 shadow-sm fw-bold" 
                            style="background-color: #50C878; border-color: #50C878;">
                             <i class="bi bi-arrow-left me-2"></i> Kembali ke Daftar
                         </a>

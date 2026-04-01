@@ -71,16 +71,16 @@ body {
 }
 
 
-/* Navbar - solid background to hide hero image and improve logo clarity */
+/* Ini adalah state normal navbar lo */
 .navbar {
-    background-color: #ffffff;
+    background-color: #ffffff; /* Ini bikin background putih */
     border-bottom: 2px solid var(--emerald-green);
-    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    transition: transform 0.3s ease; /* Transisi halus saat muncul/sembunyi */
 }
 
-/* Hide navbar when scrolling down; show when scrolling up or at top */
+/* Ini adalah class yang akan dipicu oleh JavaScript saat user scroll ke bawah */
 .navbar.navbar-hidden {
-    transform: translateY(-100%);
+    transform: translateY(-100%); /* Menarik navbar ke atas sejauh tinggi navbar itu sendiri */
 }
 
 .navbar .nav-link,
@@ -120,6 +120,7 @@ body {
 .navbar.navbar-dark .nav-link:hover,
 .navbar.scroll-nav-activate .nav-link:hover,
 .navbar.text-nav-activate .nav-link:hover {
+    background-color: #ffffff !important;
     color: var(--emerald-green);
 }
 
@@ -1064,7 +1065,7 @@ body {
     background-color: #fff;
     width: 100%;
     /* Maksa card ngikutin tinggi kolom grid */
-    height: 100%; 
+    height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -1107,7 +1108,7 @@ body {
     flex-direction: column;
     text-align: center;
     /* Maksa body ngambil sisa ruang */
-    flex: 1 1 auto; 
+    flex: 1 1 auto;
 }
 
 /* Nama Guru - Tinggi Tetap */
@@ -1117,7 +1118,7 @@ body {
     margin-bottom: 10px;
     line-height: 1.2;
     /* KUNCI: Kasih tinggi pasti buat 2 baris nama */
-    height: 2.8rem; 
+    height: 2.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1127,7 +1128,7 @@ body {
 /* Container Role (Jabatan & Mapel) - Tinggi Tetap */
 .card-guru-alt .role-container {
     /* KUNCI: Tinggi pasti biar kartu ga naik turun (Cukup buat 3-4 baris teks) */
-    height: 100px; 
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1142,13 +1143,13 @@ body {
     line-height: 1.5;
     width: 100%;
     /* Hilangkan margin/padding bawaan */
-    margin: 0; 
+    margin: 0;
 }
 
 /* Tombol Lihat Profil - Selalu di dasar */
 .card-guru-alt .btn-lihat {
     /* Dorong ke paling bawah */
-    margin-top: auto; 
+    margin-top: auto;
     border: 2px solid #009b4d;
     color: #009b4d;
     border-radius: 8px;
@@ -1165,4 +1166,92 @@ body {
 .card-guru-alt .btn-lihat:hover {
     background-color: #009b4d;
     color: #fff;
+}
+
+/* --- Detail: hero thumbnail (seperti pengumuman — full width, 16:9, cover, scrim bawah) --- */
+.detail-thumb-bg {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #0f172a;
+    overflow: hidden;
+}
+
+.detail-thumb-bg__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Gradasi bawah agar judul terbaca (mirip hero pengumuman) */
+.detail-thumb-bg__shade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.72) 0%,
+        rgba(0, 0, 0, 0.35) 38%,
+        rgba(0, 0, 0, 0.08) 62%,
+        transparent 100%
+    );
+}
+
+/* Detail: isi dari editor — rata kiri */
+.detail-desc-body,
+.detail-desc-body p,
+.detail-desc-body li {
+    text-align: start;
+}
+
+/* --- Style Khusus Button Portal Admin --- */
+.btn-outline-light.rounded-pill {
+    background-color: var(--emerald-green) !important;
+    color: #ffffff !important;
+    border: 2px solid var(--emerald-green) !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 10px rgba(0, 155, 77, 0.2);
+    /* Memastikan tombol selalu muncul (tidak transparan) */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.btn-outline-light.rounded-pill:hover {
+    background-color: #007a3c !important; /* Hijau yang lebih gelap saat hover */
+    border-color: #007a3c !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 122, 60, 0.3);
+    color: #ffffff !important;
+}
+
+/* Penyesuaian untuk Mobile agar tetap proporsional */
+@media (max-width: 991.98px) {
+    .btn-outline-light.rounded-pill {
+        padding: 6px 15px !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+/* Update CSS untuk warna hijau di kedua baris teks */
+.brand-text {
+    display: block !important;
+    visibility: visible !important;
+}
+
+.brand-name {
+    /* Gunakan variabel emerald atau hex hijau yang lo mau */
+    color: var(--emerald-green) !important;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.brand-sub {
+    color: var(--emerald-green) !important;
+    opacity: 0.8; /* Slogan sedikit lebih soft tapi tetap hijau */
+    font-size: 0.65rem;
 }

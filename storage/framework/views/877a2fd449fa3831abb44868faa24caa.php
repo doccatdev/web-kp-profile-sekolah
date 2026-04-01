@@ -49,7 +49,7 @@
                                     <a href="<?php echo e(route('prestasi.show', $item->slug)); ?>"
                                         class="btn btn-outline-light btn-sm rounded-pill px-4 mt-2 border-2 fw-bold"
                                         style="backdrop-filter: blur(8px);">
-                                        Lihat Galeri <i class="bi bi-arrow-right ms-1"></i>
+                                        Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
                                     </a>
                                 </div>
                             </div>
@@ -76,4 +76,5 @@
         </div>
     </section>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\belajar\laravel-website-sekolah\web-profile-sekolah\resources\views/prestasi/index.blade.php ENDPATH**/ ?>

@@ -1,66 +1,53 @@
 <?php $__env->startSection('content'); ?>
-    <section class="position-relative" style="margin-top: 76px;">
-        <div class="w-100 overflow-hidden" style="height: 450px; position: relative; background-color: #000;">
-            
-            <div class="position-absolute w-100 h-50 bottom-0 start-0"
-                style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); z-index: 1;"></div>
-
-            
-            <img src="<?php echo e(asset('storage/' . $prestasi->thumbnail)); ?>"
-                class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="<?php echo e($prestasi->judul); ?>">
-
-            <div class="container position-relative h-100 d-flex flex-column justify-content-end pb-5" style="z-index: 2;">
-                <h1 class="text-white fw-bold display-5 mb-0"><?php echo e($prestasi->judul); ?></h1>
+    <section class="bg-white">
+        <div class="container-fluid p-0">
+            <div class="detail-hero-16x9">
+                <img src="<?php echo e(asset('storage/' . $prestasi->thumbnail)); ?>" class="detail-hero-16x9__img"
+                    alt="<?php echo e($prestasi->judul); ?>">
+                <div class="position-absolute top-0 start-0 w-100 h-100 detail-hero-shade"></div>
+                <div class="position-absolute bottom-0 start-0 w-100 p-4 p-md-5 text-white detail-hero-title-wrap">
+                    <div class="container-fluid px-3 px-md-4 px-xl-5">
+                        <h1 class="detail-hero-title mb-0 text-white"><?php echo e($prestasi->judul); ?></h1>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="py-5 bg-white mb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    
-                    
-                    <div class="d-flex align-items-center flex-wrap mb-4 text-secondary gap-3">
-                        
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-calendar-check me-2 text-success"></i>
-                            <span class="small fw-bold text-uppercase text-muted me-1">Posting:</span>
-                            <span><?php echo e(\Carbon\Carbon::parse($prestasi->tanggal_posting)->format('d M Y')); ?></span>
-                        </div>
-                        
-                        
-                        <div class="d-flex align-items-center border-start ps-3 ms-1">
-                            <i class="bi bi-tag-fill me-2 text-success"></i>
-                            <span class="small fw-bold text-uppercase text-muted me-1">Kategori:</span>
-                            <span><?php echo e($prestasi->kategori_prestasi); ?></span>
-                        </div>
+    <section class="detail-body py-5 pb-5 mb-4">
+        <div class="container-fluid px-3 px-md-4 px-xl-5">
+            <div class="detail-meta text-start">
+                <span class="detail-meta__item">
+                    <i class="bi bi-calendar-check text-success" aria-hidden="true"></i>
+                    <span class="detail-meta__label">Posting</span>
+                    <span><?php echo e(\Carbon\Carbon::parse($prestasi->tanggal_posting)->format('d M Y')); ?></span>
+                </span>
+                <span class="detail-meta__item">
+                    <i class="bi bi-tag-fill text-success" aria-hidden="true"></i>
+                    <span class="detail-meta__label">Kategori</span>
+                    <span><?php echo e($prestasi->kategori_prestasi); ?></span>
+                </span>
+                <span class="detail-meta__item">
+                    <i class="bi bi-trophy-fill text-success" aria-hidden="true"></i>
+                    <span class="detail-meta__label">Tingkat</span>
+                    <span><?php echo e($prestasi->tingkat); ?></span>
+                </span>
+            </div>
 
-                        
-                        <div class="d-flex align-items-center border-start ps-3 ms-1">
-                            <i class="bi bi-trophy-fill me-2 text-success"></i>
-                            <span class="small fw-bold text-uppercase text-muted me-1">Tingkat:</span>
-                            <span><?php echo e($prestasi->tingkat); ?></span>
-                        </div>
-                    </div>
+            <div class="body-text detail-prose text-start mb-5">
+                <?php echo $prestasi->konten; ?>
 
-                    
-                    <div class="body-text mb-5" style="line-height: 1.8; color: #444; font-size: 1.1rem; text-align: justify;">
-                        <?php echo $prestasi->konten; ?>
+            </div>
 
-                    </div>
-
-                    
-                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($prestasi->photos && $prestasi->photos->count() > 0): ?>
-                    <div class="mt-5 pt-4 border-top">
-                        
-                        <h5 class="fw-bold text-dark mb-4">Foto-Foto Prestasi <?php echo e($prestasi->judul); ?></h5>
-                        <div id="prestasiGallery" class="carousel slide rounded-4 shadow-sm overflow-hidden mb-4" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $prestasi->photos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($prestasi->photos && $prestasi->photos->count() > 0): ?>
+                <div class="detail-gallery">
+                    <h2 class="detail-gallery__title text-start mb-4">Galeri — <?php echo e($prestasi->judul); ?></h2>
+                    <div id="prestasiGallery" class="carousel slide detail-carousel mb-1" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $prestasi->photos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="carousel-item <?php echo e($index == 0 ? 'active' : ''); ?>" data-bs-interval="4000">
-                                    <img src="<?php echo e(asset('storage/' . $photo->foto)); ?>" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Galeri">
-                                    
+                                    <img src="<?php echo e(asset('storage/' . $photo->foto)); ?>" class="d-block detail-carousel-img" alt="Galeri">
+
                                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($photo->caption): ?>
                                         <div class="carousel-caption d-block">
                                             <div class="d-inline-block bg-dark bg-opacity-50 px-4 py-1 rounded-pill">
@@ -69,29 +56,28 @@
                                         </div>
                                     <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                            </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        </div>
 
-                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($prestasi->photos->count() > 1): ?>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#prestasiGallery" data-bs-slide="prev">
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($prestasi->photos->count() > 1): ?>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#prestasiGallery" data-bs-slide="prev" aria-label="Sebelumnya">
                                 <span class="carousel-control-prev-icon bg-dark rounded-circle p-3 bg-opacity-25" aria-hidden="true"></span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#prestasiGallery" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#prestasiGallery" data-bs-slide="next" aria-label="Berikutnya">
                                 <span class="carousel-control-next-icon bg-dark rounded-circle p-3 bg-opacity-25" aria-hidden="true"></span>
                             </button>
-                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                        </div>
-                    </div>
-                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-
-                    <div class="text-center mt-5">
-                        <a href="<?php echo e(route('prestasi.index')); ?>" class="btn btn-outline-success rounded-pill px-5 py-2 fw-bold">
-                            <i class="bi bi-arrow-left me-2"></i>Kembali Ke Daftar Prestasi
-                        </a>
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                     </div>
                 </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+            <div class="detail-back text-start">
+                <a href="<?php echo e(route('prestasi.index')); ?>" class="btn btn-outline-success rounded-pill px-4 py-2">
+                    <i class="bi bi-arrow-left me-2" aria-hidden="true"></i>Kembali ke daftar prestasi
+                </a>
             </div>
         </div>
     </section>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\belajar\laravel-website-sekolah\web-profile-sekolah\resources\views/prestasi/detail.blade.php ENDPATH**/ ?>

@@ -1,13 +1,12 @@
 <?php $__env->startSection('content'); ?>
     <section class="position-relative" style="margin-top: 76px;">
-        <div class="w-100 overflow-hidden" style="height: 400px; position: relative;">
-            <div class="position-absolute w-100 h-100 top-0 start-0"
-                style="background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); z-index: 1;"></div>
-
-            <img src="<?php echo e(asset('storage/' . $program->thumbnail)); ?>"
-                class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="<?php echo e($program->nama_program); ?>">
-
-            <div class="container position-relative h-100 d-flex flex-column justify-content-end pb-5" style="z-index: 2;">
+        <div class="position-relative w-100">
+            <div class="detail-thumb-bg w-100">
+                <img src="<?php echo e(asset('storage/' . $program->thumbnail)); ?>" class="detail-thumb-bg__img"
+                    alt="<?php echo e($program->nama_program); ?>">
+            </div>
+            <div class="detail-thumb-bg__shade"></div>
+            <div class="container position-absolute bottom-0 start-0 end-0 d-flex flex-column justify-content-end pb-5" style="z-index: 2;">
                 <h1 class="fw-bold text-white display-4 mb-0" data-aos="fade-up"><?php echo e($program->nama_program); ?></h1>
             </div>
         </div>
