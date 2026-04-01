@@ -4,9 +4,9 @@
     <section class="position-relative" style="margin-top: 76px;">
         <div class="w-100 overflow-hidden" style="height: 450px; position: relative;">
             {{-- Overlay Gradasi Hijau Dihapus, hanya menyisakan filter gelap tipis agar teks breadcrumb terbaca --}}
-            <div class="position-absolute w-100 h-100 top-0 start-0"
-                style="background: rgba(0, 0, 0, 0.2); z-index: 1;"></div>
-            
+            <div class="position-absolute w-100 h-100 top-0 start-0" style="background: rgba(0, 0, 0, 0.2); z-index: 1;">
+            </div>
+
             <img src="{{ $item->image ? asset('storage/' . $item->image) : asset('assets/images/il-berita-01.png') }}"
                 class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="{{ $item->news_title }}">
 
@@ -105,33 +105,40 @@
                         </div>
 
                         <div class="d-flex flex-column gap-3">
-                            {{-- Menggunakan data berita asli jika ada, atau loop dummy --}}
-                            @for ($i = 1; $i <= 4; $i++)
+                            {{-- Loop data berita dinamis --}}
+                            @forelse ($beritaLainnya as $related)
                                 <div class="card border border-light shadow-sm rounded-4 overflow-hidden">
                                     <div class="row g-0 align-items-center">
                                         <div class="col-4" style="height: 100px;">
-                                            <img src="{{ asset('assets/images/il-berita-0' . ($i > 3 ? 1 : $i) . '.png') }}"
-                                                class="w-100 h-100 object-fit-cover" alt="Berita Terkait">
+                                            <img src="{{ $related->image ? asset('storage/' . $related->image) : asset('assets/images/il-berita-01.png') }}"
+                                                class="w-100 h-100 object-fit-cover" alt="{{ $related->news_title }}">
                                         </div>
                                         <div class="col-8">
                                             <div class="card-body p-3 bg-white">
                                                 <h6 class="card-title fw-bold mb-2 text-truncate-2"
                                                     style="font-size: 0.85rem; line-height: 1.4;">
-                                                    <a href="#" class="text-dark text-decoration-none">Judul Berita Menarik Lainnya...</a>
+                                                    <a href="{{ route('berita.show', $related->slug) }}"
+                                                        class="text-dark text-decoration-none">
+                                                        {{ $related->news_title }}
+                                                    </a>
                                                 </h6>
                                                 <div class="text-muted small">
                                                     <i class="fa-regular fa-calendar me-1"></i>
-                                                    {{ date('d F Y', strtotime('-' . $i . ' days')) }}
+                                                    {{ $related->posted_at->locale('id')->translatedFormat('d F Y') }}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endfor
+                            @empty
+                                <p class="text-muted small text-center">Tidak ada berita lainnya.</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
     </section>
 @endsection

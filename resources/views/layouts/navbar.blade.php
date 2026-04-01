@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top main-navbar transition-all">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-            <img src="{{ asset('assets/icons/sekolah-ico.ico') }}" height="45" width="45" alt="Logo" class="me-2">
+            <img src="{{ asset('assets/icons/sekolah-ico.ico') }}" height="45" width="45" alt="Logo"
+                class="me-2">
             <div class="brand-text">
                 <span class="d-block fw-bold lh-1 brand-name"
                     style="font-size: 1rem; letter-spacing: 0.5px; color: var(--emerald-green);">
@@ -10,7 +11,7 @@
 
                 <small class="fw-normal brand-sub"
                     style="font-size: 0.65rem; opacity: 0.9; color: var(--emerald-green);">
-                    RELIGIUS & BERPRESTASI
+                    Yayasan Al-Husainiyyah Muthoyyibah
                 </small>
             </div>
         </a>

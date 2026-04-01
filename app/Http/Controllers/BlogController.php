@@ -32,9 +32,17 @@ class BlogController extends Controller
         return view('berita.berita', compact('news', 'categories', 'kategoriAktif'));
     }
 
-    public function show(string $slug)
+    public function show($slug)
     {
-        $item = News::with('category')->where('slug', $slug)->firstOrFail();
-        return view('berita.detail', compact('item'));
+        // Ambil detail berita utama
+        $item = News::where('slug', $slug)->firstOrFail();
+
+        // Ambil 4 berita terbaru lainnya, kecualikan berita yang sedang tampil
+        $beritaLainnya = News::where('id', '!=', $item->id)
+            ->latest('posted_at')
+            ->take(4)
+            ->get();
+
+        return view('berita.detail', compact('item', 'beritaLainnya'));
     }
 }

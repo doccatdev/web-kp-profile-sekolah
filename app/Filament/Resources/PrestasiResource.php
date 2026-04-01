@@ -64,7 +64,7 @@ class PrestasiResource extends Resource
                             ->required(),
 
                         DatePicker::make('tanggal_posting')
-                            ->label('Tanggal Posting')
+                            ->label('Dibuat pada:')
                             ->required(),
                     ]),
 
@@ -75,7 +75,7 @@ class PrestasiResource extends Resource
                             ->image()
                             ->directory('prestasi/thumbnails')
                             // MODIFIKASI: Max 2MB & Tipe File
-                            ->maxSize(2048) 
+                            ->maxSize(2048)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])
                             ->helperText('Format: JPG, PNG, JPEG atau WEBP. Maksimal 2MB.')
                             ->required(),

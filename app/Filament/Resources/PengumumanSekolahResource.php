@@ -58,7 +58,7 @@ class PengumumanSekolahResource extends Resource
                             ->helperText('Otomatis terisi, bisa diedit jika perlu.'),
 
                         RichEditor::make('isi_pengumuman')
-                            ->label('Isi Lengkap Pengumuman')
+                            ->label('Isi Pengumuman')
                             ->required()
                             ->columnSpanFull()
                             ->toolbarButtons([
@@ -74,7 +74,7 @@ class PengumumanSekolahResource extends Resource
                         // Select category_id sudah DIHAPUS
 
                         DatePicker::make('posted_at')
-                            ->label('Tanggal Posting')
+                            ->label('Dibuat pada:')
                             ->required()
                             ->native(false)
                             ->default(now()),

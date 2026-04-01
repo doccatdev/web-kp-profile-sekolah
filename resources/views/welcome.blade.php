@@ -353,7 +353,7 @@
         </section>
         <!--End Ekstrakulikuler Section-->
 
-        <!-- Advanced Instagram Feed: Kegiatan Terbaru -->
+        {{-- <!-- Advanced Instagram Feed: Kegiatan Terbaru -->
         <section id="instagram-feed" class="py-5" style="background: #f8fafc;">
             <div class="container py-5">
                 <div class="row align-items-center mb-5">
@@ -403,6 +403,6 @@
                     @endfor
                 </div>
             </div>
-        </section>
+        </section> --}}
 
     @endsection

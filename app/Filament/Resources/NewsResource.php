@@ -75,7 +75,7 @@ class NewsResource extends Resource
                             ->required(),
 
                         DatePicker::make('posted_at')
-                            ->label('Tanggal Posting')
+                            ->label('Dibuat pada:')
                             ->required()
                             ->native(false)
                             ->default(now()),
