@@ -26,9 +26,15 @@ class StoreCommentRequest extends FormRequest
         'parent_id'  => ['nullable', 'exists:comments,id'],
         'body'       => ['required', 'string', 'max:500'],
         // Buat selalu tervalidasi agar data tidak dibuang oleh Laravel
-        'guest_name' => ['required', 'string', 'max:50'],
-        'guest_mail' => ['required', 'email', 'max:75'],
+        //'guest_name' => ['required', 'string', 'max:50'],
+        //'guest_mail' => ['required', 'email', 'max:75'],
     ];
+    if (!auth()->check())
+    {
+        $rules['guest_name'] = ['required','string','max:50'];
+        $rules['guest_mail'] = ['required','mail','max:75'];
+
+    }
 
         return $rules;
     }
