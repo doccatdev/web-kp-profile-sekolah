@@ -8,26 +8,41 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'news_id' => 'required|exists:news,id',
-            'guest_name' => 'required|string|max:255',
-            'guest_mail' => 'required|email|max:255',
-            'body' => 'required|string',
-            'parent_id' => 'nullable|exists:comments,id',
-        ]);
+    public function Store(StoreCommentRequest $request)
+{
+    try {
+        // Mengambil data yang sudah lolos validasi
+        $validated = $request->validated();
 
-        // PASTIKAN PROSES SIMPAN SEPERTI INI:
+        // Tambahkan logika untuk user login vs guest secara manual
+        $data = [
+            'news_id'     => $validated['news_id'],
+            'parent_id'   => $validated['parent_id'],
+            'body'        => $validated['body'],
+            'user_id'     => auth()->id(),
+            'is_approved' => false, // Default menunggu moderasi
+        ];
+
+        if (auth()->check()) {
+            $data['guest_name'] = auth()->user()->name;
+            $data['guest_mail'] = auth()->user()->email;
+        } else {
+            $data['guest_name'] = $validated['guest_name'];
+            $data['guest_mail'] = $validated['guest_mail'];
+        }
+
         Comment::create([
-            'news_id' => $validated['news_id'],
-            'guest_name' => $validated['guest_name'], // Mengambil dari input form
-            'guest_mail' => $validated['guest_mail'], // Mengambil dari input form
-            'body' => $validated['body'],
-            'parent_id' => $validated['parent_id'],
-            'is_active' => false, // Menunggu moderasi sesuai info di form
+            'news_id' => $request->news_id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'comment_content' => $request->comment_content,
+            'status' => 'pending', // Opsional: Beri status agar bisa dimoderasi admin
         ]);
 
-        return back()->with('success', 'Komentar Anda berhasil terkirim.');
+        return back()->with('success', 'Komentar Anda berhasil terkirim!');
+    } catch (\Exception $e) {
+        // Debugging: hapus $e->getMessage() jika sudah live
+        return back()->with('error', 'Gagal: ' . $e->getMessage())->withInput();
     }
+}
 }

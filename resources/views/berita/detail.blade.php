@@ -177,16 +177,4 @@
             </div>
         </div>
     </section>
-
-    {{-- FLOATING BUTTON KIRI BAWAH --}}
-    <div class="position-fixed" style="bottom: 30px; left: 30px; z-index: 1050;">
-        <a href="{{ route('berita.index') }}"
-           class="btn btn-success rounded-circle shadow-lg d-flex align-items-center justify-content-center"
-           style="width: 60px; height: 60px; transition: all 0.3s ease-in-out; border: 2px solid white;"
-           title="Kembali ke Daftar Berita"
-           onmouseover="this.style.transform='scale(1.1)'; this.style.backgroundColor='#059669';"
-           onmouseout="this.style.transform='scale(1)'; this.style.backgroundColor='#198754';">
-            <i class="bi bi-arrow-left fs-3"></i>
-        </a>
-    </div>
 @endsection

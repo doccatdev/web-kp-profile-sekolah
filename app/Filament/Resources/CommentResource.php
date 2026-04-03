@@ -17,6 +17,11 @@ class CommentResource extends Resource
 {
     protected static ?string $model = Comment::class;
 
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
     protected static ?string $navigationLabel = 'Komentar Berita'; // Diubah agar spesifik
     protected static ?string $modelLabel = 'Komentar Berita';

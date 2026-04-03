@@ -21,16 +21,14 @@ class StoreCommentRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'news_id'   => ['required', 'exists:news,id'],
-            'parent_id' => ['nullable', 'exists:comments,id'],
-            'body'      => ['required', 'string', 'max:500']
-        ];
-
-        if (!auth()->check()) {
-            $rules['guest_name'] = ['required', 'string', 'max:50'];
-            $rules['guest_mail'] = ['required', 'email', 'max:75']; // Sesuaikan nama input
-        }
+        return [
+        'news_id'    => ['required', 'exists:news,id'],
+        'parent_id'  => ['nullable', 'exists:comments,id'],
+        'body'       => ['required', 'string', 'max:500'],
+        // Buat selalu tervalidasi agar data tidak dibuang oleh Laravel
+        'guest_name' => ['required', 'string', 'max:50'],
+        'guest_mail' => ['required', 'email', 'max:75'],
+    ];
 
         return $rules;
     }
@@ -40,7 +38,6 @@ class StoreCommentRequest extends FormRequest
         return [
             'guest_name.required' => "Masukkan nama Anda",
             'guest_mail.required' => "Masukkan email Anda",
-            'guest_mail.email'    => "Format email tidak valid"
         ];
     }
 }
