@@ -1,11 +1,9 @@
-@extends('layouts.layouts')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <!--Hero Section-->
     <section id="hero" class="p-0 block">
         <div id="heroCarousel" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
 
-            @php
+            <?php
                 $allImages = [];
                 foreach ($sliders as $slider) {
                     if ($slider->images && is_array($slider->images)) {
@@ -18,48 +16,49 @@
                         }
                     }
                 }
-            @endphp
+            ?>
 
             <div class="carousel-indicators" style="z-index: 5;">
-                @foreach ($allImages as $index => $item)
-                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ $index }}"
-                        class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $allImages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="<?php echo e($index); ?>"
+                        class="<?php echo e($index === 0 ? 'active' : ''); ?>" aria-current="<?php echo e($index === 0 ? 'true' : 'false'); ?>">
                     </button>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
 
             <div class="carousel-inner">
-                @foreach ($allImages as $index => $item)
-                    {{-- Interval dihapus, akan mengikuti default Bootstrap (5 detik) --}}
-                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $allImages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    
+                    <div class="carousel-item <?php echo e($index === 0 ? 'active' : ''); ?>">
 
                         <div class="d-flex align-items-center"
                             style="height: 100vh; min-height: 600px;
-                        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{{ Storage::url($item['url']) }}') center/cover no-repeat;">
+                        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('<?php echo e(Storage::url($item['url'])); ?>') center/cover no-repeat;">
 
                             <div class="container position-relative text-white" style="z-index: 1;">
                                 <div class="row align-items-center text-start">
                                     <div class="col-lg-8" data-aos="fade-right">
-                                        @if (isset($ppdb) && $ppdb->status === 'Buka')
+                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($ppdb) && $ppdb->status === 'Buka'): ?>
                                             <span class="badge bg-success mb-3 px-3 py-2 rounded-pill shadow-sm">
-                                                <i class="bi bi-megaphone-fill me-2"></i> SPMB {{ $ppdb->tahun_ajaran }}
+                                                <i class="bi bi-megaphone-fill me-2"></i> SPMB <?php echo e($ppdb->tahun_ajaran); ?>
+
                                                 Telah Dibuka
                                             </span>
 
                                             <h1 class="display-4 mb-4 fw-bold">
-                                                {{ $item['title'] ?? 'Seleksi Penerimaan Murid Baru' }}</h1>
+                                                <?php echo e($item['title'] ?? 'Seleksi Penerimaan Murid Baru'); ?></h1>
                                             <p class="lead mb-5" style="max-width: 650px;">
-                                                {{ $item['caption'] ?? 'Mari bergabung bersama kami.' }}</p>
+                                                <?php echo e($item['caption'] ?? 'Mari bergabung bersama kami.'); ?></p>
 
                                             <div class="d-flex gap-3">
-                                                <a href="{{ url('/ppdb') }}"
+                                                <a href="<?php echo e(url('/ppdb')); ?>"
                                                     class="btn btn-outline-light btn-lg rounded-pill px-5 shadow">
                                                     Daftar Sekarang <i class="bi bi-arrow-right ms-2"></i>
                                                 </a>
                                             </div>
-                                        @else
-                                            <h1 class="display-4 mb-4 fw-bold">{{ $item['title'] }}</h1>
-                                            <p class="lead mb-5" style="max-width: 650px;">{{ $item['caption'] }}</p>
+                                        <?php else: ?>
+                                            <h1 class="display-4 mb-4 fw-bold"><?php echo e($item['title']); ?></h1>
+                                            <p class="lead mb-5" style="max-width: 650px;"><?php echo e($item['caption']); ?></p>
 
                                             <div class="d-flex gap-3">
                                                 <a href="#strength"
@@ -67,13 +66,13 @@
                                                     Pelajari Lebih Lanjut <i class="bi bi-arrow-down ms-2"></i>
                                                 </a>
                                             </div>
-                                        @endif
+                                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
         </div>
     </section>
@@ -135,43 +134,44 @@
             </div>
 
             <div class="row g-4 justify-content-center">
-                @forelse ($programUnggulan as $item)
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $programUnggulan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="<?php echo e($loop->iteration * 100); ?>">
                         <div class="card h-100 border rounded-3 overflow-hidden text-start shadow-none">
-                            <img src="{{ asset('storage/' . $item->thumbnail) }}" class="card-img-top object-fit-cover"
-                                style="height: 220px;" alt="{{ $item->nama_program }}">
+                            <img src="<?php echo e(asset('storage/' . $item->thumbnail)); ?>" class="card-img-top object-fit-cover"
+                                style="height: 220px;" alt="<?php echo e($item->nama_program); ?>">
                             <div class="card-body p-4 d-flex flex-column">
                                 <div class="d-flex align-items-center gap-2 mb-3">
                                     <div class="bg-success bg-opacity-10 text-success rounded-3 p-2 d-inline-flex">
-                                        <i class="{{ $item->icon_class ?? 'bi bi-star-fill' }} fs-5"></i>
+                                        <i class="<?php echo e($item->icon_class ?? 'bi bi-star-fill'); ?> fs-5"></i>
                                     </div>
                                     <span class="badge bg-success bg-opacity-10 text-success rounded-pill small">
-                                        {{ $item->badge_text ?? 'Unggulan' }}
+                                        <?php echo e($item->badge_text ?? 'Unggulan'); ?>
+
                                     </span>
                                 </div>
-                                <h5 class="fw-bold mb-2 text-dark">{{ $item->nama_program }}</h5>
-                                <p class="small text-muted mb-4 flex-grow-1">{{ $item->deskripsi_singkat }}</p>
-                                <a href="{{ route('program-unggulan.detail', $item->slug) }}"
+                                <h5 class="fw-bold mb-2 text-dark"><?php echo e($item->nama_program); ?></h5>
+                                <p class="small text-muted mb-4 flex-grow-1"><?php echo e($item->deskripsi_singkat); ?></p>
+                                <a href="<?php echo e(route('program-unggulan.detail', $item->slug)); ?>"
                                     class="btn btn-outline-success btn-sm rounded-pill align-self-start px-4">
                                     Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                @empty
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <div class="col-12 text-center py-5">
                         <p class="text-muted italic">Data program unggulan belum tersedia.</p>
                     </div>
-                @endforelse
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
 
-            @if ($programUnggulan->count() > 0)
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($programUnggulan->count() > 0): ?>
                 <div class="text-center mt-5">
-                    <a href="{{ route('program-unggulan.index') }}" class="btn btn-emerald rounded-pill px-5">
+                    <a href="<?php echo e(route('program-unggulan.index')); ?>" class="btn btn-emerald rounded-pill px-5">
                         Lihat Semua Program Unggulan <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>
-            @endif
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
         </div>
 
         <!--Prestasi-->
@@ -187,7 +187,7 @@
                             style="width: 50px; height: 4px; background-color: #009b4d; margin-top: 10px;"></div>
                     </div>
                     <div class="col-lg-5 text-lg-end mt-3 mt-lg-0" data-aos="fade-left">
-                        <a href="{{ route('prestasi.index') }}" class="btn btn-emerald rounded-pill px-4 text-white"
+                        <a href="<?php echo e(route('prestasi.index')); ?>" class="btn btn-emerald rounded-pill px-4 text-white"
                             style="background-color: #009b4d; border: none;">
                             Lihat Galeri Prestasi <i class="bi bi-arrow-right ms-1"></i>
                         </a>
@@ -195,46 +195,50 @@
                 </div>
 
                 <div class="row g-4">
-                    @forelse ($prestasis as $item)
-                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $prestasis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="<?php echo e($loop->index * 100); ?>">
                             <div class="card h-100 border-0 rounded-4 overflow-hidden shadow-sm transition-all hover-lift"
                                 style="background: #fff;">
 
-                                {{-- Thumbnail dengan Overlay Tingkat di Pojok Kanan --}}
+                                
                                 <div class="position-relative">
-                                    <img src="{{ asset('storage/' . $item->thumbnail) }}" class="w-100 object-fit-cover"
-                                        style="height: 240px;" alt="{{ $item->judul }}">
+                                    <img src="<?php echo e(asset('storage/' . $item->thumbnail)); ?>" class="w-100 object-fit-cover"
+                                        style="height: 240px;" alt="<?php echo e($item->judul); ?>">
 
-                                    {{-- Tingkat: Pojok Kanan Atas Tanpa Icon --}}
+                                    
                                     <div class="position-absolute top-0 end-0 m-3">
                                         <span class="badge px-3 py-2 rounded-pill shadow-sm fw-bold"
                                             style="background-color: rgba(255, 255, 255, 0.9); color: #009b4d; backdrop-filter: blur(4px); font-size: 0.75rem; border: 1px solid #c3e6cb;">
-                                            {{ $item->tingkat }}
+                                            <?php echo e($item->tingkat); ?>
+
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="card-body p-4">
-                                    {{-- Kategori --}}
+                                    
                                     <div class="mb-2">
                                         <span class="badge rounded-pill fw-bold px-3 py-2"
                                             style="background-color: #e6f6ed; color: #009b4d; font-size: 0.75rem; border: 1px solid #c3e6cb;">
-                                            {{ $item->kategori_prestasi }}
+                                            <?php echo e($item->kategori_prestasi); ?>
+
                                         </span>
                                     </div>
 
-                                    {{-- Judul --}}
-                                    <h4 class="fw-bold mb-2 text-dark" style="font-size: 1.25rem;">{{ $item->judul }}
+                                    
+                                    <h4 class="fw-bold mb-2 text-dark" style="font-size: 1.25rem;"><?php echo e($item->judul); ?>
+
                                     </h4>
 
-                                    {{-- Deskripsi Singkat --}}
+                                    
                                     <p class="text-muted mb-4" style="font-size: 0.9rem; line-height: 1.6;">
-                                        {{ $item->deskripsi_singkat ?? Str::limit(strip_tags($item->konten), 100) }}
+                                        <?php echo e($item->deskripsi_singkat ?? Str::limit(strip_tags($item->konten), 100)); ?>
+
                                     </p>
 
-                                    {{-- Footer Card: Link Detail --}}
+                                    
                                     <div class="mt-auto pt-3 border-top d-flex justify-content-end align-items-center">
-                                        <a href="{{ route('prestasi.show', $item->slug) }}"
+                                        <a href="<?php echo e(route('prestasi.show', $item->slug)); ?>"
                                             class="text-decoration-none fw-bold d-flex align-items-center"
                                             style="color: #009b4d; font-size: 0.85rem;">
                                             Selengkapnya <i class="bi bi-chevron-right ms-1"></i>
@@ -243,14 +247,14 @@
                                 </div>
                             </div>
                         </div>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <div class="col-12 text-center py-5">
                             <div class="p-5 border rounded-4 bg-light">
                                 <i class="bi bi-inboxes fs-1 text-muted"></i>
                                 <p class="text-muted mt-3">Belum ada data prestasi terbaru untuk ditampilkan.</p>
                             </div>
                         </div>
-                    @endforelse
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                 </div>
             </div>
         </section>
@@ -269,39 +273,40 @@
                 </div>
 
                 <div class="row g-4 justify-content-center">
-                    @forelse ($fasilitas as $f)
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $fasilitas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $f): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="col-md-6 col-lg-4" data-aos="fade-up">
                             <div class="card border-0 shadow-sm rounded-4 h-100 p-4 border">
                                 <div class="bg-success bg-opacity-10 text-success rounded-3 d-flex align-items-center justify-content-center mb-3"
                                     style="width:48px;height:48px;">
-                                    <i class="{{ $f->icon_class ?? 'bi bi-building' }} fs-4"></i>
+                                    <i class="<?php echo e($f->icon_class ?? 'bi bi-building'); ?> fs-4"></i>
                                 </div>
 
-                                <h5 class="fw-bold mb-2">{{ $f->nama_fasilitas }}</h5>
+                                <h5 class="fw-bold mb-2"><?php echo e($f->nama_fasilitas); ?></h5>
                                 <p class="text-muted small mb-4">
-                                    {{ $f->deskripsi_singkat }}
+                                    <?php echo e($f->deskripsi_singkat); ?>
+
                                 </p>
 
-                                <a href="{{ route('fasilitas.detail', $f->slug) }}"
+                                <a href="<?php echo e(route('fasilitas.detail', $f->slug)); ?>"
                                     class="text-success text-decoration-none fw-bold small d-flex align-items-center mt-auto">
                                     Selengkapnya <i class="bi bi-chevron-right ms-1" style="font-size: 0.8rem;"></i>
                                 </a>
                             </div>
                         </div>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <div class="col-12 text-center py-5">
                             <p class="text-muted italic">Data fasilitas sekolah belum tersedia.</p>
                         </div>
-                    @endforelse
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                 </div>
 
-                @if ($fasilitas->count() > 0)
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($fasilitas->count() > 0): ?>
                     <div class="text-center mt-5">
-                        <a href="{{ route('fasilitas.index') }}" class="btn btn-success rounded-pill px-4 py-2">
+                        <a href="<?php echo e(route('fasilitas.index')); ?>" class="btn btn-success rounded-pill px-4 py-2">
                             Lihat Semua Fasilitas <i class="bi bi-arrow-right ms-1"></i>
                         </a>
                     </div>
-                @endif
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
         </section>
         <!-- End Fasilitas Section-->
@@ -319,90 +324,42 @@
                 </div>
 
                 <div class="row g-4 justify-content-center">
-                    @forelse ($ekstrakulikulers as $ekskul)
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $ekstrakulikulers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ekskul): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up"
-                            data-aos-delay="{{ $loop->index * 100 }}">
+                            data-aos-delay="<?php echo e($loop->index * 100); ?>">
                             <div class="card border rounded-3 overflow-hidden shadow-none text-center p-4 h-100">
                                 <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mx-auto mb-3"
                                     style="width:56px;height:56px;">
-                                    <i class="bi {{ $ekskul->icon_class }} fs-4"></i>
+                                    <i class="bi <?php echo e($ekskul->icon_class); ?> fs-4"></i>
                                 </div>
-                                <h6 class="fw-bold mb-1">{{ $ekskul->nama_ekskul }}</h6>
-                                <p class="text-muted small mb-2">{{ Str::limit($ekskul->deskripsi_singkat, 40) }}</p>
-                                <a href="{{ route('ekstrakulikuler.detail', $ekskul->slug) }}"
+                                <h6 class="fw-bold mb-1"><?php echo e($ekskul->nama_ekskul); ?></h6>
+                                <p class="text-muted small mb-2"><?php echo e(Str::limit($ekskul->deskripsi_singkat, 40)); ?></p>
+                                <a href="<?php echo e(route('ekstrakulikuler.detail', $ekskul->slug)); ?>"
                                     class="text-success small fw-semibold text-decoration-none mt-auto">Read More <i
                                         class="bi bi-chevron-right"></i></a>
                             </div>
                         </div>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <div class="col-12 text-center text-muted">
                             <p>Belum ada data ekstrakurikuler.</p>
                         </div>
-                    @endforelse
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
-                    {{-- Logika: Button cuma muncul jika data tidak kosong --}}
-                    @if ($ekstrakulikulers->count() > 0)
+                    
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($ekstrakulikulers->count() > 0): ?>
                         <div class="text-center mt-5 w-100">
-                            <a href="{{ route('ekstrakulikuler.index') }}" class="btn btn-success rounded-pill px-5">
+                            <a href="<?php echo e(route('ekstrakulikuler.index')); ?>" class="btn btn-success rounded-pill px-5">
                                 Lihat Semua Ekskul <i class="bi bi-arrow-right ms-1"></i>
                             </a>
                         </div>
-                    @endif
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                 </div>
             </div>
         </section>
         <!--End Ekstrakulikuler Section-->
 
-        {{-- <!-- Advanced Instagram Feed: Kegiatan Terbaru -->
-        <section id="instagram-feed" class="py-5" style="background: #f8fafc;">
-            <div class="container py-5">
-                <div class="row align-items-center mb-5">
-                    <div class="col-md-7" data-aos="fade-right">
-                        <span
-                            class="badge text-bg-success mb-2 px-3 py-2 rounded-pill fw-normal d-inline-flex align-items-center gap-2">
-                            <span class="live-dot"></span> Live Feed
-                        </span>
-                        <h2 class="fw-bold display-6 mt-2">Kegiatan <span class="text-success">Terbaru</span></h2>
-                        <div class="stripe-red" style="margin-left:0;"></div>
-                        <p class="text-muted mt-3">Dokumentasi momen nyata siswa kami, diperbarui secara real-time dari
-                            Instagram.</p>
-                    </div>
-                    <div class="col-md-5 text-md-end mt-3 mt-md-0" data-aos="fade-left">
-                        <a href="https://instagram.com" target="_blank" class="btn btn-instagram shadow">
-                            <i class="bi bi-instagram me-2"></i>Follow @SmpAlHusainiyyah
-                        </a>
-                    </div>
-                </div>
+        
 
-                <div class="ig-grid" data-aos="zoom-in">
-                    @php
-                        $captions = [
-                            'Upacara peringatan Hari Pendidikan bersama seluruh warga sekolah. 🎓',
-                            'Latihan rutin pencak silat yang menghasilkan juara-juara baru! 🥋',
-                            'Suasana belajar siswa di kelas dengan penuh semangat. 📚',
-                            'Kegiatan Jumat berkah bersama guru dan siswa. 🤲',
-                        ];
-                    @endphp
-                    @for ($i = 1; $i <= 4; $i++)
-                        <div class="ig-item shadow-sm position-relative">
-                            <img src="{{ asset('assets/images/activity-0' . ($i > 3 ? 1 : $i) . '.jpg') }}"
-                                alt="Feed {{ $i }}" loading="lazy">
-                            <div class="ig-overlay">
-                                <div class="ig-stats">
-                                    <span><i class="bi bi-heart-fill me-1"></i> {{ rand(80, 350) }}</span>
-                                    <span><i class="bi bi-chat-fill me-1"></i> {{ rand(5, 40) }}</span>
-                                </div>
-                                <p class="ig-caption small mt-2 px-2">{{ $captions[$i - 1] }}</p>
-                            </div>
-                            @if ($i === 1)
-                                <div class="live-indicator">
-                                    <span class="live-dot me-1"></span> LIVE
-                                </div>
-                            @endif
-                        </div>
-                    @endfor
-                </div>
-            </div>
-        </section> --}}
+    <?php $__env->stopSection(); ?>
 
-    @endsection
+<?php echo $__env->make('layouts.layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\belajar\laravel-website-sekolah\web-profile-sekolah\resources\views/welcome.blade.php ENDPATH**/ ?>

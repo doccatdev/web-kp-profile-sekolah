@@ -18,6 +18,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Illuminate\Support\HtmlString;
 
 class DashboardPanelProvider extends PanelProvider
 {
@@ -32,7 +33,14 @@ class DashboardPanelProvider extends PanelProvider
                 'primary' => Color::Amber,
             ])
             // --- Logo Panel ---
-
+            ->brandLogo(new HtmlString('
+                <div class="flex items-center gap-3">
+                    <img src="' . asset('assets/icons/logo-sekolah.png') . '" alt="Logo" style="height: 2.5rem;">
+                    <span class="text-xl font-bold tracking-tight">
+                        SMP Al-Husainiyyah
+                    </span>
+                </div>
+            '))
             // --- FITUR NOTIFIKASI ---
             ->databaseNotifications()
             ->databaseNotificationsPolling('30s')
@@ -44,7 +52,7 @@ class DashboardPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+                //Widgets\AccountWidget::class,
                 //Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([

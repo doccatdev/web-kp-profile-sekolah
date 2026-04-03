@@ -9,4 +9,4 @@
     <?php echo e($getChildComponentContainer()); ?>
 
 </div>
-<?php /**PATH E:\belajar\laravel-website-sekolah\web-profile-sekolah\vendor\filament\forms\resources\views/components/grid.blade.php ENDPATH**/ ?>
+<?php /**PATH E:\belajar\laravel-website-sekolah\web-profile-sekolah\vendor\filament\forms\resources\views/components/group.blade.php ENDPATH**/ ?>

@@ -1,46 +1,46 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{ asset('assets/icons/favicon-sekolah.ico') }}">
-    <title>{{ config('app.name', 'SMP Al-Husainiyyah') }}</title>
+    <link rel="shortcut icon" href="<?php echo e(asset('assets/icons/favicon-sekolah.ico')); ?>">
+    <title><?php echo e(config('app.name', 'SMP Al-Husainiyyah')); ?></title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>">
 </head>
 
 <body class="bg-light d-flex flex-column min-vh-100">
 
-    @include('layouts.navbar')
+    <?php echo $__env->make('layouts.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <main class="flex-grow-1">
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
     </main>
 
-    {{-- FOOTER SECTION --}}
+    
     <footer id="footer" class="bg-white border-top mt-5">
         <div class="container py-5">
             <div class="row align-items-start g-4" data-aos="fade-up">
-                {{-- 1. Navigasi --}}
+                
                 <div class="col-12 col-md-3">
                     <h5 class="fw-bold mb-3">Navigasi</h5>
                     <ul class="nav flex-column gap-1 list-unstyled">
-                        <li><a href="{{ url('/profil/profil-sekolah') }}" class="text-decoration-none text-muted small">Profil</a></li>
-                        <li><a href="{{ url('/ekstrakulikuler') }}" class="text-decoration-none text-muted small">Ekstrakulikuler</a></li>
-                        <li><a href="{{ url('/berita') }}" class="text-decoration-none text-muted small">Berita</a></li>
-                        <li><a href="{{ url('/pengumuman') }}" class="text-decoration-none text-muted small">Pengumuman</a></li>
-                        <li><a href="{{ url('/ppdb') }}" class="text-decoration-none text-muted small">PPDB</a></li>
-                        <li><a href="{{ url('/prestasi') }}" class="text-decoration-none text-muted small">Prestasi</a></li>
-                        <li><a href="{{ url('/kontak') }}" class="text-decoration-none text-muted small">Kontak</a></li>
+                        <li><a href="<?php echo e(url('/profil/profil-sekolah')); ?>" class="text-decoration-none text-muted small">Profil</a></li>
+                        <li><a href="<?php echo e(url('/ekstrakulikuler')); ?>" class="text-decoration-none text-muted small">Ekstrakulikuler</a></li>
+                        <li><a href="<?php echo e(url('/berita')); ?>" class="text-decoration-none text-muted small">Berita</a></li>
+                        <li><a href="<?php echo e(url('/pengumuman')); ?>" class="text-decoration-none text-muted small">Pengumuman</a></li>
+                        <li><a href="<?php echo e(url('/ppdb')); ?>" class="text-decoration-none text-muted small">PPDB</a></li>
+                        <li><a href="<?php echo e(url('/prestasi')); ?>" class="text-decoration-none text-muted small">Prestasi</a></li>
+                        <li><a href="<?php echo e(url('/kontak')); ?>" class="text-decoration-none text-muted small">Kontak</a></li>
                     </ul>
                 </div>
 
-                {{-- 2. Media Sosial --}}
+                
                 <div class="col-12 col-md-3">
                     <h5 class="fw-bold mb-3">Media Sosial Kami</h5>
                     <div class="d-flex gap-3">
@@ -50,37 +50,37 @@
                     </div>
                 </div>
 
-                {{-- 3. Kontak Kami --}}
+                
                 <div class="col-12 col-md-3">
                     <h5 class="fw-bold mb-3">Kontak Kami</h5>
                     <ul class="list-unstyled text-muted small">
                         <li class="d-flex align-items-center mb-3">
                             <i class="bi bi-telephone-fill me-2 text-success fs-5"></i>
-                            <span class="text-break">{{ $kontak->phone ?? '-' }}</span>
+                            <span class="text-break"><?php echo e($kontak->phone ?? '-'); ?></span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
                             <i class="bi bi-envelope-at-fill me-2 text-success fs-5"></i>
-                            <span class="text-break">{{ $kontak->email ?? '-' }}</span>
+                            <span class="text-break"><?php echo e($kontak->email ?? '-'); ?></span>
                         </li>
                     </ul>
                 </div>
 
-                {{-- 4. Alamat Sekolah --}}
+                
                 <div class="col-12 col-md-3">
                     <h5 class="fw-bold mb-3">Alamat Sekolah</h5>
                     <div class="d-flex small text-muted">
                         <i class="bi bi-geo-alt-fill me-2 text-success fs-5"></i>
-                        <p class="mb-0">{{ $kontak->address ?? 'Alamat belum diatur' }}</p>
+                        <p class="mb-0"><?php echo e($kontak->address ?? 'Alamat belum diatur'); ?></p>
                     </div>
                 </div>
             </div>
             <hr class="my-4 opacity-25">
-            <p class="text-center small text-muted mb-0">&copy; {{ date('Y') }} SMP Al Husainiyyah. All rights reserved.</p>
+            <p class="text-center small text-muted mb-0">&copy; <?php echo e(date('Y')); ?> SMP Al Husainiyyah. All rights reserved.</p>
         </div>
     </footer>
 
-    {{-- CAROUSEL NOTIFIKASI --}}
-    @if (isset($allUpdates) && $allUpdates->count() > 0)
+    
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($allUpdates) && $allUpdates->count() > 0): ?>
         <div id="update-toast" class="card shadow-lg border-0 p-3"
             style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; max-width: 320px; display: none; border-right: 5px solid #198754 !important;">
 
@@ -91,8 +91,8 @@
 
                 <div id="toastCarousel" class="carousel slide flex-grow-1" data-bs-ride="carousel" data-bs-interval="5000">
                     <div class="carousel-inner">
-                        @foreach ($allUpdates as $item)
-                            @php
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $allUpdates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php
                                 // --- LOGIKA FILTER STATUS PPDB ---
                                 if ($item instanceof \App\Models\PpdbInfo && strtolower($item->status) !== 'buka') {
                                     continue; // Lewati jika PPDB tutup
@@ -130,25 +130,26 @@
                                 $data = $config[$class] ?? null;
 
                                 if (!$data) continue;
-                            @endphp
+                            ?>
 
-                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                <span class="badge {{ $data['bg'] }} mb-1" style="font-size: 9px;">{{ strtoupper($data['type']) }}</span>
+                            <div class="carousel-item <?php echo e($loop->first ? 'active' : ''); ?>">
+                                <span class="badge <?php echo e($data['bg']); ?> mb-1" style="font-size: 9px;"><?php echo e(strtoupper($data['type'])); ?></span>
                                 <p class="fw-bold mb-1 text-dark" style="font-size: 13px; line-height: 1.3;">
-                                    {{ Str::limit($data['title'], 60) }}
+                                    <?php echo e(Str::limit($data['title'], 60)); ?>
+
                                 </p>
-                                <a href="{{ $data['link'] }}" class="small fw-bold text-success text-decoration-none d-flex align-items-center" style="font-size: 11px;">
+                                <a href="<?php echo e($data['link']); ?>" class="small fw-bold text-success text-decoration-none d-flex align-items-center" style="font-size: 11px;">
                                     Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
                                 </a>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                     </div>
                 </div>
 
                 <button type="button" class="btn-close ms-auto shadow-none" style="font-size: 10px;" onclick="hideToast()"></button>
             </div>
         </div>
-    @endif
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -193,3 +194,4 @@
     </script>
 </body>
 </html>
+<?php /**PATH E:\belajar\laravel-website-sekolah\web-profile-sekolah\resources\views/layouts/layouts.blade.php ENDPATH**/ ?>

@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
             if (Schema::hasTable('pengumuman_sekolah')) {
                 $updates->push(PengumumanSekolah::latest()->first());
             }
-            if (Schema::hasTable('prestasis')) {
+            if (Schema::hasTable('prestasi')) {
                 $updates->push(Prestasi::latest()->first());
             }
             if (Schema::hasTable('ppdb_info')) {
