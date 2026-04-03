@@ -11,6 +11,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\PengumumanSekolahController;
 use App\Http\Controllers\EkstrakulikulerController;
 use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
 
@@ -74,6 +75,7 @@ Route::get('/profil/data-guru/{slug}', [GuruController::class, 'detail'])->name(
 // Informasi: Berita
 Route::get('/berita', [BlogController::class, 'index'])->name('berita.index');
 Route::get('/berita/{slug}', [BlogController::class, 'show'])->name('berita.show');
+Route::post('/comment',[CommentController::class,'store'])->name('comment.store');
 
 // Informasi: Pengumuman
 

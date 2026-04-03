@@ -34,15 +34,17 @@ class BlogController extends Controller
 
     public function show($slug)
     {
-        // Ambil detail berita utama
         $item = News::where('slug', $slug)->firstOrFail();
 
-        // Ambil 4 berita terbaru lainnya, kecualikan berita yang sedang tampil
-        $beritaLainnya = News::where('id', '!=', $item->id)
-            ->latest('posted_at')
-            ->take(4)
+        // Ambil komentar approved untuk berita ini
+        $comments = \App\Models\Comment::where('news_id', $item->id)
+            ->where('is_approved', true)
+            ->whereNull('parent_id') // Fokus ke komentar utama saja dulu
+            ->latest()
             ->get();
 
-        return view('berita.detail', compact('item', 'beritaLainnya'));
+        $beritaLainnya = News::where('id', '!=', $item->id)->latest()->take(4)->get();
+
+        return view('berita.detail', compact('item', 'beritaLainnya', 'comments'));
     }
 }

@@ -40,7 +40,7 @@
                     {{-- Tingkat Prestasi --}}
                     <span class="d-inline-flex align-items-center">
                         <i class="bi bi-trophy me-2 text-success"></i>
-                        <span>Tingkat: {{ $prestasi->tingkat_prestasi }}</span>
+                        <span>Tingkat: {{ $prestasi->tingkat }}</span>
                     </span>
                 </div>
             </div>
