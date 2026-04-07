@@ -102,7 +102,7 @@ class ProgramUnggulanResource extends Resource
                                     ->directory('program-unggulan/galleries')
                                     // --- VALIDASI & HELPER ---
                                     ->acceptedFileTypes(['image/jpeg', 'image/jpg','image/png', 'image/webp'])
-                                    ->maxSize(1024) // 1MB untuk galeri biar gak berat
+                                    ->maxSize(2048) // 1MB untuk galeri biar gak berat
                                     ->helperText('Format: JPEG/JPG/PNG/WEBP/. Max 1MB.'),
 
                                 TextInput::make('caption')

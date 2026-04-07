@@ -34,7 +34,7 @@
                         <li><a href="{{ url('/ekstrakulikuler') }}" class="text-decoration-none text-muted small">Ekstrakulikuler</a></li>
                         <li><a href="{{ url('/berita') }}" class="text-decoration-none text-muted small">Berita</a></li>
                         <li><a href="{{ url('/pengumuman') }}" class="text-decoration-none text-muted small">Pengumuman</a></li>
-                        <li><a href="{{ url('/ppdb') }}" class="text-decoration-none text-muted small">PPDB</a></li>
+                        <li><a href="{{ url('/ppdb') }}" class="text-decoration-none text-muted small">SPMB</a></li>
                         <li><a href="{{ url('/prestasi') }}" class="text-decoration-none text-muted small">Prestasi</a></li>
                         <li><a href="{{ url('/kontak') }}" class="text-decoration-none text-muted small">Kontak</a></li>
                     </ul>

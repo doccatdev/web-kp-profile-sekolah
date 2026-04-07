@@ -1,43 +1,56 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top main-navbar transition-all">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top main-navbar transition-all"
+    style="background-color: #fff; border-bottom: 1px solid #eee; padding: 5px 0;">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-            <img src="{{ asset('assets/icons/favicon-sekolah.ico') }}" height="45" width="45" alt="Logo"
+        <a class="navbar-brand d-flex align-items-center me-0" href="{{ url('/') }}">
+            <img src="{{ asset('assets/icons/favicon-sekolah.ico') }}" height="50" width="50" alt="Logo"
                 class="me-2">
             <div class="brand-text">
-                <span class="d-block fw-bold lh-1 brand-name"
-                    style="font-size: 1rem; letter-spacing: 0.5px; color: var(--emerald-green);">
+                <span class="d-block fw-bold lh-1"
+                    style="font-size: 0.8rem; color: var(--emerald-green); letter-spacing: 0.3px;">
+                    Yayasan Al-Husainiyyah Muthoyyibah
+                </span>
+
+                <span class="d-block fw-black lh-sm"
+                    style="font-size: 1.05rem; color: var(--emerald-green); font-weight: 800; margin: 1px 0;">
                     SMP AL-HUSAINIYYAH
                 </span>
 
-                <small class="fw-normal brand-sub"
-                    style="font-size: 0.65rem; opacity: 0.9; color: var(--emerald-green);">
-                    Yayasan Al-Husainiyyah Muthoyyibah
-                </small>
+                <div style="line-height: 1.1;">
+                    <small class="fw-bold" style="font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <span style="color: #3498db;">Cerdas</span>,
+                        <span style="color: #f1c40f;">Berkarakter</span>,
+                        <span style="color: #e67e22;">Religius</span>
+                    </small>
+                    <span class="d-block text-muted fw-normal" style="font-size: 0.55rem;">
+                        JL. Bukit Jarian No. 29/165D Kel. Hegarmanah, Kota Bandung
+                    </span>
+                </div>
             </div>
         </a>
 
-        <div class="d-flex align-items-center order-lg-3 gap-2">
+        <div class="d-flex align-items-center order-lg-3 gap-2 ms-auto ms-lg-4">
             <a href="{{ url('/admin') }}"
-                class="btn btn-outline-light rounded-pill px-3 btn-sm fw-medium d-flex align-items-center"
-                style="font-size: 0.75rem; border-width: 1.5px; height: 32px;">
+                class="btn btn-success rounded-pill px-3 btn-sm fw-medium d-flex align-items-center justify-content-center"
+                style="font-size: 0.7rem; height: 32px; background-color: #008156; border: none; min-width: 100px;">
                 Portal Admin
             </a>
 
             <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse"
-                data-bs-target="#mainNav">
-                <span class="navbar-toggler-icon" style="width: 24px;"></span>
+                data-bs-target="#mainNav" style="background-color: var(--emerald-green); padding: 5px !important;">
+                <span class="navbar-toggler-icon" style="width: 20px; height: 20px;"></span>
             </button>
         </div>
 
         <div class="collapse navbar-collapse order-lg-2" id="mainNav">
-            <ul class="navbar-nav me-auto ps-lg-3 gap-lg-1">
+            <ul class="navbar-nav mx-auto gap-lg-1" style="font-size: 0.85rem;">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Beranda</a>
+                    <a class="nav-link px-2 {{ request()->is('/') ? 'active' : '' }}"
+                        href="{{ url('/') }}">Beranda</a>
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ request()->is('profil*') ? 'active' : '' }}" href="#"
-                        role="button" data-bs-toggle="dropdown">Profil</a>
+                    <a class="nav-link px-2 dropdown-toggle {{ request()->is('profil*') ? 'active' : '' }}"
+                        href="#" role="button" data-bs-toggle="dropdown">Profil</a>
                     <ul class="dropdown-menu shadow-sm border-0 animate slideIn">
                         <li><a class="dropdown-item" href="{{ url('/profil/profil-sekolah') }}">Profil Sekolah</a></li>
                         <li><a class="dropdown-item" href="{{ url('/profil/sejarah') }}">Sejarah</a></li>
@@ -52,12 +65,12 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('ekstrakulikuler*') ? 'active' : '' }}"
+                    <a class="nav-link px-2 {{ request()->is('ekstrakulikuler*') ? 'active' : '' }}"
                         href="{{ url('/ekstrakulikuler') }}">Ekstrakurikuler</a>
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ request()->is('pengumuman*') || request()->is('berita*') ? 'active' : '' }}"
+                    <a class="nav-link px-2 dropdown-toggle {{ request()->is('pengumuman*') || request()->is('berita*') ? 'active' : '' }}"
                         href="#" role="button" data-bs-toggle="dropdown">Informasi</a>
                     <ul class="dropdown-menu shadow-sm border-0 animate slideIn">
                         <li><a class="dropdown-item" href="{{ url('/pengumuman') }}">Pengumuman</a></li>
@@ -66,17 +79,17 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('ppdb*') ? 'active' : '' }}"
-                        href="{{ url('/ppdb') }}">PPDB</a>
+                    <a class="nav-link px-2 {{ request()->is('ppdb*') ? 'active' : '' }}"
+                        href="{{ url('/ppdb') }}">SPMB</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('prestasi*') ? 'active' : '' }}"
+                    <a class="nav-link px-2 {{ request()->is('prestasi*') ? 'active' : '' }}"
                         href="{{ url('/prestasi') }}">Prestasi</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('kontak*') ? 'active' : '' }}"
+                    <a class="nav-link px-2 {{ request()->is('kontak*') ? 'active' : '' }}"
                         href="{{ url('/kontak') }}">Kontak</a>
                 </li>
             </ul>

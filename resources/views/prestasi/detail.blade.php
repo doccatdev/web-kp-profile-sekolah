@@ -32,7 +32,7 @@
                     {{-- Jenis Prestasi --}}
                     <span class="d-inline-flex align-items-center">
                         <i class="bi bi-tag me-2 text-success"></i>
-                        <span>Jenis: {{ $prestasi->kategori_prestasi }}</span>
+                        <span>Jenis Pretasi: {{ $prestasi->kategori_prestasi }}</span>
                     </span>
 
                     <span class="d-none d-md-inline text-muted">·</span>
@@ -40,7 +40,7 @@
                     {{-- Tingkat Prestasi --}}
                     <span class="d-inline-flex align-items-center">
                         <i class="bi bi-trophy me-2 text-success"></i>
-                        <span>Tingkat: {{ $prestasi->tingkat }}</span>
+                        <span>Tingkat Prestasi: {{ $prestasi->tingkat }}</span>
                     </span>
                 </div>
             </div>

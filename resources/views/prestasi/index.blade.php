@@ -49,7 +49,7 @@
                                     <a href="{{ route('prestasi.show', $item->slug) }}"
                                         class="btn btn-outline-light btn-sm rounded-pill px-4 mt-2 border-2 fw-bold"
                                         style="backdrop-filter: blur(8px);">
-                                        Lihat Galeri <i class="bi bi-arrow-right ms-1"></i>
+                                        Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
                                     </a>
                                 </div>
                             </div>

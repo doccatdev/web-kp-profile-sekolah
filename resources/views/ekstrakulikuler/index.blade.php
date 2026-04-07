@@ -49,7 +49,7 @@
                                             <i class="bi bi-person-check me-1"></i>{{ $ekskul->pembina }}
                                         </small>
                                         <a href="{{ route('ekstrakulikuler.detail', $ekskul->slug) }}"
-                                            class="btn btn-outline-success btn-sm rounded-pill px-4">Read More</a>
+                                            class="btn btn-outline-success btn-sm rounded-pill px-4">Selengkapnya</a>
                                     </div>
                                 </div>
                             </div>

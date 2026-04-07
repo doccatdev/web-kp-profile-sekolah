@@ -104,8 +104,8 @@ class FasilitasResource extends Resource
                                     ->required()
                                     // --- TAMBAHAN VALIDASI ---
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])
-                                    ->maxSize(1024) // 1MB untuk galeri
-                                    ->helperText('Format: JPG/JPEG/PNG/WEBP. Max: 1MB.'),
+                                    ->maxSize(2048) // 1MB untuk galeri
+                                    ->helperText('Format: JPG/JPEG/PNG/WEBP. Max: 2MB.'),
 
                                 TextInput::make('caption')
                                     ->label('Keterangan Gambar')

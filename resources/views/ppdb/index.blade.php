@@ -10,12 +10,12 @@
                     style="margin-top: 76px; background-color: var(--emerald-green, #009b4d);">
                     <div class="container py-5 text-center">
                         <span class="badge text-bg-light text-success mb-2 px-3 py-2 rounded-pill fw-bold border-0 shadow-sm"
-                            data-aos="fade-down">Penerimaan Siswa Baru</span>
-                        <h1 class="display-4 fw-bold" data-aos="fade-down" data-aos-delay="100">PPDB TA
+                            data-aos="fade-down">Penerimaan Murid Baru</span>
+                        <h1 class="display-4 fw-bold" data-aos="fade-down" data-aos-delay="100">SPMB TA
                             {{ $ppdb->tahun_ajaran }}</h1>
                         <p class="lead mb-0 opacity-75 mx-auto mt-2" style="max-width: 600px;" data-aos="fade-up"
                             data-aos-delay="200">
-                            Informasi lengkap syarat pendaftaran, biaya, dan brosur Penerimaan Peserta Didik Baru SMP
+                            Informasi lengkap syarat pendaftaran, biaya, dan brosur Seleksi Penerimaan Murid Baru SMP
                             Al-Husainiyyah.
                         </p>
                     </div>
@@ -108,7 +108,7 @@
                                             $message = urlencode(
                                                 'Halo ' .
                                                     $contact->nama_admin .
-                                                    ', saya ingin bertanya mengenai PPDB TA ' .
+                                                    ', saya ingin bertanya mengenai SPMB TA ' .
                                                     $ppdb->tahun_ajaran,
                                             );
                                         @endphp

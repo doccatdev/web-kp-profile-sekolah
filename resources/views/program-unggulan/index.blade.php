@@ -28,7 +28,7 @@
                                 <h5 class="fw-bold mb-2 text-dark">{{ $item->nama_program }}</h5>
                                 <p class="small text-muted mb-4 flex-grow-1">{{ $item->deskripsi_singkat }}</p>
                                 <a href="{{ route('program-unggulan.detail', $item->slug) }}" class="btn btn-outline-success btn-sm rounded-pill align-self-start px-4">
-                                    Read More <i class="bi bi-arrow-right ms-1"></i>
+                                    Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
                                 </a>
                             </div>
                         </div>

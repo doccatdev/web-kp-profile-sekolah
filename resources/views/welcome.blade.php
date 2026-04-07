@@ -189,7 +189,7 @@
                     <div class="col-lg-5 text-lg-end mt-3 mt-lg-0" data-aos="fade-left">
                         <a href="{{ route('prestasi.index') }}" class="btn btn-emerald rounded-pill px-4 text-white"
                             style="background-color: #009b4d; border: none;">
-                            Lihat Galeri Prestasi <i class="bi bi-arrow-right ms-1"></i>
+                            Lihat Semua Prestasi <i class="bi bi-arrow-right ms-1"></i>
                         </a>
                     </div>
                 </div>
