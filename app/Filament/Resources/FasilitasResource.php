@@ -16,6 +16,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 
 // --- IMPORT COMPONENT TABLE ---
 use Filament\Tables\Columns\TextColumn;
@@ -47,7 +48,7 @@ class FasilitasResource extends Resource
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
+                            ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
 
                         TextInput::make('slug')
                             ->required()
@@ -55,10 +56,22 @@ class FasilitasResource extends Resource
                             ->dehydrated()
                             ->unique(Fasilitas::class, 'slug', ignoreRecord: true),
 
-                        TextInput::make('icon_class')
+                        Select::make('icon_class')
                             ->label('Icon Class (Bootstrap Icons)')
-                            ->placeholder('bi bi-laptop')
-                            ->helperText('Contoh: bi bi-laptop, bi bi-book.'),
+                            ->default('bi bi-building') // Koma dihapus
+                            ->options([ // Pakai 'options' (jamak)
+                                'bi bi-pc-display' => 'Lab Komputer',
+                                'bi bi-bicycle' => 'Sarana Olahraga',
+                                'fas fa-pray' => 'Masjid',
+                                'bi bi-music-note' => 'Alat Kesenian',
+                                'bi bi-badge-wc' => 'Toilet',
+                                'bi bi-building' => 'Default Icon',
+                                'bi bi-collection' => 'Perpustakaan',
+                                'bi bi-badge-wc-fill' => 'Wastafel',
+                                'bi bi-mortarboard' => 'Ruang Belajar',
+                                'bi bi-grid-3x3-gap-fill' => 'Ruang Serba Guna',
+                            ])
+                            ->helperText('Contoh: bi bi-laptop'), // Titik koma hanya di paling akhir,
 
                         FileUpload::make('thumbnail')
                             ->label('Foto Utama (Thumbnail)')

@@ -16,6 +16,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 
 // --- IMPORT COMPONENT TABLE ---
 use Filament\Tables\Columns\TextColumn;
@@ -58,9 +59,13 @@ class ProgramUnggulanResource extends Resource
                         TextInput::make('badge_text')
                             ->label('Label (Contoh: Tahfidz)'),
 
-                        TextInput::make('icon_class')
+                        Select::make('icon_class')
                             ->label('Icon Class')
-                            ->default('bi bi-star'),
+                            ->default('bi bi-star')
+                            ->options([
+                                'bi bi-star' => 'Default Icon',
+
+                            ]),
                     ])->columns(2),
 
                 // SECTION 2: Media & Deskripsi

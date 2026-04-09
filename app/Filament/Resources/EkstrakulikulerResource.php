@@ -70,9 +70,7 @@ class EkstrakulikulerResource extends Resource
                                 'bi-person-arms-up' => 'Seni Tari',
                                 'bi-compass' => 'Pramuka',
                                 'bi-music-note-beamed' => 'Seni Musik',
-                                'bi-trophy' => 'Default Icon',
-                                'bi-camera' => 'Fotografi',
-                                'bi-flag' => 'Paskibra',
+                                'bi bi-people-fill' => 'Default Icon',
                             ])
                             ->searchable()
                             ->default('bi-trophy')

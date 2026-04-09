@@ -11,15 +11,34 @@
             <div class="row g-4 justify-content-center">
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $fasilitas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $f): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                        <div class="card border-0 rounded-4 shadow-sm h-100 p-4">
-                            <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style="width:64px;height:64px;">
-                                <i class="<?php echo e($f->icon_class ?? 'bi bi-building'); ?> fs-3"></i>
+                        <div class="card border-0 rounded-4 shadow-sm h-100 overflow-hidden">
+                            
+                            <div class="ratio ratio-16x9 bg-light">
+                                <img src="<?php echo e(asset('storage/' . $f->thumbnail)); ?>" class="object-fit-cover"
+                                    alt="<?php echo e($f->nama_fasilitas); ?>">
+
+                                
+                                <div class="position-absolute top-0 start-0 m-3">
+                                    <div class="bg-white text-success rounded-3 d-flex align-items-center justify-content-center shadow-sm"
+                                        style="width:40px;height:40px;">
+                                        <i class="<?php echo e($f->icon_class ?? 'bi bi-building'); ?> fs-5"></i>
+                                    </div>
+                                </div>
                             </div>
-                            <h4 class="fw-bold mb-3"><?php echo e($f->nama_fasilitas); ?></h4>
-                            <p class="text-muted mb-4 flex-grow-1"><?php echo e($f->deskripsi_singkat); ?></p>
-                            <a href="<?php echo e(route('fasilitas.detail', $f->slug)); ?>" class="btn btn-emerald w-100 rounded-pill mt-auto">
-                                Lihat Detail <i class="bi bi-arrow-right ms-1"></i>
-                            </a>
+
+                            
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h4 class="fw-bold mb-2"><?php echo e($f->nama_fasilitas); ?></h4>
+                                <p class="text-muted mb-4 flex-grow-1" style="font-size: 0.95rem;">
+                                    <?php echo e(Str::limit($f->deskripsi_singkat, 100)); ?>
+
+                                </p>
+
+                                <a href="<?php echo e(route('fasilitas.detail', $f->slug)); ?>"
+                                    class="btn btn-emerald w-100 rounded-pill mt-auto">
+                                    Lihat Detail <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
