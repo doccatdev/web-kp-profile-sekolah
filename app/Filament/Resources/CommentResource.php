@@ -43,14 +43,11 @@ class CommentResource extends Resource
                 Forms\Components\TextInput::make('parent_id')
                     ->numeric()
                     ->default(null),
-                Forms\Components\TextInput::make('guest_name')
-                    ->required()
+                Forms\Components\TextInput::make('Nama Pengunjung')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('guest_mail')
-                    ->required()
+                Forms\Components\TextInput::make('Email Pengunjung')
                     ->maxLength(255),
-                Forms\Components\Textarea::make('body')
-                    ->required()
+                Forms\Components\Textarea::make('Komentar')
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('is_approved')
                     ->required(),

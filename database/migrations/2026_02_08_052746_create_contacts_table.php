@@ -16,7 +16,6 @@ return new class extends Migration
             $table->text('address');
             $table->string('email');
             $table->string('phone');
-            $table->text('location')->nullable();
             $table->timestamps();
         });
     }

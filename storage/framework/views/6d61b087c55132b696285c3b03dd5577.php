@@ -30,7 +30,7 @@
                     
                     <span class="d-inline-flex align-items-center">
                         <i class="bi bi-tag me-2 text-success"></i>
-                        <span>Jenis: <?php echo e($prestasi->kategori_prestasi); ?></span>
+                        <span>Jenis Pretasi: <?php echo e($prestasi->kategori_prestasi); ?></span>
                     </span>
 
                     <span class="d-none d-md-inline text-muted">·</span>
@@ -38,7 +38,7 @@
                     
                     <span class="d-inline-flex align-items-center">
                         <i class="bi bi-trophy me-2 text-success"></i>
-                        <span>Tingkat: <?php echo e($prestasi->tingkat); ?></span>
+                        <span>Tingkat Prestasi: <?php echo e($prestasi->tingkat); ?></span>
                     </span>
                 </div>
             </div>

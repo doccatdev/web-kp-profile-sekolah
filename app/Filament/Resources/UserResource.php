@@ -49,12 +49,11 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('password')
                             ->label('Password')
                             ->password()
-                            // Password hanya wajib diisi saat membuat user baru
-                            ->required(fn (string $context): bool => $context === 'create')
-                            // Hash password secara otomatis sebelum disimpan
-                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
-                            // Jangan simpan ke DB jika input dikosongkan (saat edit)
-                            ->dehydrated(fn ($state) => filled($state))
+                            // Hapus ->required() yang sendirian di atas tadi
+                            // Gunakan ini saja:
+                            ->required(fn(string $context): bool => $context === 'create')
+                            ->dehydrateStateUsing(fn($state) => Hash::make($state))
+                            ->dehydrated(fn($state) => filled($state))
                             ->revealable()
                             ->maxLength(255),
 

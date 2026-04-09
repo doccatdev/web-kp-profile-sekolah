@@ -17,6 +17,9 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-light);
     color: var(--text-dark);
+    min-height: 100dvh; /* Gunakan dynamic vh */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Button */
@@ -185,11 +188,10 @@ body {
 
 #hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    min-height: 100dvh; /* Responsif terhadap address bar mobile */
     display: flex;
     align-items: center;
-    overflow: hidden;
+    overflow: visible; /* Ubah ke visible agar tidak memotong elemen */
 }
 
 /* Glassmorphism Classes */
@@ -643,15 +645,17 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
+/* 3. Force Show Footer di Mobile (Mengatasi Bug AOS) */
 @media (max-width: 768px) {
-    .bento-grid {
-        grid-template-columns: 1fr;
+    #footer [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
-    .bento-large, .bento-wide {
-        grid-column: span 1;
-    }
-    .ig-grid {
-        grid-template-columns: 1fr;
+
+    /* Tambahkan padding bawah agar footer tidak tertutup floating toast */
+    body {
+        padding-bottom: 80px;
     }
 }
 
