@@ -51,11 +51,6 @@ class ContactResource extends Resource
                             ->tel()
                             ->required()
                             ->maxLength(255),
-
-                        Textarea::make('location')
-                            ->label('Koordinat Lokasi')
-                            ->placeholder('-6.12345, 106.12345')
-                            ->columnSpanFull(),
                     ])->columns(2),
             ]);
     }

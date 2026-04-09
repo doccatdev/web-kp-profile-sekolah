@@ -13,10 +13,5 @@ class Contact extends Model
         'address',
         'phone',
         'email',
-        'location',
-    ];
-
-    protected $casts = [
-        'location' => 'array',
     ];
 }

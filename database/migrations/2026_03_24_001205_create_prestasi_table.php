@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->text('deskripsi_singkat');
             $table->longText('konten');
-            $table->date('tanggal_prestasi');
+            $table->date('tanggal_posting');
             $table->timestamps();
         });
     }

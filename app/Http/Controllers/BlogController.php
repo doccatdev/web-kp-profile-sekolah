@@ -29,6 +29,10 @@ class BlogController extends Controller
         // Paginator (bukan Collection) agar bisa hasPages() dan links()
         $news = $query->paginate(4)->withQueryString();
 
+        $news->load(['comments'=>function($query) {
+            return $query->where('parent_id',null)->approved()->with('replies');
+        }]);
+
         return view('berita.berita', compact('news', 'categories', 'kategoriAktif'));
     }
 
