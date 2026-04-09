@@ -19,3 +19,6 @@ yarn-error.log
 /laravel.log
 /storage/logs/*
 !.gitignore
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/views/*.php
