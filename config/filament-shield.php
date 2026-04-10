@@ -1,5 +1,7 @@
 <?php
 
+use App\Filament\Resources\CommentResource;
+
 return [
     'shield_resource' => [
         'should_register_navigation' => true,
@@ -56,7 +58,7 @@ return [
         'pages' => true,
         'widgets' => true,
         'resources' => true,
-        'custom_permissions' => false,
+        'custom_permissions' => true,
     ],
 
     'generator' => [
@@ -76,7 +78,9 @@ return [
             'AccountWidget', 'FilamentInfoWidget',
         ],
 
-        'resources' => [],
+        'resources' => [
+
+        ],
     ],
 
     'discovery' => [

@@ -33,8 +33,18 @@ class Comment extends Model
         return $this->hasMany(Comment::class, 'parent_id')->with('replies');
     }
 
+    public function news() :BelongsTo
+    {
+        return $this->belongsTo(News::class);
+    }
+
     public function scopeApproved(Builder $query): Builder
     {
         return $query->where('is_approved', true);
+    }
+
+    public function parent():BelongsTo
+    {
+        return $this->belongsTo(Comment::class, 'parent_id');
     }
 }
