@@ -113,8 +113,9 @@ class EkstrakulikulerResource extends Resource
                                 FileUpload::make('foto')
                                     ->image()
                                     ->directory('ekskul-galeri')
-                                    ->maxSize(3072)
+                                    ->maxSize(2048)
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->helperText('Format: JPG, PNG, atau WEBP. Maksimal: 2MB.')
                                     ->required(),
                                 TextInput::make('caption')
                                     ->label('Keterangan Foto'),
