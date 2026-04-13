@@ -29,6 +29,8 @@ class DashboardPanelProvider extends PanelProvider
             ->id('dashboard')
             ->path('admin')
             ->login()
+            ->authGuard('web')
+            ->homeUrl('/admin/login')
             ->colors([
                 'primary' => Color::Amber,
             ])

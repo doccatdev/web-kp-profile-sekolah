@@ -32,13 +32,14 @@ class AppServiceProvider extends ServiceProvider
 
         // 3. Logika Notifikasi Badge & Multi-Update Toast
         if (!app()->runningInConsole()) {
-            $threshold = now()->subDays(3);
-
-            // Ambil 1 data terbaru dari masing-masing model
+            
+            // Ambil 1 data terbaru dari masing-masing model untuk Carousel/Toast
             $updates = collect();
 
             if (Schema::hasTable('news')) {
-                $updates->push(News::latest()->first());
+                // Ambil berita terbaru yang sudah published tanpa batas waktu
+                $latestNews = News::where('status', 'published')->latest()->first();
+                if ($latestNews) $updates->push($latestNews);
             }
             if (Schema::hasTable('pengumuman_sekolah')) {
                 $updates->push(PengumumanSekolah::latest()->first());
@@ -50,22 +51,22 @@ class AppServiceProvider extends ServiceProvider
                 $updates->push(PpdbInfo::latest()->first());
             }
 
-            // Bersihkan data null (jika tabel kosong) dan urutkan berdasarkan waktu terbaru
+            // Bersihkan data null dan urutkan berdasarkan yang terbaru dibuat
             $allUpdates = $updates->filter()->sortByDesc('created_at');
 
             View::share([
-                // Badge Indikator (untuk Navbar/Menu)
+                // Badge Indikator: Cukup cek apakah ada data yang berstatus published
                 'hasNewBerita' => Schema::hasTable('news')
-                    ? News::where('created_at', '>=', $threshold)->exists() : false,
+                    ? News::where('status', 'published')->exists() : false,
 
                 'hasNewPengumuman' => Schema::hasTable('pengumuman_sekolah')
-                    ? PengumumanSekolah::where('created_at', '>=', $threshold)->exists() : false,
+                    ? PengumumanSekolah::exists() : false,
 
-                'hasNewPrestasi' => Schema::hasTable('prestasis')
-                    ? Prestasi::where('created_at', '>=', $threshold)->exists() : false,
+                'hasNewPrestasi' => Schema::hasTable('prestasi')
+                    ? Prestasi::exists() : false,
 
                 'hasNewPpdb' => Schema::hasTable('ppdb_info')
-                    ? PpdbInfo::where('created_at', '>=', $threshold)->exists() : false,
+                    ? PpdbInfo::exists() : false,
 
                 // Data Utama untuk Carousel Toast
                 'allUpdates' => $allUpdates,

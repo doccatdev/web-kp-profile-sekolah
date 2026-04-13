@@ -1259,3 +1259,23 @@ body {
     opacity: 0.8; /* Slogan sedikit lebih soft tapi tetap hijau */
     font-size: 0.65rem;
 }
+
+/* --- Fix Layout Navbar untuk Layar Menengah --- */
+@media (min-width: 992px) and (max-width: 1200px) {
+    /* Merapatkan jarak antar menu agar tidak nabrak tombol login */
+    .navbar-nav .nav-link {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        font-size: 0.7rem !important; /* Ukuran font diperkecil sedikit */
+    }
+
+    /* Sembunyikan alamat di layar tanggung agar space lega */
+    .brand-text span.d-none.d-xxl-block {
+        display: none !important;
+    }
+}
+
+/* --- Penyesuaian Khusus Menu Ekstrakurikuler --- */
+.nav-item .nav-link span {
+    transition: all 0.2s ease;
+}

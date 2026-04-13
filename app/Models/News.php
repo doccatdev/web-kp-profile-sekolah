@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Storage; // Penting untuk hapus file
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class News extends Model
 {
     use HasFactory;
 
-    // Memberitahu Laravel kolom ini adalah Tanggal
     protected $casts = [
         'posted_at' => 'date',
     ];
@@ -25,48 +25,68 @@ class News extends Model
         'news_content',
         'image',
         'posted_at',
+        'author_id',
+        'status',
     ];
 
-    public function category()
+    // ─── Scopes ──────────────────────────────────────────────
+
+    public function scopePublished($query)
+    {
+        return $query->where('status', 'published');
+    }
+
+    // ─── Relationships ────────────────────────────────────────
+
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function comments() :HasMany
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
+
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
-    public function approvedComments()
-{
-
-    return $this->hasMany(Comment::class)->approved();
-}
-
-    protected static function booted()
+    public function approvedComments(): HasMany
     {
-        // 1. Logika saat SAVING (Auto Excerpt & Slug)
-        static::saving(function ($news) {
-            // Auto Slug jika title berubah atau baru
+        return $this->hasMany(Comment::class)->approved();
+    }
+
+    // ─── Model Events ─────────────────────────────────────────
+
+    protected static function booted(): void
+    {
+        // Auto-generate slug and excerpt on save
+        static::saving(function (News $news) {
             if ($news->isDirty('news_title')) {
                 $news->slug = Str::slug($news->news_title);
             }
 
-            // Jika kolom short_description kosong, isi otomatis dari news_content
             if (empty($news->short_description)) {
                 $news->short_description = Str::of(strip_tags($news->news_content))->limit(50);
             }
+
+            // Always set status to pending when created from frontend
+            if (! $news->exists && empty($news->status)) {
+                $news->status = 'pending';
+            }
         });
 
-        // 2. Logika saat DELETING (Hapus file fisik)
-        static::deleting(function ($news) {
+        // Delete physical image file when record is deleted
+        static::deleting(function (News $news) {
             if ($news->image) {
                 Storage::disk('public')->delete($news->image);
             }
         });
 
-        // 3. Logika saat UPDATING (Hapus file lama jika ganti foto baru)
-        static::updating(function ($news) {
+        // Delete old image file when a new one is uploaded
+        static::updating(function (News $news) {
             if ($news->isDirty('image')) {
                 $oldImage = $news->getOriginal('image');
                 if ($oldImage) {

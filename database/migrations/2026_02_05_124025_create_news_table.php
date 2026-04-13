@@ -20,6 +20,9 @@ return new class extends Migration
             $table->longText('news_content');
             $table->string('image')->nullable();
             $table->date('posted_at');
+            $table->foreignId('author_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->enum('status', ['draft', 'pending', 'published', 'rejected'])->default('pending');
+            $table->text('rejection_reason')->nullable();
             $table->timestamps();
         });
     }

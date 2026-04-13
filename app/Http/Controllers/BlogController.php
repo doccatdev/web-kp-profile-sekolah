@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -13,11 +14,14 @@ class BlogController extends Controller
         $kategoriAktif = $request->query('kategori');
 
         $categories = Category::query()
-            ->withCount('news')
+            ->withCount(['news' => function ($q) {
+                $q->where('status', 'published'); // only count published articles
+            }])
             ->orderBy('name_category')
             ->get();
 
         $query = News::with('category')
+            ->published()                          // only show published articles
             ->orderBy('posted_at', 'desc');
 
         if ($kategoriAktif) {
@@ -26,11 +30,10 @@ class BlogController extends Controller
             });
         }
 
-        // Paginator (bukan Collection) agar bisa hasPages() dan links()
         $news = $query->paginate(4)->withQueryString();
 
-        $news->load(['comments'=>function($query) {
-            return $query->where('parent_id',null)->approved()->with('replies');
+        $news->load(['comments' => function ($query) {
+            return $query->where('parent_id', null)->approved()->with('replies');
         }]);
 
         return view('berita.berita', compact('news', 'categories', 'kategoriAktif'));
@@ -38,16 +41,23 @@ class BlogController extends Controller
 
     public function show($slug)
     {
-        $item = News::where('slug', $slug)->firstOrFail();
+        // Only allow viewing published articles on the frontend
+        $item = News::where('slug', $slug)
+            ->where('status', 'published')
+            ->firstOrFail();
 
-        // Ambil komentar approved untuk berita ini
-        $comments = \App\Models\Comment::where('news_id', $item->id)
+        $comments = Comment::where('news_id', $item->id)
             ->where('is_approved', true)
-            ->whereNull('parent_id') // Fokus ke komentar utama saja dulu
+            ->whereNull('parent_id')
             ->latest()
             ->get();
 
-        $beritaLainnya = News::where('id', '!=', $item->id)->latest()->take(4)->get();
+        // Also only show published articles in the sidebar
+        $beritaLainnya = News::published()
+            ->where('id', '!=', $item->id)
+            ->latest()
+            ->take(4)
+            ->get();
 
         return view('berita.detail', compact('item', 'beritaLainnya', 'comments'));
     }

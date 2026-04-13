@@ -105,14 +105,4 @@ class CommentPolicy
     {
         return $user->can('reorder_comment');
     }
-
-    public function reply(User $user): bool
-    {
-        return $user->can('reply_comment');
-    }
-
-    public function sendNotification(User $user): bool
-    {
-        return $user->can('send_notification_comment');
-    }
 }
