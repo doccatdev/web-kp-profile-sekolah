@@ -33,42 +33,50 @@ class AppServiceProvider extends ServiceProvider
         // 3. Logika Notifikasi Badge & Multi-Update Toast
         if (!app()->runningInConsole()) {
             
-            // Ambil 1 data terbaru dari masing-masing model untuk Carousel/Toast
             $updates = collect();
 
+            // Ambil BERITA (Cuma yang statusnya published, ambil 3 terbaru)
             if (Schema::hasTable('news')) {
-                // Ambil berita terbaru yang sudah published tanpa batas waktu
-                $latestNews = News::where('status', 'published')->latest()->first();
-                if ($latestNews) $updates->push($latestNews);
-            }
-            if (Schema::hasTable('pengumuman_sekolah')) {
-                $updates->push(PengumumanSekolah::latest()->first());
-            }
-            if (Schema::hasTable('prestasi')) {
-                $updates->push(Prestasi::latest()->first());
-            }
-            if (Schema::hasTable('ppdb_info')) {
-                $updates->push(PpdbInfo::latest()->first());
+                $news = News::where('status', 'published')->latest()->take(3)->get();
+                $updates = $updates->merge($news);
             }
 
-            // Bersihkan data null dan urutkan berdasarkan yang terbaru dibuat
-            $allUpdates = $updates->filter()->sortByDesc('created_at');
+            // Ambil PENGUMUMAN (Ambil 2 terbaru)
+            if (Schema::hasTable('pengumuman_sekolah')) {
+                $pengumuman = PengumumanSekolah::latest()->take(2)->get();
+                $updates = $updates->merge($pengumuman);
+            }
+
+            // Ambil PRESTASI (Ambil 2 terbaru)
+            if (Schema::hasTable('prestasi')) {
+                $prestasi = Prestasi::latest()->take(2)->get();
+                $updates = $updates->merge($prestasi);
+            }
+
+            // Ambil PPDB (Ambil 1 terbaru)
+            if (Schema::hasTable('ppdb_info')) {
+                $ppdb = PpdbInfo::latest()->take(1)->get();
+                $updates = $updates->merge($ppdb);
+            }
+
+            // Urutkan semua gabungan data berdasarkan waktu terbaru
+            $allUpdates = $updates->sortByDesc('created_at');
 
             View::share([
-                // Badge Indikator: Cukup cek apakah ada data yang berstatus published
-                'hasNewBerita' => Schema::hasTable('news')
+                // Badge Indikator Navbar
+                'hasNewBerita' => Schema::hasTable('news') 
                     ? News::where('status', 'published')->exists() : false,
 
-                'hasNewPengumuman' => Schema::hasTable('pengumuman_sekolah')
+                'hasNewPengumuman' => Schema::hasTable('pengumuman_sekolah') 
                     ? PengumumanSekolah::exists() : false,
 
-                'hasNewPrestasi' => Schema::hasTable('prestasi')
+                'hasNewPrestasi' => Schema::hasTable('prestasi') 
                     ? Prestasi::exists() : false,
 
-                'hasNewPpdb' => Schema::hasTable('ppdb_info')
+                'hasNewPpdb' => Schema::hasTable('ppdb_info') 
                     ? PpdbInfo::exists() : false,
 
-                // Data Utama untuk Carousel Toast
+                // Data untuk Carousel Toast di Frontend
                 'allUpdates' => $allUpdates,
             ]);
         }

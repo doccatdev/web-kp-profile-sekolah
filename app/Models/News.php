@@ -27,16 +27,17 @@ class News extends Model
         'posted_at',
         'author_id',
         'status',
+        'rejection_reason',
     ];
 
-    // ─── Scopes ──────────────────────────────────────────────
+    // ─── Scopes ───────────────────────────────────────────────────────────────
 
     public function scopePublished($query)
     {
         return $query->where('status', 'published');
     }
 
-    // ─── Relationships ────────────────────────────────────────
+    // ─── Relationships ────────────────────────────────────────────────────────
 
     public function category(): BelongsTo
     {
@@ -58,34 +59,35 @@ class News extends Model
         return $this->hasMany(Comment::class)->approved();
     }
 
-    // ─── Model Events ─────────────────────────────────────────
+    // ─── Model Events ─────────────────────────────────────────────────────────
 
     protected static function booted(): void
     {
-        // Auto-generate slug and excerpt on save
         static::saving(function (News $news) {
+            // Auto slug
             if ($news->isDirty('news_title')) {
                 $news->slug = Str::slug($news->news_title);
             }
 
+            // Auto excerpt
             if (empty($news->short_description)) {
                 $news->short_description = Str::of(strip_tags($news->news_content))->limit(50);
             }
 
-            // Always set status to pending when created from frontend
+            // Pastikan artikel baru dari frontend selalu pending
             if (! $news->exists && empty($news->status)) {
                 $news->status = 'pending';
             }
         });
 
-        // Delete physical image file when record is deleted
+        // Hapus file gambar saat record dihapus
         static::deleting(function (News $news) {
             if ($news->image) {
                 Storage::disk('public')->delete($news->image);
             }
         });
 
-        // Delete old image file when a new one is uploaded
+        // Hapus gambar lama saat ganti thumbnail baru
         static::updating(function (News $news) {
             if ($news->isDirty('image')) {
                 $oldImage = $news->getOriginal('image');

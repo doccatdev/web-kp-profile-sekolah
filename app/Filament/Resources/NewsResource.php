@@ -14,10 +14,12 @@ use Illuminate\Database\Eloquent\Builder;
 // Form Components
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Set;
 
 // Table Components
@@ -50,7 +52,7 @@ class NewsResource extends Resource
     {
         $query = parent::getEloquentQuery();
 
-        // Teachers only see their own articles
+        // Guru hanya lihat artikel milik sendiri
         if (auth()->user()->hasRole('teacher')) {
             $query->where('author_id', auth()->id());
         }
@@ -60,6 +62,8 @@ class NewsResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $isTeacher = auth()->user()->hasRole('teacher');
+
         return $form
             ->schema([
                 Section::make('Informasi Berita')
@@ -104,7 +108,8 @@ class NewsResource extends Resource
                             ])
                             ->default('pending')
                             ->required()
-                            ->hidden(fn () => auth()->user()->hasRole('teacher')), // teachers cannot change status
+                            ->disabled($isTeacher)   // guru lihat tapi tidak bisa ubah
+                            ->dehydrated(! $isTeacher), // nilai tidak ikut di-save jika guru
 
                         DatePicker::make('posted_at')
                             ->label('Dibuat pada:')
@@ -123,11 +128,43 @@ class NewsResource extends Resource
                             ->disk('public')
                             ->required(),
                     ]),
+
+                // ── Alasan Penolakan ──────────────────────────────────────
+                // Tampil untuk semua role, tapi hanya jika status = rejected
+                Section::make('Alasan Penolakan')
+                    ->icon('heroicon-o-exclamation-triangle')
+                    ->collapsible()
+                    ->schema([
+
+                        // Guru: read-only
+                        Placeholder::make('rejection_reason_readonly')
+                            ->label('Alasan dari Admin')
+                            ->content(
+                                fn (?News $record): string =>
+                                    $record?->rejection_reason ?? 'Tidak ada keterangan dari admin.'
+                            )
+                            ->visible($isTeacher),
+
+                        // Admin: bisa edit
+                        Textarea::make('rejection_reason')
+                            ->label('Alasan Penolakan')
+                            ->placeholder('Tulis alasan penolakan berita ini..')
+                            ->rows(3)
+                            ->maxLength(500)
+                            ->helperText('Alasan ini akan terlihat oleh penuli.')
+                            ->visible(! $isTeacher),
+                    ])
+                    ->visible(
+                        fn (?News $record): bool =>
+                            $record !== null && $record->status === 'rejected'
+                    ),
             ]);
     }
 
     public static function table(Table $table): Table
     {
+        $isTeacher = auth()->user()->hasRole('teacher');
+
         return $table
             ->columns([
                 ImageColumn::make('image')
@@ -143,7 +180,8 @@ class NewsResource extends Resource
                 TextColumn::make('author.name')
                     ->label('Penulis')
                     ->default('Admin')
-                    ->sortable(),
+                    ->sortable()
+                    ->visible(! $isTeacher), // guru tidak perlu lihat kolom penulis
 
                 TextColumn::make('category.name_category')
                     ->label('Kategori')
@@ -159,6 +197,18 @@ class NewsResource extends Resource
                         'rejected'  => 'danger',
                         default     => 'gray',
                     }),
+
+                // Kolom rejection reason — tampil di baris hanya jika rejected
+                // Guru dan admin sama-sama bisa lihat di tabel
+                TextColumn::make('rejection_reason')
+                    ->label('Alasan Penolakan')
+                    ->placeholder('—')
+                    ->limit(50)
+                    ->tooltip(fn (News $record): ?string => $record->rejection_reason)
+                    ->wrap()
+                    ->color('danger')
+                    ->visible(fn (): bool => $isTeacher) // selalu tampil di kolom untuk guru
+                    ->formatStateUsing(fn (?string $state): string => $state ?? '—'),
 
                 TextColumn::make('posted_at')
                     ->label('Tanggal Terbit')
@@ -180,7 +230,14 @@ class NewsResource extends Resource
             ])
             ->actions([
                 ViewAction::make(),
-                EditAction::make(),
+                EditAction::make()
+                    ->visible(
+                        fn (News $record): bool =>
+                            // Guru hanya bisa edit artikel yang belum published
+                            $isTeacher
+                                ? $record->status !== 'published'
+                                : true
+                    ),
 
                 Action::make('approve')
                     ->label('Setujui')
@@ -188,19 +245,21 @@ class NewsResource extends Resource
                     ->color('success')
                     ->visible(
                         fn (News $record): bool =>
-                            $record->status !== 'published' &&
-                            ! auth()->user()->hasRole('teacher') // teachers cannot approve
+                            $record->status !== 'published' && ! $isTeacher
                     )
                     ->requiresConfirmation()
-                    ->modalHeading('Setujui Artikel')
-                    ->modalDescription('Artikel ini akan dipublikasikan dan dapat dilihat oleh pengunjung.')
+                    ->modalHeading('Setujui Berita')
+                    ->modalDescription('Berita ini akan dipublikasikan dan dapat dilihat oleh pengunjung.')
                     ->modalSubmitActionLabel('Ya, Setujui')
                     ->action(function (News $record): void {
-                        $record->update(['status' => 'published']);
+                        $record->update([
+                            'status'           => 'published',
+                            'rejection_reason' => null,
+                        ]);
                         Notification::make()
                             ->success()
-                            ->title('Artikel Disetujui')
-                            ->body('Artikel berhasil dipublikasikan.')
+                            ->title('Berita Disetujui')
+                            ->body('Berita berhasil dipublikasikan.')
                             ->send();
                     }),
 
@@ -210,23 +269,35 @@ class NewsResource extends Resource
                     ->color('danger')
                     ->visible(
                         fn (News $record): bool =>
-                            $record->status !== 'rejected' &&
-                            ! auth()->user()->hasRole('teacher') // teachers cannot reject
+                            $record->status !== 'rejected' && ! $isTeacher
                     )
-                    ->requiresConfirmation()
-                    ->modalHeading('Tolak Artikel')
-                    ->modalDescription('Artikel ini akan ditolak dan tidak akan ditampilkan ke pengunjung.')
+                    ->modalHeading('Tolak Berita')
+                    ->modalDescription('Berikan alasan penolakan agar penulis dapat memperbaiki beritanya.')
                     ->modalSubmitActionLabel('Ya, Tolak')
-                    ->action(function (News $record): void {
-                        $record->update(['status' => 'rejected']);
+                    ->modalWidth('lg')
+                    ->form([
+                        Textarea::make('rejection_reason')
+                            ->label('Alasan Penolakan')
+                            ->placeholder('Contoh: Konten kurang relevan, mohon perbaiki bagian pengantar...')
+                            ->required()
+                            ->rows(4)
+                            ->maxLength(500)
+                            ->helperText('Wajib diisi. Alasan ini akan terlihat oleh penulis berita.'),
+                    ])
+                    ->action(function (News $record, array $data): void {
+                        $record->update([
+                            'status'           => 'rejected',
+                            'rejection_reason' => $data['rejection_reason'],
+                        ]);
                         Notification::make()
                             ->warning()
-                            ->title('Artikel Ditolak')
-                            ->body('Artikel telah ditolak.')
+                            ->title('Berita Ditolak')
+                            ->body('Berita telah ditolak dengan alasan yang tercatat.')
                             ->send();
                     }),
 
                 DeleteAction::make()
+                    ->visible(fn (): bool => ! $isTeacher) // guru tidak bisa hapus
                     ->successNotification(
                         Notification::make()
                             ->success()
@@ -240,25 +311,43 @@ class NewsResource extends Resource
                         ->label('Setujui Semua')
                         ->icon('heroicon-o-check')
                         ->color('success')
-                        ->visible(! auth()->user()->hasRole('teacher'))
+                        ->visible(! $isTeacher)
                         ->requiresConfirmation()
-                        ->modalHeading('Setujui Semua Artikel Terpilih')
+                        ->modalHeading('Setujui Semua Berita Terpilih')
                         ->modalSubmitActionLabel('Ya, Setujui Semua')
-                        ->action(fn ($records) => $records->each->update(['status' => 'published']))
+                        ->action(fn ($records) => $records->each->update([
+                            'status'           => 'published',
+                            'rejection_reason' => null,
+                        ]))
                         ->deselectRecordsAfterCompletion(),
 
                     BulkAction::make('bulk_reject')
                         ->label('Tolak Semua')
                         ->icon('heroicon-o-x-mark')
                         ->color('danger')
-                        ->visible(! auth()->user()->hasRole('teacher'))
-                        ->requiresConfirmation()
-                        ->modalHeading('Tolak Semua Artikel Terpilih')
+                        ->visible(! $isTeacher)
+                        ->modalHeading('Tolak Semua Berita Terpilih')
                         ->modalSubmitActionLabel('Ya, Tolak Semua')
-                        ->action(fn ($records) => $records->each->update(['status' => 'rejected']))
+                        ->modalWidth('lg')
+                        ->form([
+                            Textarea::make('rejection_reason')
+                                ->label('Alasan Penolakan')
+                                ->placeholder('Alasan ini akan diterapkan ke semua berita yang dipilih...')
+                                ->required()
+                                ->rows(4)
+                                ->maxLength(500)
+                                ->helperText('Wajib diisi. Alasan ini berlaku untuk semua berita terpilih.'),
+                        ])
+                        ->action(function ($records, array $data): void {
+                            $records->each->update([
+                                'status'           => 'rejected',
+                                'rejection_reason' => $data['rejection_reason'],
+                            ]);
+                        })
                         ->deselectRecordsAfterCompletion(),
 
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->visible(! $isTeacher),
                 ]),
             ]);
     }

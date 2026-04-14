@@ -22,7 +22,6 @@
     <div class="row justify-content-center">
         <div class="col-md-9">
 
-            {{-- Menampilkan Error Validasi jika input tidak sesuai --}}
             @if ($errors->any())
                 <div class="alert alert-danger border-0 shadow-sm rounded-3 mb-4">
                     <ul class="mb-0">
@@ -53,7 +52,7 @@
 
                 <div class="row mb-4">
                     {{-- Kategori --}}
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label class="form-label fw-bold">Kategori</label>
                         <select name="category_id" class="form-select border-0 shadow-sm rounded-3" required>
                             <option value="">Pilih Kategori</option>
@@ -66,12 +65,21 @@
                         </select>
                     </div>
 
+                    {{-- Tanggal Terbit (Fitur Baru) --}}
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Tanggal Terbit</label>
+                        <input type="date" name="posted_at" 
+                               class="form-control border-0 shadow-sm rounded-3" 
+                               value="{{ old('posted_at', isset($news) ? \Carbon\Carbon::parse($news->posted_at)->format('Y-m-d') : date('Y-m-d')) }}" 
+                               required>
+                    </div>
+
                     {{-- Image Upload --}}
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Thumbnail Berita (Max 2MB)</label>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Thumbnail (Max 2MB)</label>
                         <input type="file" name="image" class="form-control border-0 shadow-sm rounded-3">
                         @if(isset($news->image))
-                            <small class="text-muted">File saat ini: {{ $news->image }}</small>
+                            <small class="text-muted d-block mt-1">File: {{ basename($news->image) }}</small>
                         @endif
                     </div>
                 </div>
