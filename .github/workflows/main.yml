@@ -20,7 +20,4 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        
-        # 'server-dir' adalah folder tujuan di cPanel. 
-        # Biasanya public_html atau public_html/subfolder
         server-dir: ./public_html/
