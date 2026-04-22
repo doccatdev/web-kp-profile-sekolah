@@ -1,20 +1,26 @@
-name: 🚀 Deploy website on push
-on: 
+name: Deploy Website Sekolah
+
+on:
   push:
     branches:
-      - main
+      - main # Ini berarti deploy jalan tiap lu push ke branch main
+
 jobs:
   web-deploy:
     name: 🎉 Deploy website
     runs-on: ubuntu-latest
     steps:
-    # Checkout the repository
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
-    # sync files via FTP
+
     - name: 📂 Sync files via FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
+        # Perhatikan tulisan secrets.NAMA_SECRET nya, harus sama dengan yang di GitHub
         server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASS }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        
+        # 'server-dir' adalah folder tujuan di cPanel. 
+        # Biasanya public_html atau public_html/subfolder
+        server-dir: ./public_html/
