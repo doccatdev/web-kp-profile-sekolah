@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PpdbController;
@@ -15,6 +16,9 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PenulisController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
+// Sitemap for SEO
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 // ─── AUTH ─────────────────────────────────────────────────────────────────────
 
